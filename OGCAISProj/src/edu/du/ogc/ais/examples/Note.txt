@@ -1,0 +1,41 @@
+Security module: OAuth2
+
+Local file cache dir: C:\ProgramData\WorldWindData
+
+WFS: From another company, GML format (GML2-GZIP in WFSService), need to check Geojson
+##version 1.0 is supported now
+a. Refer to placename example
+b. WFS version 
+c. WFS capablities (e.g., spatial and temporal selection, temporal data format)
+d. location and attribute info
+
+
+
+WMS:
+a. Time enabled WMS
+b. 1.1.1, 1.3.0
+c. Check layer based display
+basic tiled image layer 
+layerlist 
+dataconfiguration
+
+
+WCS:
+a. Other datasets?
+b. GetCoverage does not work; Getcapabities--> Layers are fine
+
+
+WFS:
+1. 1.0.0, no layer factory
+2. Download data 
+3. Display data (??)
+
+
+
+
+Service Process
+1. XXX layer panel --> capablities 
+2. Select a layer --> xxx layer , layer factory, basic layer factor is for WMS
+3. Create componenet and layer action 
+4. Download or check local cache
+5. Add layer to WW
