@@ -1,4 +1,8 @@
 Security module: OAuth2
+https://register.geostandaarden.nl/staging/staging/xmlschema/testbed13/0.5.0/
+
+
+
 
 Local file cache dir: C:\ProgramData\WorldWindData
 
@@ -20,6 +24,8 @@ layerlist
 dataconfiguration
 
 
+
+
 WCS:
 a. Other datasets?
 b. GetCoverage does not work; Getcapabities--> Layers are fine
@@ -39,3 +45,24 @@ Service Process
 3. Create componenet and layer action 
 4. Download or check local cache
 5. Add layer to WW
+
+Attribute info
+
+Service URL:
+https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs
+
+Feature type name:
+app:AIS 
+
+Latitude: 47 --48
+Longitude: -52  -53
+
+
+
+https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?REQUEST=GetFeature&TYPENAMES=app:AIS&SERVICE=WFS&VERSION=2.0.0&COUNT=1
+
+https://wes_srvl.compusult.net/ServiceWFS/services/arctic_wfs?Service=WFS&version=2.0.0&Request=GetFeature&TypeName=app:AIS&srsname=EPSG:4326&OUTPUTFORMAT=GML2-GZIP&BBOX=-52.2,47.7,-51.900000000000006,48.0,EPSG:4326
+
+https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=DescribeFeatureType&OUTPUTFORMAT=application%2Fgml%2Bxml%3B+version%3D3.2&TYPENAME=app:AIS&NAMESPACES=xmlns(app,http%3A%2F%2Fwww.deegree.org%2Fapp)
+
+

@@ -30,7 +30,8 @@ public class WFSService
     private final String urlBase; //full URL of a data ending with "&BBOX=", such that only the coordinates need to be appended
     private final String fileCachePath;
     private long expiryTime = 0;
-    private static final String FORMAT_SUFFIX = ".xml.gz";
+    //update this to a normal xml file
+    private static final String FORMAT_SUFFIX = ".xml";
     // Geospatial attributes.
     private final Sector sector;
     private final LatLon tileDelta;
@@ -72,10 +73,10 @@ public class WFSService
             else
                 urlBase.append("?");
         }
-        urlBase.append("Service=WFS&version=1.0.0&Request=GetFeature");
+        urlBase.append("Service=WFS&version=2.0.0&Request=GetFeature");
         urlBase.append("&TypeName=").append(dataset);
         urlBase.append("&srsname=EPSG:4326");
-        urlBase.append("&OUTPUTFORMAT=GML2-GZIP");
+//        urlBase.append("&OUTPUTFORMAT=GML2-GZIP");
         urlBase.append("&BBOX=");
         this.urlBase = urlBase.toString();
         

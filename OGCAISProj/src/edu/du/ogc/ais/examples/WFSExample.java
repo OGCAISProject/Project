@@ -4,6 +4,7 @@ import si.xlab.gaea.examples.*;
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.ogc.kml.KMLStyle;
@@ -116,7 +117,7 @@ public class WFSExample extends ApplicationTemplate
         optionsGroup.add(shadows);
 
         //depending on support for advanced shading, enable/disable menu items and select appropriate shading model
-        boolean gaeaShadingSupported = isGaeaShadingSupported(appFrame.getWwd());
+        boolean gaeaShadingSupported = false; //isGaeaShadingSupported(appFrame.getWwd());
         
         gaeaShading.setEnabled(gaeaShadingSupported);
         gaeaShadingPosEffects.setEnabled(gaeaShadingSupported);
@@ -233,6 +234,7 @@ public class WFSExample extends ApplicationTemplate
         insertBeforePlacenames(appFrame.getWwd(), layer);       
         layer.setEnabled(true);
         appFrame.updateLayerPanel();
+        appFrame.getWwd().getView().goTo(Position.fromDegrees(sector.getCentroid().latitude.degrees, sector.getCentroid().longitude.degrees), maxVisibleDistance);
     }
     
     public static class GaeaAppFrame extends AppFrame
@@ -256,7 +258,7 @@ public class WFSExample extends ApplicationTemplate
 		//MeasureRenderTime.setMesureGpu(true);
 		
         Configuration.insertConfigurationDocument("si/xlab/gaea/examples/gaea-example-config.xml");
-        appFrame = (GaeaAppFrame)ApplicationTemplate.start("Gaea+ Open Source Example Application", GaeaAppFrame.class);
+        appFrame = (GaeaAppFrame)ApplicationTemplate.start("OGC AIS Viewer", GaeaAppFrame.class);
         insertBeforeCompass(appFrame.getWwd(), RenderToTextureLayer.getInstance());
         appFrame.getWwd().addSelectListener(new FeatureSelectListener(appFrame.getWwd()));
         makeMenu(appFrame);

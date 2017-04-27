@@ -548,7 +548,7 @@ abstract public class AbstractWFSLayer extends AbstractLayer
             String path = url.getFile();
 
             path = path.replaceAll("%20", " "); // TODO: find a better way to get a path usable by FileInputStream
-
+//            System.out.println(path);
             java.io.FileInputStream fis = new java.io.FileInputStream(path);
             java.io.BufferedInputStream buf = new java.io.BufferedInputStream(
                     fis);
@@ -627,7 +627,7 @@ abstract public class AbstractWFSLayer extends AbstractLayer
 
         Retriever retriever;
 
-        if ("http".equalsIgnoreCase(url.getProtocol()))
+        if ("http".equalsIgnoreCase(url.getProtocol()) || "https".equalsIgnoreCase(url.getProtocol()))
         {
             retriever = new HTTPRetriever(url,
                     new DownloadPostProcessor(this, tile));

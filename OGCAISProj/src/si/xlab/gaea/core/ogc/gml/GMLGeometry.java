@@ -35,7 +35,7 @@ public abstract class GMLGeometry {
 		GML_TAG_INNER_BOUNDARY_IS = "gml:innerBoundaryIs",
 		GML_TAG_LINEAR_RING		= "gml:LinearRing",
 		GML_TAG_COORDINATES		= "gml:coordinates",
-		
+		GML_TAG_POS		= "gml:pos", //added by jing li
 		GML_ATTR_SRSNAME		= "srsName";
 	
 	private final static HashMap<String, Class<?>> supportedTypes = new HashMap<String, Class<?>>();
@@ -133,9 +133,17 @@ public abstract class GMLGeometry {
 	
 	protected static LatLon parseCoords(String s) throws GMLException
     {
-        String[] coords = s.split(",");
-
-        if (coords.length != 2)
+        String[] coords ;
+        if (s.contains(","))
+        {
+            coords = s.split(",");
+        }
+        else
+        {
+            coords = s.split(" ");
+        }
+        //!=2 originally Jing Li
+        if (coords.length < 2)
         {
             throw new NumberFormatException(
                     coords.length + " coordinates; expected 2");
@@ -144,8 +152,9 @@ public abstract class GMLGeometry {
         try
         {
 	        // in gml the lon comes before the lat!
-	        double lon = Double.parseDouble(coords[0]);
-	        double lat = Double.parseDouble(coords[1]);
+       
+	        double lon = Double.parseDouble(coords[coords.length-2]);
+	        double lat = Double.parseDouble(coords[coords.length-1]);
 
 	        //we don't check lat and lon for range because it might really be some other coordinates, not WGS;
 	        //it's not strictly correct to use LatLon in those cases, but currently there are now such cases

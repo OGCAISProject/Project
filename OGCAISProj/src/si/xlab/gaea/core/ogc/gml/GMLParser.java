@@ -4,6 +4,7 @@
 package si.xlab.gaea.core.ogc.gml;
 
 import gov.nasa.worldwind.util.Logging;
+import java.io.FileNotFoundException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.metadata.IIOMetadataNode;
 
@@ -48,7 +51,8 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
     }    
     
 	private static final String GML_BOUNDED_BY = "gml:boundedBy".intern();
-	private static final String GML_FEATURE_MEMBER = "gml:featureMember".intern();
+//	private static final String GML_FEATURE_MEMBER = "gml:featureMember".intern();
+        private static final String GML_FEATURE_MEMBER = "wfs:member".intern();
     private static final String SERVICE_EXCEPTION = "ServiceException".intern();
     
     //the bounding geometry; we need this because its srsName is used by default
@@ -142,8 +146,9 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
 
 				if (this.currentGeomNode != null)
 					this.currentGeomNode.appendChild(newNode);
-
-				this.currentGeomNode = newNode;            		
+                              
+                                        this.currentGeomNode = newNode;   
+                                
 			}
 		}
 
@@ -203,8 +208,9 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
 			else if (this.currentGeomNode != null)
 			{
 				this.currentGeomNode.setNodeValue(buf.toString());
-
-				if (this.currentGeomNode.getParentNode() == null)
+                                //the second part is added by Jing LI
+//                                ||this.currentGeomNode.getParentNode().getNodeName()=="gml:Point"
+				if (this.currentGeomNode.getParentNode() == null )
 				{
 					//we're ending a geometry
 					try {
@@ -258,5 +264,29 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
 		}
 
 		buf.append(ch, start, length);
-	}        
+	}      
+        
+        
+        public static void main(String args[]) {
+            String path = "C:\\ProgramData\\WorldWindData\\wes-srv1.compusult.net\\_ServiceWFS_services_arctic_wfs\\app_AIS\\0.3\\appAIS\\1\\1_1.xml";
+            java.io.InputStream is;
+        try {
+            is = new java.io.BufferedInputStream(new java.io.FileInputStream(path));
+                try {
+                    GMLParser.parse(is);
+                } catch (ParserConfigurationException ex) {
+                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SAXException ex) {
+                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (GMLException ex) {
+                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+                    
+        }
 }

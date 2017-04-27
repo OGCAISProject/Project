@@ -77,11 +77,16 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         jLabel2.setText("Service URL:"); // NOI18N
 
-        serviceUrl.setText("http://gis.arso.gov.si/geoserver/ows"); // NOI18N
+        serviceUrl.setText("https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?"); // NOI18N
+        serviceUrl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serviceUrlActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Feature type name:"); // NOI18N
 
-        featureTypeName.setText("arso:MV_OPZ_KRT_POP_OBM_KAT"); // NOI18N
+        featureTypeName.setText("app:AIS"); // NOI18N
 
         jLabel4.setText("Sector:"); // NOI18N
 
@@ -104,19 +109,24 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         sectorLbl1.setText("Latitude  ->  From:"); // NOI18N
 
-        sectorLatFrom.setText("45.1"); // NOI18N
+        sectorLatFrom.setText("47"); // NOI18N
 
         sectorLbl2.setText("To:"); // NOI18N
 
-        sectorLatTo.setText("46.9"); // NOI18N
+        sectorLatTo.setText("48"); // NOI18N
+        sectorLatTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sectorLatToActionPerformed(evt);
+            }
+        });
 
         sectorLbl3.setText("Longitude  ->  From:"); // NOI18N
 
-        sectorLonFrom.setText("13.3"); // NOI18N
+        sectorLonFrom.setText("-53"); // NOI18N
 
         sectorLbl4.setText("To:"); // NOI18N
 
-        sectorLonTo.setText("16.6"); // NOI18N
+        sectorLonTo.setText("-52"); // NOI18N
 
         jLabel9.setText("Max visible distance [km]:"); // NOI18N
 
@@ -315,6 +325,14 @@ public class WFSLayerPanel extends javax.swing.JPanel
             dialog.setVisible(false);
         }
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void sectorLatToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorLatToActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sectorLatToActionPerformed
+
+    private void serviceUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceUrlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serviceUrlActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

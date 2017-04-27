@@ -72,7 +72,7 @@ public class DefaultLook
                             + 	"<color>ffffffff</color>"
                             + 	"<colorMode>normal</colorMode>"
                             + 	"<scale>1</scale>" + "<heading>0</heading>"
-                            + 	"<Icon><href>images/pushpins/push-pin-yellow-32.png</href></Icon>"
+                            + 	"<Icon><href>images/pushpins/ship.png</href></Icon>"
                             + 	"<hotSpot x=\"0.5\"  y=\"0.0\" xunits=\"fraction\" yunits=\"fraction\"/>"
                             + "</IconStyle>"
                             + "<LabelStyle>"

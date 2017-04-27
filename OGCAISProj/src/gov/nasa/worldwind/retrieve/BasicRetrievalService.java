@@ -381,7 +381,7 @@ public final class BasicRetrievalService extends WWObjectImpl
             return null;
 
         this.executor.execute(task);
-        System.err.println(task.retriever);
+//        System.err.println(task.retriever);
 
         return task;
     }
