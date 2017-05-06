@@ -57,7 +57,7 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
     
     //the bounding geometry; we need this because its srsName is used by default
     private GMLGeometry boundedBy = null;
-    private String boundedBySrsName = null; //used as the default srsName for features
+    private String boundedBySrsName = "EPSG:4326"; //used as the default srsName for features
 
 	//the final contents of the tile
 	private final List<GMLFeature> features;

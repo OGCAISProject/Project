@@ -85,12 +85,13 @@ public abstract class GMLGeometry {
         {
             this.srsName = srsNameAttr.getNodeValue();
         } else {
+            
             this.srsName = defaultSrsName;
         }
 
         if (this.srsName == null && parent == null)
         {
-			throw new GMLException("Parentless geometry objects must have srsName attribute or default srsName must be supplied");
+            throw new GMLException("Parentless geometry objects must have srsName attribute or default srsName must be supplied");
         }
 		this.parent = parent;
 		this.sector = null;
@@ -152,9 +153,9 @@ public abstract class GMLGeometry {
         try
         {
 	        // in gml the lon comes before the lat!
-       
-	        double lon = Double.parseDouble(coords[coords.length-2]);
-	        double lat = Double.parseDouble(coords[coords.length-1]);
+                //luciad data this is different --Jing 
+	        double lon = Double.parseDouble(coords[coords.length-1]);
+	        double lat = Double.parseDouble(coords[coords.length-2]);
 
 	        //we don't check lat and lon for range because it might really be some other coordinates, not WGS;
 	        //it's not strictly correct to use LatLon in those cases, but currently there are now such cases

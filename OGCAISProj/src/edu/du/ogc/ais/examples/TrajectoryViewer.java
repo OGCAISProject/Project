@@ -51,11 +51,12 @@ public class TrajectoryViewer extends ApplicationTemplate
     	ArrayList<Position> pathPositions = new ArrayList<Position>();
     	ArrayList<Position> pathPositionsRender = new ArrayList<Position>();
     	protected int currentPos = 0; 
-    	protected String geojsonfile = "D:\\OneDrive\\OGCWorkspace\\OGCAIS\\src\\edu\\du\\ogc\\ais\\GeoJSONs\\track_geojson.json";
+    	protected String geojsonfile = "./edu/du/ogc/ais/examples/GeoJSONs/track_geojson.json";
     	
         public AppFrame()
         {
             super(true, true, false);
+            //replace this with features from GML files ---Jing Li
             readGeoJSONFile(geojsonfile);
             
             // Add a dragger to enable shape dragging

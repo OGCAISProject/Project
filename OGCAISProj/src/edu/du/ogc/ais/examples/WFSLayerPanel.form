@@ -168,7 +168,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="serviceUrl">
       <Properties>
-        <Property name="text" type="java.lang.String" value="https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="http://demo.luciad.com:8080/OgcAisServices/wfs?" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="serviceUrlActionPerformed"/>
@@ -181,7 +181,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="featureTypeName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="app:AIS" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="AIS_US" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -219,7 +219,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="sectorLatFrom">
       <Properties>
-        <Property name="text" type="java.lang.String" value="47" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="39" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sectorLbl2">
@@ -229,7 +229,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="sectorLatTo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="48" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="42" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sectorLatToActionPerformed"/>
@@ -242,7 +242,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="sectorLonFrom">
       <Properties>
-        <Property name="text" type="java.lang.String" value="-53" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="-74" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sectorLbl4">
@@ -252,7 +252,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="sectorLonTo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="-52" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="-70" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -262,7 +262,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="maxDistance">
       <Properties>
-        <Property name="text" type="java.lang.String" value="200" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="500" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -274,6 +274,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="0.3" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tileDeltaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>

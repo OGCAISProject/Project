@@ -77,7 +77,7 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         jLabel2.setText("Service URL:"); // NOI18N
 
-        serviceUrl.setText("https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?"); // NOI18N
+        serviceUrl.setText("http://demo.luciad.com:8080/OgcAisServices/wfs?"); // NOI18N
         serviceUrl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serviceUrlActionPerformed(evt);
@@ -86,7 +86,7 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         jLabel3.setText("Feature type name:"); // NOI18N
 
-        featureTypeName.setText("app:AIS"); // NOI18N
+        featureTypeName.setText("AIS_US"); // NOI18N
 
         jLabel4.setText("Sector:"); // NOI18N
 
@@ -109,11 +109,11 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         sectorLbl1.setText("Latitude  ->  From:"); // NOI18N
 
-        sectorLatFrom.setText("47"); // NOI18N
+        sectorLatFrom.setText("39"); // NOI18N
 
         sectorLbl2.setText("To:"); // NOI18N
 
-        sectorLatTo.setText("48"); // NOI18N
+        sectorLatTo.setText("42"); // NOI18N
         sectorLatTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sectorLatToActionPerformed(evt);
@@ -122,19 +122,24 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         sectorLbl3.setText("Longitude  ->  From:"); // NOI18N
 
-        sectorLonFrom.setText("-53"); // NOI18N
+        sectorLonFrom.setText("-74"); // NOI18N
 
         sectorLbl4.setText("To:"); // NOI18N
 
-        sectorLonTo.setText("-52"); // NOI18N
+        sectorLonTo.setText("-70"); // NOI18N
 
         jLabel9.setText("Max visible distance [km]:"); // NOI18N
 
-        maxDistance.setText("200"); // NOI18N
+        maxDistance.setText("500"); // NOI18N
 
         jLabel5.setText("Tile delta [degrees]:"); // NOI18N
 
         tileDelta.setText("0.3"); // NOI18N
+        tileDelta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tileDeltaActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Color:"); // NOI18N
 
@@ -333,6 +338,10 @@ public class WFSLayerPanel extends javax.swing.JPanel
     private void serviceUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceUrlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_serviceUrlActionPerformed
+
+    private void tileDeltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tileDeltaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tileDeltaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

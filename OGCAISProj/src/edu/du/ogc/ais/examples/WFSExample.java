@@ -234,7 +234,7 @@ public class WFSExample extends ApplicationTemplate
         insertBeforePlacenames(appFrame.getWwd(), layer);       
         layer.setEnabled(true);
         appFrame.updateLayerPanel();
-        appFrame.getWwd().getView().goTo(Position.fromDegrees(sector.getCentroid().latitude.degrees, sector.getCentroid().longitude.degrees), maxVisibleDistance);
+        appFrame.getWwd().getView().goTo(Position.fromDegrees(sector.getCentroid().latitude.degrees, sector.getCentroid().longitude.degrees), maxVisibleDistance/2);
     }
     
     public static class GaeaAppFrame extends AppFrame

@@ -74,9 +74,9 @@ public class WFSService
                 urlBase.append("?");
         }
         urlBase.append("Service=WFS&version=2.0.0&Request=GetFeature");
-        urlBase.append("&TypeName=").append(dataset);
+        urlBase.append("&TypeNames=").append(dataset);
         urlBase.append("&srsname=EPSG:4326");
-//        urlBase.append("&OUTPUTFORMAT=GML2-GZIP");
+//        urlBase.append("&OUTPUTFORMAT=GML3");
         urlBase.append("&BBOX=");
         this.urlBase = urlBase.toString();
         
