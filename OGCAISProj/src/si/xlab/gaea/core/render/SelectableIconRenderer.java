@@ -157,7 +157,6 @@ public class SelectableIconRenderer extends IconRenderer
         else
             scale = 1.0;
         scale /= calcDistanceReduceFactor(eyeDistance);
-
         gl.glTranslated(width / 2, 0, 0);
         gl.glScaled(scale, scale, scale);
         gl.glTranslated(-width / 2, 0, 0);

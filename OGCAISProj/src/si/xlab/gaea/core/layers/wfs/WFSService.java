@@ -61,6 +61,8 @@ public class WFSService
     public WFSService(String service, String dataset,
             Sector sector, Angle tileDelta)
     {
+        //add the id here
+        
         // Data retrieval and caching attributes.
         this.service = service;
         this.dataset = dataset;
@@ -76,6 +78,7 @@ public class WFSService
         urlBase.append("Service=WFS&version=2.0.0&Request=GetFeature");
         urlBase.append("&TypeNames=").append(dataset);
         urlBase.append("&srsname=EPSG:4326");
+        urlBase.append("sortBy=Time+A"); //PM and AM are mixed though
 //        urlBase.append("&OUTPUTFORMAT=GML3");
         urlBase.append("&BBOX=");
         this.urlBase = urlBase.toString();

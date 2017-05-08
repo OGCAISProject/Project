@@ -13,7 +13,13 @@ b. WFS version
 c. WFS capablities (e.g., spatial and temporal selection, temporal data format)
 d. location and attribute info
 
+http://demo.luciad.com:8080/OgcAisServices/wfs?
+Service=WFS&version=2.0.0&Request=GetFeature&TypeNames=AIS_US&
+srsname=EPSG:4326&OUTPUTFORMAT=GML2&BBOX=-75.0,39.0,-72.0,42.0,EPSG:4326
 
+http://demo.luciad.com:8080/OgcAisServices/wfs?Service=WFS&version=2.0.0&Request=GetFeature&TypeNames=AIS_US&Filter=<fes:Filter><fes:PropertyIsEqualTo><fes:ValueReference>VoyageID</fes:ValueReference><fes:Literal>134385</fes:Literal></fes:PropertyIsEqualTo></fes:Filter>
+
+http://demo.luciad.com:8080/OgcAisServices/service/wfs_getfeature_mmsi.xml
 
 WMS:
 a. Time enabled WMS
@@ -26,15 +32,22 @@ dataconfiguration
 
 
 
-WCS:
+WCS (no archieved data):
 a. Other datasets?
 b. GetCoverage does not work; Getcapabities--> Layers are fine
+http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km?service=WCS&request=GetCoverage&version=1.0.0&coverage=u&bbox=-72,40.8,-71,41.5&time=2016-05-06-T00:00:00Z&format=NetCDF3
 
 
 WFS:
 1. 1.0.0, no layer factory
 2. Download data 
 3. Display data (??)
+
+
+WFS tracks
+1. Query based on Voyoge ID?
+2. Save locally with Voyoge ID 
+3. Select 
 
 
 

@@ -1,6 +1,6 @@
 package edu.du.ogc.ais.examples;
 
-import si.xlab.gaea.examples.*;
+
 import gov.nasa.worldwind.Configuration;
 import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.geom.Angle;
@@ -37,9 +37,7 @@ import si.xlab.gaea.core.ogc.kml.KMLStyleFactory;
  */
 public class WFSExample extends ApplicationTemplate
 {
-    public static final Sector SLOVENIA_BOUNDING_BOX = new Sector(
-            Angle.fromDegrees(45.1), Angle.fromDegrees(46.9),
-            Angle.fromDegrees(13.3), Angle.fromDegrees(16.6));
+
     
     protected static void makeMenu(final AppFrame appFrame)
     {
@@ -71,10 +69,12 @@ public class WFSExample extends ApplicationTemplate
                     Angle tile = wfsPanel.getTileDelta();
                     Color color = wfsPanel.getColor();
 					String lineLabelTag = wfsPanel.getFeatureLableTypeName();
+                    String queryfield = wfsPanel.getQueryField();
+                    String queryvalue = wfsPanel.getQueryValue();
 
                     try
                     {
-                        addWfsLayer(url, name, sector, tile, dist*1000, color, lineLabelTag);
+                        addWfsLayer(url, name, sector, tile, queryfield, queryvalue, dist*1000, color, lineLabelTag);
                     }
                     catch (Exception e)
                     {
@@ -98,47 +98,7 @@ public class WFSExample extends ApplicationTemplate
         });
         fileMenu.add(quitItem);
         
-        JMenu optionsMenu = new JMenu("Shading");
-        menuBar.add(optionsMenu);
-        ButtonGroup optionsGroup = new ButtonGroup();
-        
-        JMenuItem wwShading = new ShadingItem(new boolean[]{false, false, false, false, false}, "Default World Wind");
-        optionsMenu.add(wwShading);
-        optionsGroup.add(wwShading);
-        JMenuItem gaeaShading = new ShadingItem(new boolean[]{true, true, true, false, false}, "Advanced Gaea+ shading");
-        optionsMenu.add(gaeaShading);
-        optionsGroup.add(gaeaShading);
-        JMenuItem gaeaShadingPosEffects = new ShadingItem(new boolean[]{true, true, true, true, false}, "Advanced Gaea+ shading with HDR, bloom and depth of field");
-        optionsMenu.add(gaeaShadingPosEffects);
-        optionsGroup.add(gaeaShadingPosEffects);
 
-        JMenuItem shadows = new ShadingItem(new boolean[]{true, true, true, true, true}, "Advanced Gaea+ shading with shadows");
-        optionsMenu.add(shadows);
-        optionsGroup.add(shadows);
-
-        //depending on support for advanced shading, enable/disable menu items and select appropriate shading model
-        boolean gaeaShadingSupported = false; //isGaeaShadingSupported(appFrame.getWwd());
-        
-        gaeaShading.setEnabled(gaeaShadingSupported);
-        gaeaShadingPosEffects.setEnabled(gaeaShadingSupported);
-        shadows.setEnabled(gaeaShadingSupported);
-
-        if (gaeaShadingSupported)
-            gaeaShading.doClick();
-        else 
-        {
-            wwShading.doClick();
-            //if gaea shading is not supported by GPU/driver, we also have to remove the run-time calculated layers
-            ArrayList<Layer> unsupportedLayers = new ArrayList<Layer>();
-            for (Layer layer: appFrame.getWwd().getModel().getLayers())
-            {
-                if (layer instanceof SlopeLayer || layer instanceof ElevationLayer)
-                    unsupportedLayers.add(layer);
-            }
-            appFrame.getWwd().getModel().getLayers().removeAll(unsupportedLayers);
-            if (appFrame instanceof GaeaAppFrame)
-                ((GaeaAppFrame)appFrame).updateLayerPanel();
-        }
         
         JMenu helpMenu = new JMenu("Help");
         menuBar.add(helpMenu);
@@ -152,26 +112,7 @@ public class WFSExample extends ApplicationTemplate
         helpMenu.add(new MessageItem(aboutMsg, "About..."));
     }    
     
-    private static boolean isGaeaShadingSupported(WorldWindow wwd)
-    {
-        DrawContext dc = null;
-        //shading is suppored if a deferredRenderer appears in dc relatively quickly AND this deferredRenderer says it is supported
-        for (int wait = 0; wait < 10; wait++)
-        {
-            dc = wwd.getSceneController().getDrawContext();
-            if (dc != null && dc.getDeferredRenderer() != null)
-            {
-                return dc.getDeferredRenderer().isSupported(dc);                        
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                //ignore
-            }
-        }
-        return false;
-    }
-    
+
     private static class MessageItem extends JMenuItem
     {
         private final String message;
@@ -194,31 +135,13 @@ public class WFSExample extends ApplicationTemplate
         }
     }
     
-    private static class ShadingItem extends JRadioButtonMenuItem
-    {
-        private final boolean[] states;
-        
-        public ShadingItem(boolean[] _states, String caption)
-        {
-            super(caption);
-            this.states = _states;
-            setAction(new AbstractAction(caption) {
-                @Override
-                public void actionPerformed(ActionEvent e)
-                {
-                    appFrame.getWwd().getSceneController().firePropertyChange(AvKeyExt.ENABLE_SUNLIGHT, !states[0], states[0]);
-                    appFrame.getWwd().getSceneController().firePropertyChange(AvKeyExt.ENABLE_ATMOSPHERE, !states[1], states[1]);
-                    appFrame.getWwd().getSceneController().firePropertyChange(AvKeyExt.ENABLE_ATMOSPHERE_WITH_AERIAL_PERSPECTIVE, !states[2], states[2]);
-                    appFrame.getWwd().getSceneController().firePropertyChange(AvKeyExt.ENABLE_POS_EFFECTS, !states[3], states[3]);
-                    appFrame.getWwd().getSceneController().firePropertyChange(AvKeyExt.ENABLE_SHADOWS, !states[4], states[4]);
-                }
-            });
-        }
-    }
+
     
-    protected static void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, double maxVisibleDistance, Color color,
+    protected static void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance, Color color,
 			String lineLabelTag)
     {
+        
+      
         WFSService service = new WFSService(url, featureTypeName, sector, tileDelta);
         WFSGenericLayer layer = new WFSGenericLayer(service, "WFS: "+ featureTypeName + " (from "
                 + url.replaceAll("^.+://", "").replaceAll("/.*$", "") + ")");
@@ -235,7 +158,8 @@ public class WFSExample extends ApplicationTemplate
         layer.setEnabled(true);
         appFrame.updateLayerPanel();
         appFrame.getWwd().getView().goTo(Position.fromDegrees(sector.getCentroid().latitude.degrees, sector.getCentroid().longitude.degrees), maxVisibleDistance/2);
-    }
+        
+        }
     
     public static class GaeaAppFrame extends AppFrame
     {
