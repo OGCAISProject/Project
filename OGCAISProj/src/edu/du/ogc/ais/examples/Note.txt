@@ -79,3 +79,9 @@ https://wes_srvl.compusult.net/ServiceWFS/services/arctic_wfs?Service=WFS&versio
 https://wes-srv1.compusult.net/ServiceWFS/services/arctic_wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=DescribeFeatureType&OUTPUTFORMAT=application%2Fgml%2Bxml%3B+version%3D3.2&TYPENAME=app:AIS&NAMESPACES=xmlns(app,http%3A%2F%2Fwww.deegree.org%2Fapp)
 
 
+
+
+Analytical functions 
+1. Density map
+Geotools what about lines--> convert into points?
+https://github.com/geotools/geotools/blob/master/modules/unsupported/process-feature/src/main/java/org/geotools/process/vector/HeatmapProcess.java
