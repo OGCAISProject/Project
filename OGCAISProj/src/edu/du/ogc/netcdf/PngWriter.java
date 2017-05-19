@@ -37,10 +37,10 @@ public class PngWriter {
     public PngWriter(String inputImage) {
         fi = new File(inputImage);
         try {
+            System.out.println(fi.getAbsolutePath());
             Image inImage = javax.imageio.ImageIO.read(fi);
             width = inImage.getWidth(null);
             height = inImage.getHeight(null);
-
             imIn = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
             imIn.getGraphics().drawImage(inImage, 0, 0, width, height, null);
@@ -51,7 +51,7 @@ public class PngWriter {
 
                     rgb[i][j] = imIn.getRGB(i, j);
 
-                    System.out.println("rgb:" + rgb[i][j]);
+                    //System.out.println("rgb:"+rgb[i][j]);
                 }
             }
             outFile = new File("K:\\sdg.png");
@@ -102,7 +102,7 @@ public class PngWriter {
             for (int j = 0; j < irgb[i].length; j++) {
                 if (irgb[i][j] != -1) {
                     buffer.setRGB(i, j, irgb[i][j]);
-
+                    //System.out.println(irgb[i][j]);
                 }
             }
         }
@@ -192,7 +192,6 @@ public class PngWriter {
         int Width = FM.stringWidth(para);
         int wCenter = (irgb.length - Width) / 2;
 
-        System.out.println("tes" + Width);
         g.drawString(para, wCenter, 15);
         for (int k = 0; k < legend.length; k++) {
             g.drawString(legend[k], 10 + 75 * k, 2 * irgb[0].length / 3 + 15);
@@ -219,9 +218,6 @@ public class PngWriter {
         return buffer;
     }
 
-    public static void main(String[] args) {
 
-        PngWriter png = new PngWriter("K:\\test.png");
-    }
 
 }

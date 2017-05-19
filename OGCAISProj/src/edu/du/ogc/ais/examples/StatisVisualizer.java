@@ -11,6 +11,6 @@ package edu.du.ogc.ais.examples;
  */
 public class StatisVisualizer {
     
-//    resultype=hits
+//  wfs:  resultype=hits
     
 }

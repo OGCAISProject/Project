@@ -174,7 +174,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
         }
     }
 
-    private static void GetPositions(List<GMLFeature> gmlfeatures, KMLStyle style) {
+    private static void GetPositions(List<GMLFeature> gmlfeatures) {
 
         for (GMLFeature gmlfeature : gmlfeatures) {
             GMLGeometry geometry;
@@ -184,7 +184,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
                 LatLon loc = gmlpoint.getCentroid();
                 String desc = gmlfeature.buildDescription(null);
                 String imageURL = findFirstLinkedImage(desc);
-                pathPositions.add(new Position(geometry.getCentroid(), 0));
+                pathPositions.add(new Position(geometry.getCentroid(), 100));
                 finalloc = loc;
             }
         }
@@ -209,7 +209,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
                 appFrame.updateLayerPanel();
             } else {
                 // Add a dragger to enable shape dragging
-                GetPositions(service.readGMLData(filepath), style);
+                GetPositions(service.readGMLData(filepath));
                 appFrame.getWwd().addSelectListener(new BasicDragger(appFrame.getWwd()));
 
                 // Create and set an attribute bundle.
@@ -224,9 +224,10 @@ public class WFSExampleSimple extends ApplicationTemplate {
 //            path.setShowPositions(true);
                 trackpath.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
                 trackpath.setPathType(AVKey.GREAT_CIRCLE);
-
+                
                 tracklayer.addRenderable(trackpath);
-
+                
+                
                 // Add the layer to the model.
                 insertBeforeCompass(appFrame.getWwd(), tracklayer);
                 appFrame.getWwd().addRenderingListener(appFrame);
