@@ -76,7 +76,7 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
 	private boolean geomEnclosedInATagJustEnded = false;
 	private StringBuffer buf = new StringBuffer();
 
-	private GMLParser()
+	public GMLParser()
 	{
 		this.features = new ArrayList<GMLFeature>();
         this.errors = new ArrayList<String>();
@@ -266,27 +266,27 @@ public class GMLParser extends org.xml.sax.helpers.DefaultHandler
 		buf.append(ch, start, length);
 	}      
         
-        
-        public static void main(String args[]) {
-            String path = "C:\\ProgramData\\WorldWindData\\wes-srv1.compusult.net\\_ServiceWFS_services_arctic_wfs\\app_AIS\\0.3\\appAIS\\1\\1_1.xml";
-            java.io.InputStream is;
-        try {
-            is = new java.io.BufferedInputStream(new java.io.FileInputStream(path));
-                try {
-                    GMLParser.parse(is);
-                } catch (ParserConfigurationException ex) {
-                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SAXException ex) {
-                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (GMLException ex) {
-                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-                    
-        }
+//        
+//        public static void main(String args[]) {
+//            String path = "C:\\ProgramData\\WorldWindData\\wes-srv1.compusult.net\\_ServiceWFS_services_arctic_wfs\\app_AIS\\0.3\\appAIS\\1\\1_1.xml";
+//            java.io.InputStream is;
+//        try {
+//            is = new java.io.BufferedInputStream(new java.io.FileInputStream(path));
+//                try {
+//                    GMLParser.parse(is);
+//                } catch (ParserConfigurationException ex) {
+//                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+//                } catch (SAXException ex) {
+//                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+//                } catch (IOException ex) {
+//                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+//                } catch (GMLException ex) {
+//                    Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(GMLParser.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//            
+//                    
+//        }
 }

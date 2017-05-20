@@ -1,0 +1,2851 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wfs:FeatureCollection xmlns:wfs="http://www.opengis.net/wfs/2.0" xmlns:fes="http://www.opengis.net/fes/2.0" xmlns="http://www.opengis.net/gml" xmlns:ns0="AIS_US/gml/3.2" xmlns:ns1="http://www.opengis.net/wfs" xmlns:ows="http://www.opengis.net/ows/1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.opengis.net/ogc" xmlns:ns3="http://www.opengis.net/ows" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/fes/2.0 http://schemas.opengis.net/filter/2.0.0/filter.xsd http://www.opengis.net/gml http://demo.luciad.com:8080/OgcAisServices/schemas/gml/3.1.1/base/feature.xsd http://www.opengis.net/wfs/2.0 http://schemas.opengis.net/wfs/2.0.0/wfs.xsd AIS_US/gml/3.2 http://demo.luciad.com:8080/OgcAisServices/wfs?SERVICE=WFS&amp;VERSION=2.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=AIS_US&amp;OUTPUTFORMAT=application%2Fgml%2Bxml%3B+version%3D3.2 http://www.opengis.net/wfs http://demo.luciad.com:8080/OgcAisServices/schemas/wfs/1.1.0/wfs.xsd http://www.opengis.net/ows/1.1 http://schemas.opengis.net/ows/1.1.0/owsAll.xsd http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd http://www.opengis.net/ogc http://demo.luciad.com:8080/OgcAisServices/schemas/filter/1.1.0/filter.xsd http://www.opengis.net/ows http://demo.luciad.com:8080/OgcAisServices/schemas/ows/1.0.0/owsAll.xsd http://www.opengis.net/gml/3.2 http://demo.luciad.com:8080/OgcAisServices/schemas/gml/3.2.1/gml.xsd http://www.w3.org/1999/xlink http://demo.luciad.com:8080/OgcAisServices/schemas/org/w3/1999/xlink.xsd " numberMatched="unknown" timeStamp="2017-05-10T20:11:44.255Z">
+  <wfs:boundedBy>
+    <gml:boundedBy>
+      <gml:Envelope srsName="urn:ogc:def:crs:EPSG::4326">
+        <gml:lowerCorner>40.593193000000014 -74.129797</gml:lowerCorner>
+        <gml:upperCorner>42.38446300000001 -70.959142</gml:upperCorner>
+      </gml:Envelope>
+    </gml:boundedBy>
+  </wfs:boundedBy>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_112">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_112_1">
+          <gml:pos>40.650317 -74.091072</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>246</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090101</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/1/2009 6:27:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_136">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_136_1">
+          <gml:pos>40.65922699999999 -74.043477</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>275</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090101</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669983</ns0:ReceiverID>
+      <ns0:Time>1/1/2009 11:21:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_496">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_496_1">
+          <gml:pos>40.64972800000001 -74.09223</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>252</ns0:COG>
+      <ns0:Heading>53</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090104</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/4/2009 12:50:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_501">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_501_1">
+          <gml:pos>40.649699999999996 -74.092213</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>33</ns0:COG>
+      <ns0:Heading>52</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090104</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/4/2009 2:39:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_961">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_961_1">
+          <gml:pos>40.79435000000001 -73.987952</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>34</ns0:COG>
+      <ns0:Heading>202</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 9:28:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_1219">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_1219_1">
+          <gml:pos>40.650312000000014 -74.091087</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>47</ns0:COG>
+      <ns0:Heading>233</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090108</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>2003669982</ns0:ReceiverID>
+      <ns0:Time>1/8/2009 8:00:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_2305">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_2305_1">
+          <gml:pos>40.800127 -73.983395</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>127</ns0:COG>
+      <ns0:Heading>207</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 6:01:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_3253">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_3253_1">
+          <gml:pos>40.640803000000005 -74.129797</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>78</ns0:COG>
+      <ns0:Heading>212</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 5:32:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_4360">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_4360_1">
+          <gml:pos>40.64972 -74.092187</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>232</ns0:COG>
+      <ns0:Heading>53</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090128</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/28/2009 3:04:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_4522">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_4522_1">
+          <gml:pos>40.666341999999986 -74.007042</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>16</ns0:COG>
+      <ns0:Heading>18</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090129</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/29/2009 1:32:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_4636">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_4636_1">
+          <gml:pos>40.593193000000014 -74.021853</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>78</ns0:COG>
+      <ns0:Heading>338</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090130</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>05RMSQ1</ns0:ReceiverID>
+      <ns0:Time>1/30/2009 4:58:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_4878">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_4878_1">
+          <gml:pos>40.650322999999986 -74.091072</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>234</ns0:COG>
+      <ns0:Heading>234</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669983</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 2:06:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_4895">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_4895_1">
+          <gml:pos>40.650327000000004 -74.091073</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>226</ns0:COG>
+      <ns0:Heading>234</ns0:Heading>
+      <ns0:ROT>0</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>15</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366946760</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>2003669982</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 3:51:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5040">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5040_1">
+          <gml:pos>42.38116299999999 -71.047195</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>336</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090101</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/1/2009 11:18:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5205">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5205_1">
+          <gml:pos>42.38114300000001 -71.047173</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>352</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090102</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/2/2009 8:58:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5257">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5257_1">
+          <gml:pos>42.38112699999999 -71.04714</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>181</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090102</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/2/2009 1:49:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5273">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5273_1">
+          <gml:pos>42.38117299999999 -71.047155</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>328</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090102</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/2/2009 5:26:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5297">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5297_1">
+          <gml:pos>42.38113200000001 -71.047192</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>328</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090102</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/2/2009 9:54:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5316">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5316_1">
+          <gml:pos>42.381167000000005 -71.047195</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>172</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090103</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/3/2009 1:24:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5332">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5332_1">
+          <gml:pos>42.381192999999996 -71.047223</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>172</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090103</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/3/2009 4:17:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5464">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5464_1">
+          <gml:pos>42.38112000000001 -71.047168</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>352</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090103</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/3/2009 11:46:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5537">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5537_1">
+          <gml:pos>42.38114300000001 -71.047217</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>353</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090104</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/4/2009 12:56:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5546">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5546_1">
+          <gml:pos>42.38118800000001 -71.047198</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>353</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090104</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/4/2009 2:22:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5616">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5616_1">
+          <gml:pos>42.38113200000001 -71.047173</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>148</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090104</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/4/2009 10:55:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5652">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5652_1">
+          <gml:pos>42.381235000000004 -71.047233</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>168</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090105</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/5/2009 3:54:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5693">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5693_1">
+          <gml:pos>42.38113799999999 -71.047208</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>168</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090105</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/5/2009 9:31:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5715">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5715_1">
+          <gml:pos>42.38117500000001 -71.047165</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>168</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090105</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/5/2009 11:53:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5781">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5781_1">
+          <gml:pos>42.381384999999995 -71.04786</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>271</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090105</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/5/2009 11:01:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5833">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5833_1">
+          <gml:pos>42.381372 -71.047842</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>271</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 7:26:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5855">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5855_1">
+          <gml:pos>42.381403000000006 -71.047875</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>271</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 10:00:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5861">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5861_1">
+          <gml:pos>42.381406999999996 -71.047832</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>271</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 10:55:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5862">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5862_1">
+          <gml:pos>42.381376999999986 -71.047828</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>271</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 10:59:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5902">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5902_1">
+          <gml:pos>42.381384999999995 -71.047838</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>43</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 5:46:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5907">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5907_1">
+          <gml:pos>42.381382 -71.047845</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>103</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 6:38:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5943">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5943_1">
+          <gml:pos>42.381384999999995 -71.04788</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>103</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090106</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/6/2009 11:55:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5956">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5956_1">
+          <gml:pos>42.38136299999999 -71.047813</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>8</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 2:15:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5958">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5958_1">
+          <gml:pos>42.38140200000001 -71.04786</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>8</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 2:24:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5963">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5963_1">
+          <gml:pos>42.381337 -71.047908</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>8</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 3:22:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_5997">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_5997_1">
+          <gml:pos>42.381415000000004 -71.04785</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>8</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 8:56:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6001">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6001_1">
+          <gml:pos>42.38139799999999 -71.047875</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>8</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 9:38:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6032">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6032_1">
+          <gml:pos>42.384266999999994 -71.052893</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>239</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 2:04:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6042">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6042_1">
+          <gml:pos>42.38435200000001 -71.052908</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>239</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 2:56:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6095">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6095_1">
+          <gml:pos>42.381383 -71.04787</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>214</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090107</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/7/2009 10:34:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6121">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6121_1">
+          <gml:pos>42.38135 -71.047815</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>214</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090108</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/8/2009 3:38:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6134">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6134_1">
+          <gml:pos>42.38136499999999 -71.047933</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>214</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090108</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/8/2009 7:02:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6140">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6140_1">
+          <gml:pos>42.38135299999999 -71.047895</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>214</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090108</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/8/2009 8:30:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6206">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6206_1">
+          <gml:pos>42.38131999999999 -71.047812</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>215</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090108</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/8/2009 10:43:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6221">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6221_1">
+          <gml:pos>42.38134199999999 -71.047812</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>7</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090109</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/9/2009 3:20:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6263">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6263_1">
+          <gml:pos>42.33636999999999 -70.99916</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>11</ns0:SOG>
+      <ns0:COG>121</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090109</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/9/2009 10:34:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6264">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6264_1">
+          <gml:pos>42.333478000000014 -70.976607</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>10</ns0:SOG>
+      <ns0:COG>93</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090109</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/9/2009 10:40:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6281">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6281_1">
+          <gml:pos>42.237325 -70.972597</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>171</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090109</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/9/2009 1:43:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6286">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6286_1">
+          <gml:pos>42.24824000000001 -70.959142</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>6</ns0:SOG>
+      <ns0:COG>64</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090109</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/9/2009 2:31:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6356">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6356_1">
+          <gml:pos>42.381361999999996 -71.047598</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>266</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090110</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/10/2009 2:04:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6380">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6380_1">
+          <gml:pos>42.38139000000001 -71.047577</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>257</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090110</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/10/2009 3:38:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6426">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6426_1">
+          <gml:pos>42.381383 -71.047575</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>24</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090110</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/10/2009 9:40:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6508">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6508_1">
+          <gml:pos>42.38136299999999 -71.047583</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>24</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090110</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/10/2009 9:59:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6527">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6527_1">
+          <gml:pos>42.38137800000001 -71.047602</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>24</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090110</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/10/2009 11:49:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6531">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6531_1">
+          <gml:pos>42.38138699999999 -71.047628</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>24</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090111</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/11/2009 12:24:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6577">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6577_1">
+          <gml:pos>42.381393 -71.047627</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>24</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090111</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/11/2009 8:44:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6639">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6639_1">
+          <gml:pos>42.381372 -71.047618</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>293</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090111</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/11/2009 6:00:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6735">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6735_1">
+          <gml:pos>42.381405 -71.047593</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>293</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090112</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/12/2009 8:27:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6783">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6783_1">
+          <gml:pos>42.38137800000001 -71.047592</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>352</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090112</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/12/2009 5:29:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6800">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6800_1">
+          <gml:pos>42.381392000000005 -71.047583</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>19</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090112</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/12/2009 7:07:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6810">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6810_1">
+          <gml:pos>42.381347000000005 -71.047588</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>274</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090112</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/12/2009 9:00:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6829">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6829_1">
+          <gml:pos>42.38137499999999 -71.047612</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>225</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090113</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/13/2009 12:55:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6836">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6836_1">
+          <gml:pos>42.381382 -71.047623</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>225</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090113</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/13/2009 1:54:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6875">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6875_1">
+          <gml:pos>42.381392000000005 -71.04757</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>344</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090113</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/13/2009 9:03:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6930">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6930_1">
+          <gml:pos>42.381395 -71.04755</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090113</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/13/2009 4:09:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_6983">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_6983_1">
+          <gml:pos>42.38138000000001 -71.047582</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090113</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/13/2009 11:11:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7002">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7002_1">
+          <gml:pos>42.38138699999999 -71.047608</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090114</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/14/2009 1:39:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7003">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7003_1">
+          <gml:pos>42.381384999999995 -71.047608</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090114</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/14/2009 1:45:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7016">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7016_1">
+          <gml:pos>42.38138000000001 -71.047578</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090114</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/14/2009 3:06:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7054">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7054_1">
+          <gml:pos>42.38136299999999 -71.047605</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>98</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090114</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/14/2009 7:59:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7150">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7150_1">
+          <gml:pos>42.38072199999999 -71.047277</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090114</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/14/2009 7:22:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7190">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7190_1">
+          <gml:pos>42.38071199999999 -71.047282</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>357</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 1:09:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7222">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7222_1">
+          <gml:pos>42.38072700000001 -71.047288</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>174</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 5:15:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7235">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7235_1">
+          <gml:pos>42.380742999999995 -71.047282</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>174</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 6:16:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7281">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7281_1">
+          <gml:pos>42.380718 -71.047298</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 12:28:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7340">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7340_1">
+          <gml:pos>42.38073499999999 -71.047268</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>173</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090115</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/15/2009 7:11:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7388">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7388_1">
+          <gml:pos>42.380728000000005 -71.04731</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090116</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/16/2009 1:34:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7431">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7431_1">
+          <gml:pos>42.38075699999999 -71.047285</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090116</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/16/2009 7:33:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7507">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7507_1">
+          <gml:pos>42.38075699999999 -71.047252</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>25</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090116</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/16/2009 4:46:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7571">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7571_1">
+          <gml:pos>42.380742 -71.047275</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>161</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090117</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/17/2009 12:40:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7652">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7652_1">
+          <gml:pos>42.380742999999995 -71.047297</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>344</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090117</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/17/2009 1:40:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7675">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7675_1">
+          <gml:pos>42.23618300000001 -70.966877</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>130</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090117</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/17/2009 5:13:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7751">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7751_1">
+          <gml:pos>42.38076000000001 -71.04727</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>331</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090118</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/18/2009 4:36:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7774">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7774_1">
+          <gml:pos>42.380742 -71.047248</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>331</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090118</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/18/2009 8:04:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7813">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7813_1">
+          <gml:pos>42.380731999999995 -71.047287</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>204</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090118</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/18/2009 1:19:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7837">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7837_1">
+          <gml:pos>42.380731999999995 -71.04725</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>152</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090118</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/18/2009 6:21:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7847">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7847_1">
+          <gml:pos>42.38072199999999 -71.047273</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>152</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090118</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/18/2009 7:55:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7905">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7905_1">
+          <gml:pos>42.38077000000001 -71.047267</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090119</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/19/2009 4:16:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7918">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7918_1">
+          <gml:pos>42.38075699999999 -71.047295</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090119</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/19/2009 6:17:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7940">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7940_1">
+          <gml:pos>42.380742 -71.047303</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090119</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/19/2009 9:17:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_7948">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_7948_1">
+          <gml:pos>42.38071500000001 -71.047288</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090119</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/19/2009 10:18:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8057">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8057_1">
+          <gml:pos>42.38072299999999 -71.04728</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>0</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090120</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/20/2009 1:02:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8064">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8064_1">
+          <gml:pos>42.380747000000014 -71.047278</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>0</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090120</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/20/2009 2:16:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8110">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8110_1">
+          <gml:pos>42.380742999999995 -71.047227</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>0</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090120</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/20/2009 7:45:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8125">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8125_1">
+          <gml:pos>42.38077200000001 -71.047335</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>0</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090120</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/20/2009 9:54:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8130">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8130_1">
+          <gml:pos>42.38076799999999 -71.047277</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>0</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090120</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/20/2009 10:40:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8225">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8225_1">
+          <gml:pos>42.380765 -71.047283</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>165</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 1:34:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8293">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8293_1">
+          <gml:pos>42.38446300000001 -71.05181</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>251</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 12:30:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8302">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8302_1">
+          <gml:pos>42.380742999999995 -71.047312</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>2</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 1:35:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8305">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8305_1">
+          <gml:pos>42.380728000000005 -71.04728</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>2</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 1:49:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8312">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8312_1">
+          <gml:pos>42.38076799999999 -71.047313</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>342</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090121</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/21/2009 3:17:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8382">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8382_1">
+          <gml:pos>42.380742999999995 -71.047307</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>333</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 1:22:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8452">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8452_1">
+          <gml:pos>42.38073800000001 -71.047305</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>351</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 11:58:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8490">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8490_1">
+          <gml:pos>42.38074800000001 -71.047268</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>337</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 6:14:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8495">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8495_1">
+          <gml:pos>42.38075499999999 -71.047255</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>337</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 7:19:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8500">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8500_1">
+          <gml:pos>42.38072700000001 -71.047292</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>337</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 8:41:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8508">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8508_1">
+          <gml:pos>42.380787999999995 -71.047247</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>337</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090122</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/22/2009 10:43:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8522">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8522_1">
+          <gml:pos>42.380798 -71.04731</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>352</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090123</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/23/2009 12:19:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8525">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8525_1">
+          <gml:pos>42.38075499999999 -71.04725</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>352</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090123</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/23/2009 12:38:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8631">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8631_1">
+          <gml:pos>42.380731999999995 -71.047253</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>160</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090123</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/23/2009 6:38:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8643">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8643_1">
+          <gml:pos>42.380752 -71.047245</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>160</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090123</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/23/2009 7:32:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8821">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8821_1">
+          <gml:pos>42.380821999999995 -71.047272</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>215</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090124</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/24/2009 11:02:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8836">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8836_1">
+          <gml:pos>42.380757999999986 -71.047247</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090125</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/25/2009 1:15:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_8883">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_8883_1">
+          <gml:pos>42.380747000000014 -71.047305</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>353</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090125</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/25/2009 7:57:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9005">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9005_1">
+          <gml:pos>42.38081299999999 -71.047253</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>168</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090125</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/25/2009 10:26:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9011">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9011_1">
+          <gml:pos>42.38077999999999 -71.047263</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>168</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090125</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/25/2009 11:42:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9052">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9052_1">
+          <gml:pos>42.38077799999999 -71.047293</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>23</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090126</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/26/2009 4:46:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9173">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9173_1">
+          <gml:pos>42.366592999999995 -71.047053</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>7</ns0:SOG>
+      <ns0:COG>322</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090126</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/26/2009 7:08:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9179">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9179_1">
+          <gml:pos>42.380762000000004 -71.047283</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>12</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090126</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/26/2009 7:32:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9216">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9216_1">
+          <gml:pos>42.380757999999986 -71.047288</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>172</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090126</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/26/2009 11:46:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9243">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9243_1">
+          <gml:pos>42.380773000000005 -71.047287</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 3:31:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9264">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9264_1">
+          <gml:pos>42.38078999999999 -71.047268</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 6:03:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9268">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9268_1">
+          <gml:pos>42.38079300000001 -71.047265</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 6:24:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9276">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9276_1">
+          <gml:pos>42.38081 -71.047248</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 6:59:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9278">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9278_1">
+          <gml:pos>42.38076699999999 -71.047287</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 7:02:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9280">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9280_1">
+          <gml:pos>42.38078300000001 -71.047262</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>193</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090127</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/27/2009 7:10:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9664">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9664_1">
+          <gml:pos>42.38073499999999 -71.047275</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>358</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090129</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/29/2009 4:32:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9713">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9713_1">
+          <gml:pos>42.38073800000001 -71.047283</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>357</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090129</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/29/2009 10:28:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9720">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9720_1">
+          <gml:pos>42.380747000000014 -71.04727</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>165</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090129</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669946</ns0:ReceiverID>
+      <ns0:Time>1/29/2009 12:01:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9786">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9786_1">
+          <gml:pos>42.380773000000005 -71.047267</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>15</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090129</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/29/2009 7:43:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9890">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9890_1">
+          <gml:pos>42.38054500000001 -71.047438</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>43</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090130</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/30/2009 7:32:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9895">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9895_1">
+          <gml:pos>42.38054700000001 -71.04736</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>43</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090130</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/30/2009 8:10:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_9934">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_9934_1">
+          <gml:pos>42.380525000000006 -71.047398</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>174</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090130</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/30/2009 2:32:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10003">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10003_1">
+          <gml:pos>42.38080500000001 -71.047252</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>186</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090130</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/30/2009 10:11:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10023">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10023_1">
+          <gml:pos>42.38076000000001 -71.047308</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>184</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 12:15:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10076">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10076_1">
+          <gml:pos>42.380775 -71.047267</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>184</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 6:15:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10091">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10091_1">
+          <gml:pos>42.38074499999999 -71.047285</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>184</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>r</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669945</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 7:41:00 AM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10145">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10145_1">
+          <gml:pos>42.38073499999999 -71.047277</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>333</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669713</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 4:26:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+  <wfs:member>
+    <ns0:AIS_US gml:id="SHP_10181">
+      <ns0:geometry>
+        <gml:Point gml:id="SHP_10181_1">
+          <gml:pos>42.380752 -71.047278</gml:pos>
+        </gml:Point>
+      </ns0:geometry>
+      <ns0:SOG>0</ns0:SOG>
+      <ns0:COG>345</ns0:COG>
+      <ns0:Heading>511</ns0:Heading>
+      <ns0:ROT>128</ns0:ROT>
+      <ns0:BaseDateTi>20090131</ns0:BaseDateTi>
+      <ns0:Status>0</ns0:Status>
+      <ns0:VoyageID>7</ns0:VoyageID>
+      <ns0:MMSI>366998520</ns0:MMSI>
+      <ns0:ReceiverTy>b</ns0:ReceiverTy>
+      <ns0:ReceiverID>003669971</ns0:ReceiverID>
+      <ns0:Time>1/31/2009 9:30:00 PM</ns0:Time>
+    </ns0:AIS_US>
+  </wfs:member>
+</wfs:FeatureCollection>
