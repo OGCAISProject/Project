@@ -107,7 +107,7 @@ public class WFSServiceSimple {
         con.setRequestProperty("Content-Type", "text/xml");
         OutputStreamWriter writer = new OutputStreamWriter(con.getOutputStream());
 
-        String xmlString = "<wfs:GetFeature xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:fes=\"http://www.opengis.net/fes/2.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" count=\"50000\" service=\"WFS\" version=\"2.0.0\">\n"
+        String queryxmlString = "<wfs:GetFeature xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:fes=\"http://www.opengis.net/fes/2.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" count=\"50000\" service=\"WFS\" version=\"2.0.0\">\n"
                 + "<wfs:Query typeNames=\"AIS_US\">\n"
                 + "<fes:Filter>\n"
                 + "<fes:PropertyIsEqualTo>\n"
@@ -117,7 +117,7 @@ public class WFSServiceSimple {
                 + "</fes:Filter>\n"
                 + "</wfs:Query>\n"
                 + "</wfs:GetFeature>";
-        writer.write(xmlString);
+        writer.write(queryxmlString);
         writer.flush();
         writer.close();
         // reading the response

@@ -13,4 +13,13 @@ public class StatisVisualizer {
     
 //  wfs:  resultype=hits
     
+    
+    //example 1: different types of tracks
+    //example 2: # of within a query window (e.g,. time series)
+    
+    
+     
+    
+            
+           
 }

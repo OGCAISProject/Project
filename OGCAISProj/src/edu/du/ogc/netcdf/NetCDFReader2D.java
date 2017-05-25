@@ -82,6 +82,12 @@ public class NetCDFReader2D {
                     .getUpperLeftPoint().getLatitude();
             bottom = cfield.getProjection().getDefaultMapAreaLL()
                     .getLowerRightPoint().getLatitude();
+            System.out.println(left);
+            System.out.println(right);
+            System.out.println(bottom);
+            System.out.println(up);
+            
+            
             gcs = cfield.getCoordinateSystem();
 
             d1 = var.getDimension(1).getLength();
@@ -133,7 +139,10 @@ public class NetCDFReader2D {
         for (int i = 0; i < d1; i++) {
             for (int j = 0; j < d2; j++) {
                 dataAtLocation = data.getFloat(index.set(0, i, j));
-
+                if (dataAtLocation>100000000)
+                        {
+                            continue;
+                        }
                 if (this.max < dataAtLocation) {
                     this.max = dataAtLocation;
                 } else if (this.min > dataAtLocation) {
@@ -238,11 +247,11 @@ public class NetCDFReader2D {
         return this.var.getDescription();
     }
 
-//    public static void main(String[] args) {
-//        NetCDFReader2D nctest = new NetCDFReader2D("test.nc");
-//        nctest.ReadNetCDF();
-//        nctest.CreateImage("testimg.png", "testlegend.png");
-//        nctest.CloseNetCDF();
-//    }
+    public static void main(String[] args) {
+        NetCDFReader2D nctest = new NetCDFReader2D("test.nc");
+        nctest.ReadNetCDF();
+        nctest.CreateImage("testimg.png", "testlegend.png");
+        nctest.CloseNetCDF();
+    }
 
 }

@@ -29,7 +29,7 @@ public class GMLPointReader {
     double left = 180, right = -180, up = -90, bottom = 90;
 
     public GMLPointReader(String path) {
-        path = path;
+        this.path = path;
 
     }
 
@@ -119,7 +119,7 @@ public class GMLPointReader {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        GMLPointReader gp = new GMLPointReader("3565.xml");
-
+        GMLPointReader gp = new GMLPointReader("test.xml"); //3565
+        gp.GetPositions(gp.readGMLData());
     }
 }

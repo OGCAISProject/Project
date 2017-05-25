@@ -28,7 +28,7 @@ public class WCSExample extends ApplicationTemplate
             "http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km",
         };
     
-     protected static final String TEST_PATTERN = "test.png";
+     protected static final String TEST_PATTERN = "testimg.png";
 
     public static class AppFrame extends ApplicationTemplate.AppFrame
     {

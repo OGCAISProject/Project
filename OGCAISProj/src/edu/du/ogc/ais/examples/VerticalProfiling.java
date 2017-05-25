@@ -11,12 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//import for javafx to create charts
-import si.xlab.gaea.core.layers.wfs.AbstractWFSLayer;
-import si.xlab.gaea.core.ogc.gml.GMLFeature;
-import si.xlab.gaea.core.ogc.gml.GMLGeometry;
-import si.xlab.gaea.core.ogc.gml.GMLParser;
-import si.xlab.gaea.core.ogc.gml.GMLPoint;
+
 
 public final class VerticalProfiling  {
 
