@@ -11,7 +11,9 @@ import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.util.Logging;
 import gov.nasa.worldwind.util.WWIO;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -40,8 +42,9 @@ public class WFSServiceSimple {
     private final String fileCachePath;
     private final String queryfield;
     private final String queryvalue;
+    private final String resultstype;
 
-    public WFSServiceSimple(String service, String dataset, String queryfield, String queryvalue) {
+    public WFSServiceSimple(String service, String dataset, String queryfield, String queryvalue, String resultstype) {
 
         this.service = service;
         this.dataset = dataset;
@@ -74,6 +77,8 @@ public class WFSServiceSimple {
         } else {
             this.fileCachePath = WWIO.formPath(service, dataset, queryfield, queryvalue);
         }
+
+        this.resultstype = resultstype;
     }
 
     public String getQueryField() {
@@ -88,7 +93,7 @@ public class WFSServiceSimple {
         return this.urlBase;
     }
 
-    public String downloadGML() throws IOException {
+    public String downloadFeatures() throws IOException {
 //        String queryfield = "VoyageID";
 //    String queryvalue = "134385";
 //        String argUrl = "http://demo.luciad.com:8080/OgcAisServices/wfs?SERVICE=WFS"; 
@@ -106,15 +111,35 @@ public class WFSServiceSimple {
         // tell the web server what we are sending
         con.setRequestProperty("Content-Type", "text/xml");
         OutputStreamWriter writer = new OutputStreamWriter(con.getOutputStream());
+        String queryxmlString;
 
-        String queryxmlString = "<wfs:GetFeature xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:fes=\"http://www.opengis.net/fes/2.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" count=\"50000\" service=\"WFS\" version=\"2.0.0\">\n"
+        queryxmlString = "<wfs:GetFeature "
+                + "xmlns:wfs=\"http://www.opengis.net/wfs/2.0\" xmlns:fes=\"http://www.opengis.net/fes/2.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:gml=\"http://www.opengis.net/gml/3.2\" "
+                + " service=\"WFS\" version=\"2.0.0\"";
+        if ("hit".equals(this.resultstype)) //number of features
+        {
+            queryxmlString = queryxmlString + "\n resultType=\"hits\"  >\n";
+        } else { //features
+            queryxmlString = queryxmlString + ">\n";
+        }
+        //need to check if 0 records returned.
+        queryxmlString = queryxmlString
                 + "<wfs:Query typeNames=\"AIS_US\">\n"
+                //selection
                 + "<fes:Filter>\n"
                 + "<fes:PropertyIsEqualTo>\n"
                 + "<fes:ValueReference>" + this.getQueryField() + "</fes:ValueReference>\n"
                 + "<fes:Literal>" + this.getQueryValue() + "</fes:Literal>\n"
                 + "</fes:PropertyIsEqualTo>\n"
                 + "</fes:Filter>\n"
+                //  sorting              
+                + "<fes:SortBy>\n"
+                + "<fes:SortProperty>\n"
+                + "<fes:ValueReference>BaseDateTi</fes:ValueReference>\n" //does not work for time? --24 hour format!
+                + "<fes:SortOrder>DESC</fes:SortOrder>\n"
+                + "</fes:SortProperty>\n"
+                + "</fes:SortBy>\n"
+                
                 + "</wfs:Query>\n"
                 + "</wfs:GetFeature>";
         writer.write(queryxmlString);
@@ -130,7 +155,7 @@ public class WFSServiceSimple {
         }
 
         String result = buf.toString();
-//    System.err.println( "\nResponse from server after POST:\n" + result );
+        System.err.println("\nResponse from server after POST:\n" + result);
         File cacheFileURL = WorldWind.getDataFileStore().newFile(this.fileCachePath + ".xml");
         String fileCachePath = cacheFileURL.toURI().getPath();
         PrintWriter out = new PrintWriter(fileCachePath);
@@ -165,7 +190,9 @@ public class WFSServiceSimple {
                     return null;
                 }
             }
+
             return GMLParser.parse(is);
+
         } catch (Exception e) {
 
         } finally {

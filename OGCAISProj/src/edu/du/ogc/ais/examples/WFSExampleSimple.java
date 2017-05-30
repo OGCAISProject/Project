@@ -32,6 +32,8 @@ import static gov.nasa.worldwindx.examples.ApplicationTemplate.insertBeforeCompa
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -189,14 +191,43 @@ public class WFSExampleSimple extends ApplicationTemplate {
             }
         }
     }
+    
+      public static int readGMLCount(String path) {
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String sCurrentLine = br.readLine(); 
+            while (sCurrentLine!=null)
+            {
+                String[] parts = sCurrentLine.split(" ");
+                for(String part: parts)
+                {
+                    if (part.contains("numberOfFeatures="))
+                    {
+                        
+                         return Integer.valueOf(part.split("\"")[1]);
+                    }
+                }
+                sCurrentLine = br.readLine(); 
+            }
+           
+        
+
+        } catch (Exception ex) {
+            Logger.getLogger(WFSServiceSimple.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return 0;
+    }
 
     protected static void addWfsLayer(String url, String featureTypeName, Sector sector,
             Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance, Color color,
             String lineLabelTag, boolean showTracks, TrackAppFrame appFrame) {
 
         try {
-            WFSServiceSimple service = new WFSServiceSimple(url, featureTypeName, queryField, queryValue);
-            String filepath = service.downloadGML();
+            WFSServiceSimple service = new WFSServiceSimple(url, featureTypeName, queryField, queryValue, "");
+            String filepath = service.downloadFeatures();
+//            int cout = readGMLCount(filepath);
             KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
             style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(color));
             style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(color).replaceFirst("^ff", "80")); //semi-transparent fill
