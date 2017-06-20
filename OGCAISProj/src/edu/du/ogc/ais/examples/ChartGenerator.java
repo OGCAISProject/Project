@@ -35,7 +35,7 @@ public class ChartGenerator extends Application {
 
     @Override
     public void start(Stage stage) {
-        VerticalProfiling vp = new VerticalProfiling("test.nc", "test.xml");
+        VerticalProfiling vp = new VerticalProfiling("test.nc", "3565.xml");
 
         stage.setTitle("Vertical Profile" + vp.GetVariableName());
         //defining the axes
@@ -49,7 +49,7 @@ public class ChartGenerator extends Application {
 //          lineChart.setTitle("");
         //defining a series
         XYChart.Series series = new XYChart.Series();
-        series.setName("");
+        series.setName("Vertical Profile" + vp.GetVariableName());
         //populating the series with data
         for (int i = 0; i < vp.GetZValues().size(); i++) {
             float datavalue = vp.GetZValues().get(i);
@@ -78,10 +78,6 @@ public class ChartGenerator extends Application {
     }
     
     
-    
-    
-    
-
     public static void main(String[] args) {
         launch(args);
     }

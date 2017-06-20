@@ -135,11 +135,10 @@ public class WFSServiceSimple {
                 //  sorting              
                 + "<fes:SortBy>\n"
                 + "<fes:SortProperty>\n"
-                + "<fes:ValueReference>BaseDateTi</fes:ValueReference>\n" //does not work for time? --24 hour format!
+                + "<fes:ValueReference>timeConv</fes:ValueReference>\n" //does not work for time? --24 hour format!
                 + "<fes:SortOrder>DESC</fes:SortOrder>\n"
                 + "</fes:SortProperty>\n"
                 + "</fes:SortBy>\n"
-                
                 + "</wfs:Query>\n"
                 + "</wfs:GetFeature>";
         writer.write(queryxmlString);
@@ -155,7 +154,7 @@ public class WFSServiceSimple {
         }
 
         String result = buf.toString();
-        System.err.println("\nResponse from server after POST:\n" + result);
+//        System.err.println("\nResponse from server after POST:\n" + result);
         File cacheFileURL = WorldWind.getDataFileStore().newFile(this.fileCachePath + ".xml");
         String fileCachePath = cacheFileURL.toURI().getPath();
         PrintWriter out = new PrintWriter(fileCachePath);

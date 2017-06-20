@@ -85,3 +85,8 @@ Analytical functions
 1. Density map
 Geotools what about lines--> convert into points?
 https://github.com/geotools/geotools/blob/master/modules/unsupported/process-feature/src/main/java/org/geotools/process/vector/HeatmapProcess.java
+
+
+
+Git:
+https://netbeans.org/kb/docs/ide/git.html

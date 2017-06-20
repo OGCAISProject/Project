@@ -52,6 +52,7 @@ public class WFSExample extends ApplicationTemplate
             public void actionPerformed(ActionEvent actionEvent)
             {
                 JDialog dialog = new JDialog(appFrame, "Import WFS layer", true);
+                
                 WFSLayerPanel wfsPanel = new WFSLayerPanel();
                 wfsPanel.setDialog(dialog);
                 Dimension dimension = wfsPanel.getPreferredSize();

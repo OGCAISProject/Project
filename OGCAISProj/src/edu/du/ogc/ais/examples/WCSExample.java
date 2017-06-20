@@ -3,10 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-
 package edu.du.ogc.ais.examples;
 
 import edu.du.ogc.netcdf.NetCDFReader2D;
+import edu.du.ogc.wcs.WCSService;
 import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.render.SurfaceImage;
@@ -20,59 +20,58 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+public class WCSExample extends ApplicationTemplate {
 
-public class WCSExample extends ApplicationTemplate
-{
-    protected static final String[] servers = new String[]
-        {
-            "http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km",
-        };
-    
-     protected static final String TEST_PATTERN = "testimg.png";
+    protected static final String[] servers = new String[]{
+        "http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km"};
 
-    public static class AppFrame extends ApplicationTemplate.AppFrame
-    {
+    ArrayList<String> variables = new ArrayList<String>();
 
-        public AppFrame()
-        {
-           super(true, true, false);
+    protected static final ArrayList<String> images = new ArrayList<String>();
 
-            try
-            {
-                //access nc file 
-                
-                 NetCDFReader2D nctest = new NetCDFReader2D("test.nc");
-        nctest.ReadNetCDF();
-        nctest.CreateImage(TEST_PATTERN, "testlegend.png");
-        nctest.CloseNetCDF();
-        
-                SurfaceImage si1 = new SurfaceImage(TEST_PATTERN, new ArrayList<LatLon>(Arrays.asList(
-                    LatLon.fromDegrees(nctest.GetBottom(), nctest.GetRight()),
-                    LatLon.fromDegrees(nctest.GetBottom(), nctest.GetLeft()),
-                    LatLon.fromDegrees(nctest.GetUp(), nctest.GetLeft()),
-                    LatLon.fromDegrees(nctest.GetUp(), nctest.GetRight())
+    public static class AppFrame extends ApplicationTemplate.AppFrame {
+
+        public AppFrame() {
+            super(true, true, false);
+
+            try {
+                //access wcs file 
+                WCSService wcsservice = new WCSService(servers[0]);
+                wcsservice.parseCapablities();
+                String varname = wcsservice.GetCoverageVariable().get(0);
+                wcsservice.BuildCoverageURL(varname,  "2017-06-11T00:00:00Z", "-60,21,-57,47");
+                String path = wcsservice.downloadNetCDF();
+                System.out.println(path);
+
+                //add as a surface image
+                NetCDFReader2D nctest = new NetCDFReader2D(path);
+                nctest.ReadNetCDF();
+                nctest.CreateImage(path.split(".nc")[0] + ".png", path.split(".nc")[0] + "legend.png");
+                nctest.CloseNetCDF();
+
+                SurfaceImage si1 = new SurfaceImage(path.split(".nc")[0] + ".png", new ArrayList<LatLon>(Arrays.asList(
+                        LatLon.fromDegrees(nctest.GetBottom(), nctest.GetRight()),
+                        LatLon.fromDegrees(nctest.GetBottom(), nctest.GetLeft()),
+                        LatLon.fromDegrees(nctest.GetUp(), nctest.GetLeft()),
+                        LatLon.fromDegrees(nctest.GetUp(), nctest.GetRight())
                 )));
-               RenderableLayer layer = new RenderableLayer();
-                layer.setName("Surface Images");
+                RenderableLayer layer = new RenderableLayer();
+                layer.setName(nctest.GetVariableName());
                 layer.setPickEnabled(false);
                 layer.addRenderable(si1);
-  
+
                 insertBeforeCompass(this.getWwd(), layer);
 
                 this.getLayerPanel().update(this.getWwd());
-            }
-             catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-                
-        }
 
+        }
 
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         ApplicationTemplate.start("World Wind WCS Layers", AppFrame.class);
     }
 }

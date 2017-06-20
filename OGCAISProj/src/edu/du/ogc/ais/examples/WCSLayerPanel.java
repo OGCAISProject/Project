@@ -67,13 +67,14 @@ public class WCSLayerPanel extends javax.swing.JPanel
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Import WCS features"); // NOI18N
+        jLabel1.setText("Import WCS Layer"); // NOI18N
 
         jLabel2.setText("Service URL:"); // NOI18N
 
-        serviceUrl.setText("http://demo.luciad.com:8080/OgcAisServices/wfs?"); // NOI18N
+        serviceUrl.setText("http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km"); // NOI18N
         serviceUrl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serviceUrlActionPerformed(evt);
@@ -83,7 +84,7 @@ public class WCSLayerPanel extends javax.swing.JPanel
         jLabel4.setText("Sector:"); // NOI18N
 
         sectorGroup.add(sectorGlobal);
-        sectorGlobal.setText("Global"); // NOI18N
+        sectorGlobal.setText("Default"); // NOI18N
         sectorGlobal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sectorGlobalActionPerformed(evt);
@@ -151,6 +152,8 @@ public class WCSLayerPanel extends javax.swing.JPanel
 
         jRadioButton1.setText(bundle.getString("WCSLayerPanel.jRadioButton1.text")); // NOI18N
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,35 +182,36 @@ public class WCSLayerPanel extends javax.swing.JPanel
                         .addComponent(sectorLbl2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sectorLatTo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(29, 29, 29)
-                            .addComponent(jTextField1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(sectorCustom)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jCheckBox2))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(sectorGlobal)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(jRadioButton1))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(sectorLbl3)
-                                    .addGap(57, 57, 57)
-                                    .addComponent(sectorLonFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(sectorLbl4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(sectorLonTo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(29, 29, 29)
+                        .addComponent(jTextField1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(sectorCustom)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jCheckBox2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sectorGlobal)
+                                .addGap(26, 26, 26)
+                                .addComponent(jRadioButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sectorLbl3)
+                                .addGap(57, 57, 57)
+                                .addComponent(sectorLonFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(sectorLbl4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sectorLonTo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -224,7 +228,8 @@ public class WCSLayerPanel extends javax.swing.JPanel
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sectorGlobal)
-                    .addComponent(jRadioButton1))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sectorCustom)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,34 +265,6 @@ public class WCSLayerPanel extends javax.swing.JPanel
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sectorCustomActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sectorCustomActionPerformed
-    {//GEN-HEADEREND:event_sectorCustomActionPerformed
-        if (sectorCustom.isSelected()) {
-            sectorLatFrom.setEnabled(true);
-            sectorLatTo.setEnabled(true);
-            sectorLonFrom.setEnabled(true);
-            sectorLonTo.setEnabled(true);
-            sectorLbl1.setEnabled(true);
-            sectorLbl2.setEnabled(true);
-            sectorLbl3.setEnabled(true);
-            sectorLbl4.setEnabled(true);
-        }
-    }//GEN-LAST:event_sectorCustomActionPerformed
-
-    private void sectorGlobalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_sectorGlobalActionPerformed
-    {//GEN-HEADEREND:event_sectorGlobalActionPerformed
-        if (sectorGlobal.isSelected()) {
-            sectorLatFrom.setEnabled(false);
-            sectorLatTo.setEnabled(false);
-            sectorLonFrom.setEnabled(false);
-            sectorLonTo.setEnabled(false);
-            sectorLbl1.setEnabled(false);
-            sectorLbl2.setEnabled(false);
-            sectorLbl3.setEnabled(false);
-            sectorLbl4.setEnabled(false);
-        }
-    }//GEN-LAST:event_sectorGlobalActionPerformed
-
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnOkActionPerformed
     {//GEN-HEADEREND:event_btnOkActionPerformed
         if (dialog != null) {
@@ -304,19 +281,46 @@ public class WCSLayerPanel extends javax.swing.JPanel
         }
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void sectorLatToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorLatToActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sectorLatToActionPerformed
-
     private void serviceUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serviceUrlActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_serviceUrlActionPerformed
+
+    private void sectorGlobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorGlobalActionPerformed
+        if (sectorGlobal.isSelected()) {
+            sectorLatFrom.setEnabled(false);
+            sectorLatTo.setEnabled(false);
+            sectorLonFrom.setEnabled(false);
+            sectorLonTo.setEnabled(false);
+            sectorLbl1.setEnabled(false);
+            sectorLbl2.setEnabled(false);
+            sectorLbl3.setEnabled(false);
+            sectorLbl4.setEnabled(false);
+        }
+    }//GEN-LAST:event_sectorGlobalActionPerformed
+
+    private void sectorCustomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorCustomActionPerformed
+        if (sectorCustom.isSelected()) {
+            sectorLatFrom.setEnabled(true);
+            sectorLatTo.setEnabled(true);
+            sectorLonFrom.setEnabled(true);
+            sectorLonTo.setEnabled(true);
+            sectorLbl1.setEnabled(true);
+            sectorLbl2.setEnabled(true);
+            sectorLbl3.setEnabled(true);
+            sectorLbl4.setEnabled(true);
+        }
+    }//GEN-LAST:event_sectorCustomActionPerformed
+
+    private void sectorLatToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sectorLatToActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sectorLatToActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOk;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

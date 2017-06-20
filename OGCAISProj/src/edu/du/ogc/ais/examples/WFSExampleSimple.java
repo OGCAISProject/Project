@@ -72,6 +72,7 @@ import si.xlab.gaea.core.render.SelectableIcon;
 public class WFSExampleSimple extends ApplicationTemplate {
 
     static SelectableIconLayer iconlayer = new SelectableIconLayer();
+    static IconLayer iconsimplelayer = new IconLayer();
     static LatLon finalloc;
     static RenderableLayer tracklayer = new RenderableLayer();
 
@@ -81,6 +82,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
     static ArrayList<Position> pathPositions = new ArrayList<Position>();
     static ArrayList<Position> pathPositionsAnimation = new ArrayList<Position>();
     static protected int currentPos = 0;
+    
 
     protected static void makeMenu(final TrackAppFrame appFrame) {
         JMenuBar menuBar = new JMenuBar();
@@ -171,6 +173,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
                         gmlfeature.getRelativeImportance(), true);
 
                 iconlayer.addIcon(icon);
+                
                 finalloc = loc;
             }
         }
@@ -240,6 +243,14 @@ public class WFSExampleSimple extends ApplicationTemplate {
                 appFrame.updateLayerPanel();
             } else {
                 // Add a dragger to enable shape dragging
+                
+                
+                 iconsimplelayer.setMaxActiveAltitude(maxVisibleDistance);
+//                GetIcons(service.readGMLData(filepath), style);
+                insertBeforePlacenames(appFrame.getWwd(), iconsimplelayer);
+                iconsimplelayer.setEnabled(true);
+                iconsimplelayer.setName(featureTypeName);
+                        
                 GetPositions(service.readGMLData(filepath));
                 appFrame.getWwd().addSelectListener(new BasicDragger(appFrame.getWwd()));
 
@@ -306,10 +317,16 @@ public class WFSExampleSimple extends ApplicationTemplate {
                     double distance = getWwd().getView().getCenterPoint().distanceTo3(getWwd().getView().getEyePoint());
                     getWwd().getView().goTo(pathPositions.get(currentPos), distance);
                 }
-
+                
+                iconsimplelayer.removeAllIcons();
+                
+                UserFacingIcon icon = new UserFacingIcon("src/images/pushpins/simple32.png",pathPositions.get(currentPos));
+            icon.setSize(new Dimension(32, 32));
+            iconsimplelayer.addIcon(icon);
+            
                 pathPositionsAnimation.add(pathPositions.get(currentPos));
                 trackpath.setPositions(pathPositionsAnimation);
-                System.err.println(pathPositionsAnimation.size());
+//                System.err.println(pathPositionsAnimation.size());
             }
         }
     }

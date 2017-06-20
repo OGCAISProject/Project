@@ -1,5 +1,6 @@
 package si.xlab.gaea.core.layers.wfs;
 
+import edu.du.ogc.wcs.WCSService;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.cache.Cacheable;
@@ -110,6 +111,10 @@ public class WFSGenericLayer extends AbstractWFSLayer
 		this.setPickEnabled(false);
 
     }
+
+//    public WFSGenericLayer(WCSService service, String string) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     @Override
     public void setMaxActiveAltitude(double maxActiveAltitude)
