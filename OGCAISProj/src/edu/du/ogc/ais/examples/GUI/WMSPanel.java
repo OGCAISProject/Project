@@ -4,25 +4,114 @@
  * and open the template in the editor.
  */
 package edu.du.ogc.ais.examples.GUI;
+
 import edu.du.ogc.ais.examples.*;
+import gov.nasa.worldwind.Factory;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.WorldWindow;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.avlist.AVList;
+import gov.nasa.worldwind.avlist.AVListImpl;
 import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.globes.ElevationModel;
+import gov.nasa.worldwind.layers.BasicTiledImageLayer;
+import gov.nasa.worldwind.layers.Layer;
+import gov.nasa.worldwind.layers.LayerList;
+import gov.nasa.worldwind.ogc.wms.WMSCapabilities;
+import gov.nasa.worldwind.ogc.wms.WMSLayerCapabilities;
+import gov.nasa.worldwind.ogc.wms.WMSLayerDimension;
+import gov.nasa.worldwind.ogc.wms.WMSLayerStyle;
+import gov.nasa.worldwind.terrain.CompoundElevationModel;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwind.wms.TimeParser;
+import gov.nasa.worldwind.wms.WMSTiledImageLayer;
+import gov.nasa.worldwindx.examples.ApplicationTemplate;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JToggleButton;
+import javax.swing.Timer;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
  *
  * @author xuantongwang
  */
 public class WMSPanel extends javax.swing.JPanel {
+
     int xMouse;
     int yMouse;
-      private JDialog dialog;
+    private JDialog dialog;
     private boolean confirmed = false;
+    int speed=500; 
+
+    protected static class LayerInfo {
+
+        protected WMSCapabilities caps;
+        protected AVListImpl params = new AVListImpl();
+
+        protected String getTitle() {
+            return params.getStringValue(AVKey.DISPLAY_NAME);
+        }
+
+        protected String getName() {
+            return params.getStringValue(AVKey.LAYER_NAMES);
+        }
+
+        protected String getAbstract() {
+            return params.getStringValue(AVKey.LAYER_ABSTRACT);
+        }
+
+    }
+
+    protected LayerInfo jcSelectLayer = new LayerInfo();
+    javax.swing.Timer timerwms;
+    protected ArrayList<BasicTiledImageLayer> layersByTime = new ArrayList<BasicTiledImageLayer>();
+
+    protected TimeParser timescale;
+    protected String t[];
+
+    protected final WorldWindow wwd;
+
+    protected final TreeSet<LayerInfo> layerInfos = new TreeSet<LayerInfo>(new Comparator<LayerInfo>() {
+        public int compare(LayerInfo infoA, LayerInfo infoB) {
+            String nameA = infoA.getName();
+            String nameB = infoB.getName();
+            return nameA.compareTo(nameB);
+        }
+    });
 
     /**
      * Creates new form WMSPanel
      */
-    public WMSPanel() {
+    public WMSPanel(WorldWindow wwd) {
+
         initComponents();
+        this.wwd = wwd;
     }
 
     /**
@@ -34,108 +123,30 @@ public class WMSPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel6 = new javax.swing.JPanel();
-        jScrollBar1 = new javax.swing.JScrollBar();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
         jPanel11 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton12 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
+        jButtonStart = new javax.swing.JButton();
+        jButtonEnd = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
         jPanel10 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jcBeginning = new javax.swing.JComboBox<>();
+        jcEnd = new javax.swing.JComboBox<>();
         drag = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jButtonLayer = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelLayer = new javax.swing.JPanel();
+        jComboBoxServiceURL = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
-
-        jScrollBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-
-        jCheckBox1.setText("jCheckBox1");
-
-        jCheckBox2.setText("jCheckBox1");
-
-        jCheckBox3.setText("jCheckBox1");
-
-        jCheckBox4.setText("jCheckBox1");
-
-        jCheckBox5.setText("jCheckBox1");
-
-        jCheckBox6.setText("jCheckBox1");
-
-        jCheckBox7.setText("jCheckBox1");
-
-        jCheckBox8.setText("jCheckBox1");
-
-        jCheckBox10.setText("jCheckBox1");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox10)))
-                .addContainerGap())
-        );
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -144,7 +155,7 @@ public class WMSPanel extends javax.swing.JPanel {
         jToolBar1.setOpaque(false);
         jToolBar1.setRequestFocusEnabled(false);
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/fast-rewind2.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/fast-rewind2.png"))); // NOI18N
         jButton12.setBorderPainted(false);
         jButton12.setFocusable(false);
         jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -157,7 +168,7 @@ public class WMSPanel extends javax.swing.JPanel {
         });
         jToolBar1.add(jButton12);
 
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/pause2.png"))); // NOI18N
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/pause2.png"))); // NOI18N
         jButton15.setBorderPainted(false);
         jButton15.setFocusable(false);
         jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -165,38 +176,36 @@ public class WMSPanel extends javax.swing.JPanel {
         jButton15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jButton15);
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/play2.png"))); // NOI18N
-        jButton13.setBorderPainted(false);
-        jButton13.setFocusable(false);
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton13.setRequestFocusEnabled(false);
-        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton13);
+        jButtonStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/play2.png"))); // NOI18N
+        jButtonStart.setBorderPainted(false);
+        jButtonStart.setFocusable(false);
+        jButtonStart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonStart.setRequestFocusEnabled(false);
+        jButtonStart.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonStart);
 
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/stop2.png"))); // NOI18N
-        jButton19.setBorderPainted(false);
-        jButton19.setFocusable(false);
-        jButton19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton19.setRequestFocusEnabled(false);
-        jButton19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton19);
+        jButtonEnd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/Stop_1.png"))); // NOI18N
+        jButtonEnd.setBorderPainted(false);
+        jButtonEnd.setFocusable(false);
+        jButtonEnd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEnd.setRequestFocusEnabled(false);
+        jButtonEnd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButtonEnd);
 
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/fast-forward2.png"))); // NOI18N
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/fast-forward2.png"))); // NOI18N
         jButton16.setBorderPainted(false);
         jButton16.setFocusable(false);
         jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton16.setRequestFocusEnabled(false);
         jButton16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton16);
 
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/replay2.png"))); // NOI18N
-        jButton18.setBorderPainted(false);
-        jButton18.setFocusable(false);
-        jButton18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton18.setRequestFocusEnabled(false);
-        jButton18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton18);
-
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Start Animation");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -205,12 +214,9 @@ public class WMSPanel extends javax.swing.JPanel {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSlider1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -220,8 +226,7 @@ public class WMSPanel extends javax.swing.JPanel {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -229,10 +234,6 @@ public class WMSPanel extends javax.swing.JPanel {
 
         jLabel13.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel13.setText("End Time:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -244,11 +245,11 @@ public class WMSPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcBeginning, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -257,11 +258,11 @@ public class WMSPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcBeginning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -281,11 +282,33 @@ public class WMSPanel extends javax.swing.JPanel {
         drag.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         drag.setText("Import WMS Features");
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(356, 176));
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel5.setText("Service URL:");
 
-        jTextField1.setText("jTextField1");
+        jButtonLayer.setText("Get Layer");
+        jButtonLayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLayerActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setText("Retreive Layers:");
+        javax.swing.GroupLayout jPanelLayerLayout = new javax.swing.GroupLayout(jPanelLayer);
+        jPanelLayer.setLayout(jPanelLayerLayout);
+        jPanelLayerLayout.setHorizontalGroup(
+            jPanelLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        jPanelLayerLayout.setVerticalGroup(
+            jPanelLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 152, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanelLayer);
+
+        jComboBoxServiceURL.setEditable(true);
+        jComboBoxServiceURL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "https://neowms.sci.gsfc.nasa.gov/wms/wms", "https://sedac.ciesin.columbia.edu/geoserver/wcs" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -294,11 +317,14 @@ public class WMSPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jComboBoxServiceURL, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonLayer))
+                            .addComponent(jLabel5))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -308,10 +334,11 @@ public class WMSPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLayer)
+                    .addComponent(jComboBoxServiceURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
         );
 
         jButtonOK.setText("OK");
@@ -330,9 +357,9 @@ public class WMSPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jButtonOK)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(80, 80, 80)
                 .addComponent(jButtonCancel)
-                .addGap(68, 68, 68))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,13 +381,11 @@ public class WMSPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(drag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(drag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -368,10 +393,8 @@ public class WMSPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(drag, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -384,60 +407,465 @@ public class WMSPanel extends javax.swing.JPanel {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+        this.speed = this.speed-10;
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButtonCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCancelMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelMouseClicked
 
-    public void setDialog(JDialog dialog)
-    {
+    protected void load(URI serverURI) {
+        WMSCapabilities caps;
+
+        try {
+            caps = WMSCapabilities.retrieve(serverURI);
+
+            caps.parse();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Gather up all the named layers and make a world wind layer for each.
+        final List<WMSLayerCapabilities> namedLayerCaps = caps.getNamedLayers();
+        if (namedLayerCaps == null) {
+            return;
+        }
+
+        try {
+            for (WMSLayerCapabilities lc : namedLayerCaps) {
+                Set<WMSLayerStyle> styles = lc.getStyles();
+                if (styles == null || styles.size() == 0) {
+                    LayerInfo layerInfo = createLayerInfo(caps, lc, null);
+                    this.layerInfos.add(layerInfo);
+                } else {
+                    for (WMSLayerStyle style : styles) {
+                        LayerInfo layerInfo = createLayerInfo(caps, lc, style);
+                        this.layerInfos.add(layerInfo);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Fill the panel with the layer titles.
+        this.jPanelLayer.removeAll();
+        this.jPanelLayer.setLayout(new GridLayout(0, 1, 0, 15));
+        makeLayerInfosPanel(layerInfos);
+
+    }
+
+    protected void makeLayerInfosPanel(Collection<LayerInfo> layerInfos) {
+        
+        for (LayerInfo layerInfo : layerInfos) {
+            addLayerInfoPanel(this.jPanelLayer, this.wwd, layerInfo);
+        }
+        
+        LayerInfoStartAction actionS = new LayerInfoStartAction(jcSelectLayer, this.wwd);
+		
+        this.jButtonStart.setAction(actionS);
+        jButtonStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/play2.png"))); // NOI18N
+        this.revalidate();
+    }
+
+    protected LayerInfo createLayerInfo(WMSCapabilities caps, WMSLayerCapabilities layerCaps, WMSLayerStyle style) {
+        // Create the layer info specified by the layer's capabilities entry and
+        // the selected style.
+
+        // Create the layer info specified by the layer's capabilities entry and the selected style.
+        LayerInfo linfo = new LayerInfo();
+        linfo.caps = caps;
+        linfo.params = new AVListImpl();
+        linfo.params.setValue(AVKey.LAYER_NAMES, layerCaps.getName());
+        if (style != null) {
+            linfo.params.setValue(AVKey.STYLE_NAMES, style.getName());
+        }
+        String abs = layerCaps.getLayerAbstract();
+        if (!WWUtil.isEmpty(abs)) {
+            linfo.params.setValue(AVKey.LAYER_ABSTRACT, abs);
+        }
+
+        linfo.params.setValue(AVKey.DISPLAY_NAME, makeTitle(caps, linfo));
+        //if time is not avaliable?
+        linfo.params.setValue(AVKey.WMS_TIME_DIMENSION, makeTime(caps, linfo));
+
+        return linfo;
+    }
+
+    protected static String makeTitle(WMSCapabilities caps, LayerInfo layerInfo) {
+        String layerNames = layerInfo.params.getStringValue(AVKey.LAYER_NAMES);
+        String styleNames = layerInfo.params.getStringValue(AVKey.STYLE_NAMES);
+        String[] lNames = layerNames.split(",");
+        String[] sNames = styleNames != null ? styleNames.split(",") : null;
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lNames.length; i++) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+
+            String layerName = lNames[i];
+            WMSLayerCapabilities lc = caps.getLayerByName(layerName);
+            String layerTitle = lc.getTitle();
+            sb.append(layerTitle != null ? layerTitle : layerName);
+
+            if (sNames == null || sNames.length <= i) {
+                continue;
+            }
+
+            String styleName = sNames[i];
+            WMSLayerStyle style = lc.getStyleByName(styleName);
+            if (style == null) {
+                continue;
+            }
+
+            sb.append(" : ");
+            String styleTitle = style.getTitle();
+            sb.append(styleTitle != null ? styleTitle : styleName);
+        }
+
+        return sb.toString();
+    }
+
+    protected void addLayerInfoPanel(JPanel layersPanel, WorldWindow wwd, LayerInfo linfo) {
+        // Give a layer a button and label and add it to the layer names panel.
+        LayerInfoAction action = new LayerInfoAction(linfo, wwd);
+
+        if (linfo.getAbstract() != null) {
+            action.putValue(Action.SHORT_DESCRIPTION, linfo.getAbstract());
+        }
+        JCheckBox jcb = new JCheckBox(action);
+        jcb.setSelected(false);
+        layersPanel.add(jcb);
+        System.out.println(jcb.getText());
+    }
+
+    
+    //add by jing li
+	private class drawLayerByTime extends AbstractAction {
+		int j = 0;
+		int tBegin;
+		int tEnd;
+		private BasicTiledImageLayer layer;
+
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			tBegin = jcBeginning.getSelectedIndex();
+			tEnd = jcEnd.getSelectedIndex();
+			if(layer!=null){
+				wwd.getModel().getLayers().remove(layer);
+				layer = null;
+				}
+			if (j < (tEnd-tBegin)+1) {
+				jcSelectLayer.params.setValue(AVKey.DATA_CACHE_NAME, null);
+				layer =new WMSTiledImageLayer(jcSelectLayer.caps, jcSelectLayer.params, t[j+tBegin]);
+				layer.setEnabled(false);
+				layer.setEnabled(true);
+				wwd.getModel().getLayers().setTime(jcBeginning.getItemAt(tBegin+j).toString());
+				if(j>0)
+				{
+					layersByTime.get(j-1).setEnabled(false);
+				}
+				layersByTime.get(j).setEnabled(true);
+				wwd.getModel().getLayers().add(layersByTime.get(j));
+				j++;
+				wwd.redraw();
+			} else {
+				// If the layer is selected, add it to the world window's
+				// current model, else remove it from the model.
+				while(j>0)
+				{
+					j--;
+					wwd.getModel().getLayers().remove(layersByTime.get(j));
+					
+				}
+				jcSelectLayer.params.setValue(AVKey.DATA_CACHE_NAME, null);
+				layer =new WMSTiledImageLayer(jcSelectLayer.caps, jcSelectLayer.params, t[j+tBegin]);
+				layer.setEnabled(false);
+				layer.setEnabled(true);
+				wwd.getModel().getLayers().setTime(jcBeginning.getItemAt(tBegin+j).toString());
+				layersByTime.get(j).setEnabled(true);
+				wwd.getModel().getLayers().add(layersByTime.get(j));
+				
+				j++;	
+
+				wwd.redraw();
+			}
+		}
+	}
+
+	
+	//--add by jingli start button action for animation
+	protected class LayerInfoStartAction extends AbstractAction {
+
+		protected LayerInfo layerInfo;
+		protected WorldWindow wwd;
+		
+		public LayerInfoStartAction(LayerInfo linfo, WorldWindow wwd) {
+			super(linfo.getTitle());
+			// Capture info we'll need later to control the layer.
+			this.layerInfo = linfo;
+			this.wwd =  wwd;
+		}
+
+		// ///////////////////////////////////
+		// /Create Layer
+		// /////////////////////////////////
+		public void actionPerformed(final ActionEvent actionEvent) {
+			layerInfo = jcSelectLayer;
+			// parse the time dimension to get the time series
+			
+				timescale = new TimeParser(this.layerInfo.params
+						.getStringValue(AVKey.WMS_TIME_DIMENSION));
+				t = timescale.ParseTimeStr().toArray(
+						new String[timescale.ParseTimeStr().size()]);
+				int tBegin = jcBeginning.getSelectedIndex();
+				int tEnd = jcEnd.getSelectedIndex();
+				for (int tSeries = tBegin; tSeries <= tEnd; tSeries++) {
+					//add all layers 
+					layerInfo.params.setValue(AVKey.DATA_CACHE_NAME, null);
+					layersByTime.add(new WMSTiledImageLayer(layerInfo.caps, layerInfo.params,
+									t[tSeries]));
+				}
+				timerwms = new Timer( speed,
+						new drawLayerByTime());
+				
+				Layer layer = layersByTime.get(0);
+				layer.setEnabled(true);
+				LayerList layers = this.wwd.getModel().getLayers();
+				if (!layers.contains(layer))
+                {
+                    ApplicationTemplate.insertBeforePlacenames(this.wwd, layer);
+                    this.firePropertyChange("LayersPanelUpdated", null, layer);
+                }
+				
+				timerwms.start();
+			        
+			
+			wwd.redraw();
+		}
+	}
+    
+    private class LayerInfoAction extends AbstractAction {
+
+        private WorldWindow wwd;
+        private LayerInfo layerInfo;
+        private BasicTiledImageLayer layer;
+        private TimeParser timescale;
+
+        protected Object component;
+
+        public LayerInfoAction(LayerInfo linfo, WorldWindow wwd) {
+            super(linfo.getTitle());
+            // Capture info we'll need later to control the layer.
+            this.wwd = wwd;
+            this.layerInfo = linfo;
+
+        }
+
+        // ///////////////////////////////////
+        // /Create Layer
+        // /////////////////////////////////
+        public void actionPerformed(ActionEvent actionEvent) {
+
+            if (((JCheckBox) actionEvent.getSource()).isSelected()) {
+
+                if (timerwms != null) {
+                    timerwms.stop();
+                }
+
+                //check if the time information is avaliables
+                if (this.layerInfo.params.getStringValue(AVKey.WMS_TIME_DIMENSION) != null) {
+
+                    timescale = new TimeParser(this.layerInfo.params
+                            .getStringValue(AVKey.WMS_TIME_DIMENSION));
+                    ArrayList<String> timelabels = timescale.ParseTimeStr();
+                    jcBeginning.removeAllItems();
+                    jcEnd.removeAllItems();
+                    int index = 0;
+                    for (String timelabel : timelabels) {
+                        jcBeginning.insertItemAt(timelabel, index);
+                        jcEnd.insertItemAt(timelabel, index);
+                        index++;
+                    }
+                    jcBeginning.setSelectedIndex(0);
+                    jcEnd.setSelectedIndex(0);
+                    timelabels.clear();
+
+                    jcSelectLayer = this.layerInfo;
+                } else {
+                    jcSelectLayer = null;
+                }
+
+                if (this.component == null) {
+                    this.component = createComponent(layerInfo.caps, layerInfo.params);
+                }
+
+                updateComponent(this.component, true);
+            } else {
+
+                jcBeginning.removeAllItems();
+                jcEnd.removeAllItems();
+
+                jcSelectLayer = null;
+
+                if (this.component != null) {
+                    updateComponent(this.component, false);
+                }
+            }
+
+            // Tell the world window to update.
+            wwd.redraw();
+
+        }
+    }
+
+    protected void updateComponent(Object component, boolean enable) {
+        if (component instanceof Layer) {
+            Layer layer = (Layer) component;
+            LayerList layers = this.wwd.getModel().getLayers();
+
+            layer.setEnabled(enable);
+
+            if (enable) {
+                if (!layers.contains(layer)) {
+                    ApplicationTemplate.insertBeforePlacenames(this.wwd, layer);
+                    this.firePropertyChange("LayersPanelUpdated", null, layer);
+                }
+            } else {
+                layers.remove(layer);
+                this.firePropertyChange("LayersPanelUpdated", layer, null);
+            }
+        } else if (component instanceof ElevationModel) {
+            ElevationModel model = (ElevationModel) component;
+            CompoundElevationModel compoundModel
+                    = (CompoundElevationModel) this.wwd.getModel().getGlobe().getElevationModel();
+
+            if (enable) {
+                if (!compoundModel.getElevationModels().contains(model)) {
+                    compoundModel.addElevationModel(model);
+                }
+            }
+        }
+    }
+
+    protected static Object createComponent(WMSCapabilities caps, AVList params) {
+        AVList configParams = params.copy(); // Copy to insulate changes from the caller.
+
+        // Some wms servers are slow, so increase the timeouts and limits used by world wind's retrievers.
+        configParams.setValue(AVKey.URL_CONNECT_TIMEOUT, 30000);
+        configParams.setValue(AVKey.URL_READ_TIMEOUT, 30000);
+        configParams.setValue(AVKey.RETRIEVAL_QUEUE_STALE_REQUEST_LIMIT, 60000);
+
+        try {
+            String factoryKey = getFactoryKeyForCapabilities(caps);
+            Factory factory = (Factory) WorldWind.createConfigurationComponent(factoryKey);
+            return factory.createFromConfigSource(caps, configParams);
+        } catch (Exception e) {
+            // Ignore the exception, and just return null.
+        }
+
+        return null;
+    }
+
+    protected static String getFactoryKeyForCapabilities(WMSCapabilities caps) {
+        boolean hasApplicationBilFormat = false;
+
+        Set<String> formats = caps.getImageFormats();
+        for (String s : formats) {
+            if (s.contains("application/bil")) {
+                hasApplicationBilFormat = true;
+                break;
+            }
+        }
+
+        return hasApplicationBilFormat ? AVKey.ELEVATION_MODEL_FACTORY : AVKey.LAYER_FACTORY;
+    }
+
+    protected static String makeTime(WMSCapabilities caps, LayerInfo layerInfo) {
+        String layerNames = layerInfo.params.getStringValue(AVKey.LAYER_NAMES);
+        String styleNames = layerInfo.params.getStringValue(AVKey.STYLE_NAMES);
+        String[] lNames = layerNames.split(",");
+        String[] sNames = styleNames != null ? styleNames.split(",") : null;
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < lNames.length; i++) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+
+            String layerName = lNames[i];
+
+            WMSLayerCapabilities lc = caps.getLayerByName(layerName);
+
+            String layerDimension = null;
+
+            Set<WMSLayerDimension> dimension = lc.getDimensions();
+
+            if (dimension == null) {
+                return null;
+            }
+
+            for (WMSLayerDimension es : dimension) {
+                if (es.getName().equals("time")) {
+                    layerDimension = es.getDimension();
+
+                }
+            }
+
+            sb.append(layerDimension != null ? layerDimension : null);
+        }
+
+        return sb.toString();
+    }
+
+    private void jButtonLayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLayerActionPerformed
+        try {
+            // TODO add your handling code here:
+            URI serverURI = new URI(this.jComboBoxServiceURL.getSelectedItem().toString().trim());
+            this.load(serverURI);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(WMSPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButtonLayerActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        this.speed = this.speed + 10;
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    public void setDialog(JDialog dialog) {
         this.dialog = dialog;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel drag;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonEnd;
+    private javax.swing.JButton jButtonLayer;
     private javax.swing.JButton jButtonOK;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton jButtonStart;
+    private javax.swing.JComboBox<String> jComboBoxServiceURL;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanelLayer;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTextField serviceUrl;
-    private javax.swing.JTextField serviceUrl1;
+    private javax.swing.JComboBox<String> jcBeginning;
+    private javax.swing.JComboBox<String> jcEnd;
     // End of variables declaration//GEN-END:variables
 }

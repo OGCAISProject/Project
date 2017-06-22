@@ -208,4 +208,31 @@ public class WFSServiceSimple {
         return null;
     }
 
+     public static int readGMLCount(String path) {
+        
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            String sCurrentLine = br.readLine(); 
+            while (sCurrentLine!=null)
+            {
+                String[] parts = sCurrentLine.split(" ");
+                for(String part: parts)
+                {
+                    if (part.contains("numberOfFeatures="))
+                    {
+                        
+                         return Integer.valueOf(part.split("\"")[1]);
+                    }
+                }
+                sCurrentLine = br.readLine(); 
+            }
+           
+        
+
+        } catch (Exception ex) {
+            Logger.getLogger(WFSServiceSimple.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return 0;
+    }
 }

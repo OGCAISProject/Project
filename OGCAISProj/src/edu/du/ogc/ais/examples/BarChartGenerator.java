@@ -33,15 +33,18 @@ import javax.imageio.ImageIO;
 
 public class BarChartGenerator extends JFXPanel {
 
-    String chartfile ;
+   
     ArrayList<String> aistypes;
     ArrayList<Integer> aisvalues;
+    String charttitle="";
 
-    public BarChartGenerator(String filepath) {
+    public BarChartGenerator(ArrayList<String> aistypes,ArrayList<Integer> aisvalues, String title ) {
         
         super();
+        this.aistypes= aistypes;
+        this.aisvalues =  aisvalues;
+        charttitle=title;
         
-        chartfile = "xx.csv";
         // create JavaFX scene
         Platform.setImplicitExit(false);
         Platform.runLater(new Runnable() {
@@ -54,41 +57,7 @@ public class BarChartGenerator extends JFXPanel {
     }
     
     
-    private void ReadData() {
-        this.aistypes = new ArrayList<String>();
-        this.aisvalues = new ArrayList<Integer>();
-        BufferedReader br = null;
-        try {
-
-            try {
-                br = new BufferedReader(new FileReader(this.chartfile));
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine(); //header
-                line = br.readLine();
-                while (line != null) {
-//                    sb.append(line);
-//                    sb.append(System.lineSeparator());
-                    this.aistypes.add(line.split(",")[0]);
-                    this.aisvalues.add(Integer.valueOf(line.split(",")[1]));
-                    line = br.readLine();
-
-                }
-//                String everything = sb.toString();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(PieChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(PieChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } finally {
-            try {
-                br.close();
-            } catch (IOException ex) {
-                Logger.getLogger(PieChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
+    
     public Scene createScene() {
 //        stage.setTitle("Bar Chart");
         Group root = new Group();
@@ -100,7 +69,7 @@ public class BarChartGenerator extends JFXPanel {
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("Count");
 
-        ReadData();
+       
 
         for (int i = 0; i < this.aistypes.size(); i++) {
             series1.getData().add(new XYChart.Data(this.aistypes.get(i), this.aisvalues.get(i)));
@@ -108,22 +77,22 @@ public class BarChartGenerator extends JFXPanel {
         
         final BarChart<String, Number> bc
                 = new BarChart<String, Number>(xAxis, yAxis);
-        bc.setTitle(" Summary");
+        bc.setTitle(" Summary of "+ charttitle);
         
-        xAxis.setLabel("Time");
+        xAxis.setLabel(charttitle);
         yAxis.setLabel("Count");
         bc.getData().addAll(series1);;
         Scene scene = new Scene(root);
         root.getChildren().add(bc);
         this.setScene(scene);
         this.validate();
-//        WritableImage snapShot = scene.snapshot(null);
-//
-//        try {
-//            ImageIO.write(SwingFXUtils.fromFXImage(snapShot, null), "png", new File("chart.png"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(ChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        WritableImage snapShot = scene.snapshot(null);
+
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(snapShot, null), "png", new File("chart.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(ChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return scene;
     }
 
