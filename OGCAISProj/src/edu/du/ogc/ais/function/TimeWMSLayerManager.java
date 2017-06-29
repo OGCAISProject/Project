@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import javax.swing.*;
 import javax.swing.event.*;

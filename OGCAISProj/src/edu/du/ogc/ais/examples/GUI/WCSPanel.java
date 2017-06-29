@@ -5,7 +5,6 @@
  */
 package edu.du.ogc.ais.examples.GUI;
 
-import edu.du.ogc.ais.examples.*;
 import edu.du.ogc.wcs.WCSService;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;

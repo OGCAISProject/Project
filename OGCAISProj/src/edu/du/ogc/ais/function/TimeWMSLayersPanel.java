@@ -4,7 +4,7 @@ as represented by the Administrator of the
 National Aeronautics and Space Administration.
 All Rights Reserved.
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import gov.nasa.worldwind.*;
 import gov.nasa.worldwind.avlist.*;

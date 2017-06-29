@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package edu.du.ogc.ais.examples.GUI;
-import edu.du.ogc.ais.examples.*;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
 import javax.swing.JDialog;
@@ -23,6 +22,7 @@ public class ClassificationPanel extends javax.swing.JPanel {
       private JDialog dialog;
     private boolean confirmed = false;
     private String attributevalues = "";
+    private boolean barchart = false;
     
     
     public ClassificationPanel() {
@@ -347,12 +347,27 @@ public class ClassificationPanel extends javax.swing.JPanel {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
+        if (this.jRadioButton1.isSelected())
+        {
+            this.jRadioButton2.setSelected(false);
+            this.barchart = true;
+        }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
+        if (this.jRadioButton2.isSelected())
+        {
+            this.jRadioButton1.setSelected(false);
+            this.barchart=false;
+        }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    public boolean isBarChart()
+    {
+        return this.barchart;
+    }
+    
     private void jCheckBoxHourlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHourlyActionPerformed
         // TODO add your handling code here:
         if (this.jCheckBoxHourly.isSelected())

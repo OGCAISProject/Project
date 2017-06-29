@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package edu.du.ogc.ais.examples.GUI;
-import edu.du.ogc.ais.examples.*;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
 import javax.swing.JDialog;

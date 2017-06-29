@@ -522,7 +522,9 @@ public interface AVKey // TODO: Eliminate unused constants, if any
     final String WORLD_WINDOW_CLASS_NAME = "gov.nasa.worldwind.avkey.WorldWindowClassName";
     
     //added by jing li
-   	final String WMS_TIME_DIMENSION = "gov.nasa.worldwind.avkey.wms.time.dimension";
+   final String WMS_TIME_DIMENSION = "gov.nasa.worldwind.avkey.wms.time.dimension";
+   //store file path associated with layers
+   final String LOCAL_FILE_PATH="gov.nasa.worldwind.avkey.local.file.path";
    	
     final String WFS_LAYER_CACHE_SIZE = "si.xlab.gaea.avkeyext.WFSLayerCacheSize";
     final String HTTP_USER_AGENT = "si.xlab.gaea.avkeyext.UserAgent";

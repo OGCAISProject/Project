@@ -5,7 +5,6 @@
  */
 package edu.du.ogc.ais.examples.GUI;
 
-import edu.du.ogc.ais.examples.*;
 import gov.nasa.worldwind.Factory;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.WorldWindow;
@@ -309,6 +308,11 @@ public class WMSPanel extends javax.swing.JPanel {
 
         jComboBoxServiceURL.setEditable(true);
         jComboBoxServiceURL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "https://neowms.sci.gsfc.nasa.gov/wms/wms", "https://sedac.ciesin.columbia.edu/geoserver/wcs" }));
+        jComboBoxServiceURL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxServiceURLActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -837,6 +841,11 @@ public class WMSPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.speed = this.speed + 10;
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jComboBoxServiceURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServiceURLActionPerformed
+        // TODO add your handling code here:
+        this.jPanelLayer.removeAll();
+    }//GEN-LAST:event_jComboBoxServiceURLActionPerformed
 
     public void setDialog(JDialog dialog) {
         this.dialog = dialog;

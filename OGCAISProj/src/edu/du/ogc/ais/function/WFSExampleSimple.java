@@ -1,4 +1,4 @@
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import com.jogamp.opengl.util.FPSAnimator;
 import javax.media.opengl.GLAnimatorControl;
@@ -171,7 +171,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
                         new Position(geometry.getCentroid(), 0),
                         gmlfeature.getName(), desc, imageURL,
                         gmlfeature.getRelativeImportance(), true);
-
+                
                 iconlayer.addIcon(icon);
                 
                 finalloc = loc;

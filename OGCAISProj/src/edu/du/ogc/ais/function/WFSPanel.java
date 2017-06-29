@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 /**
  *
@@ -78,7 +78,7 @@ public class WFSPanel extends javax.swing.JPanel {
         drag5.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         drag5.setText("Import WFS Features");
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/close.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/function/GUI/close.png"))); // NOI18N
         jButton13.setBorderPainted(false);
         jButton13.setMaximumSize(new java.awt.Dimension(20, 20));
         jButton13.setMinimumSize(new java.awt.Dimension(16, 16));
@@ -94,7 +94,7 @@ public class WFSPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/minus.png"))); // NOI18N
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/function/GUI/minus.png"))); // NOI18N
         jButton14.setBorderPainted(false);
         jButton14.setMaximumSize(new java.awt.Dimension(20, 20));
         jButton14.setMinimumSize(new java.awt.Dimension(16, 16));

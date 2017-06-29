@@ -8,7 +8,7 @@
  *
  * Created on Jun 21, 2013, 2:14:11 PM
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
@@ -168,7 +168,7 @@ public class WFSLayerPanel extends javax.swing.JPanel
 
         featureLabelType.setText("Feature label type name:"); // NOI18N
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("edu/du/ogc/ais/examples/Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("edu/du/ogc/ais/function/Bundle"); // NOI18N
         queryField.setText(bundle.getString("WFSLayerPanel.queryField.text")); // NOI18N
 
         queryValue.setText(bundle.getString("WFSLayerPanel.queryValue.text")); // NOI18N

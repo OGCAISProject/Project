@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import edu.du.ogc.netcdf.NetCDFReader2D;
 import edu.du.ogc.wcs.WCSService;

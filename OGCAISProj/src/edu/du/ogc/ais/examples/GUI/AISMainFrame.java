@@ -1,6 +1,8 @@
 package edu.du.ogc.ais.examples.GUI;
 
-import edu.du.ogc.ais.examples.BarChartGenerator;
+import edu.du.ogc.ais.function.BarChartGenerator;
+import edu.du.ogc.ais.function.LineChartGenerator;
+import edu.du.ogc.ais.function.PieChartGenerator;
 import edu.du.ogc.netcdf.NetCDFReader2D;
 import edu.du.ogc.wcs.WCSService;
 import gov.nasa.worldwind.BasicModel;
@@ -14,6 +16,7 @@ import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.layers.LayerList;
 import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.layers.SelectableIconLayer;
 import gov.nasa.worldwind.layers.WorldMapLayer;
 import gov.nasa.worldwind.layers.placename.PlaceNameLayer;
 import gov.nasa.worldwind.ogc.kml.KMLStyle;
@@ -22,6 +25,7 @@ import gov.nasa.worldwind.util.StatusBar;
 import gov.nasa.worldwind.util.WWUtil;
 import gov.nasa.worldwind.util.layertree.LayerTree;
 import static gov.nasa.worldwindx.examples.ApplicationTemplate.insertBeforeCompass;
+import static gov.nasa.worldwindx.examples.ApplicationTemplate.insertBeforePlacenames;
 import gov.nasa.worldwindx.examples.ClickAndGoSelectListener;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
 import java.awt.BorderLayout;
@@ -31,14 +35,21 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import si.xlab.gaea.core.layers.wfs.WFSGenericLayer;
+import static si.xlab.gaea.core.layers.wfs.WFSGenericLayer.findFirstLinkedImage;
 import si.xlab.gaea.core.layers.wfs.WFSService;
 import si.xlab.gaea.core.layers.wfs.WFSServiceSimple;
+import si.xlab.gaea.core.ogc.gml.GMLFeature;
+import si.xlab.gaea.core.ogc.gml.GMLGeometry;
+import si.xlab.gaea.core.ogc.gml.GMLPoint;
 import si.xlab.gaea.core.ogc.kml.KMLStyleFactory;
+import si.xlab.gaea.core.render.DefaultLook;
+import si.xlab.gaea.core.render.SelectableIcon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,15 +66,19 @@ public class AISMainFrame extends javax.swing.JFrame {
      * Creates new form Test2design
      */
     WorldWindow wwd = new WorldWindowGLCanvas();
-    ; 
-     StatusBar statusBar;
+    StatusBar statusBar;
     protected LayerTree layerTree;
     protected RenderableLayer hiddenLayer;
     protected HotSpotController controller;
+    //maintain a list of wfs/wcs layers and the local path
+    ArrayList<String> wfslayername = new ArrayList<String>();
+    ArrayList<String> wfslayerfilepath = new ArrayList<String>();
+    ArrayList<String> wcslayername = new ArrayList<String>();
+    ArrayList<String> wcslayerfilepath = new ArrayList<String>();
 
     public AISMainFrame() {
         initComponents();
-        ((Component) this.wwd).setPreferredSize(new java.awt.Dimension(800, 800));
+        ((Component) this.wwd).setPreferredSize(new java.awt.Dimension(700, 700));
 //            wwd.setPreferredSize();
         this.jPanel1.setLayout(new BorderLayout());
         this.wwd.addSelectListener(new ClickAndGoSelectListener(this.wwd, WorldMapLayer.class));
@@ -404,7 +419,7 @@ public class AISMainFrame extends javax.swing.JFrame {
         //create a dialog for the classfication panel 
         ArrayList<Integer> counts = new ArrayList<Integer>();
         ArrayList<String> values = new ArrayList<String>();
-         String attribute ="";
+        String attribute = "";
 
         JDialog dialog = new JDialog(this, "Classify WFS Features", true);
         ClassificationPanel classpanel = new ClassificationPanel();
@@ -434,12 +449,20 @@ public class AISMainFrame extends javax.swing.JFrame {
         dialog.dispose();
 
         //show charts from the paenl
-        JDialog dialogchart = new JDialog(this, "Show Bar Chart", true);
-        BarChartGenerator bcGenerator = new BarChartGenerator(values, counts,attribute);
-        this.add(bcGenerator);
-        Dimension dimensionchart = new Dimension(500, 400);
+        JDialog dialogchart = new JDialog(this, "Show Chart", true);
+        Dimension dimensionchart = new Dimension(500, 500);
         dimensionchart.setSize(dimensionchart.getWidth() + 10, dimensionchart.getHeight() + 25);
-        dialogchart.getContentPane().add(bcGenerator);
+        if (classpanel.isBarChart()) {
+            BarChartGenerator bcGenerator = new BarChartGenerator(values, counts, attribute);
+            this.add(bcGenerator);
+            dialogchart.getContentPane().add(bcGenerator);
+        } else {
+
+            PieChartGenerator pcGenerator = new PieChartGenerator(values, counts, attribute);
+            this.add(pcGenerator);
+            dialogchart.getContentPane().add(pcGenerator);
+        }
+
         dialogchart.setSize(dimensionchart);
         dialogchart.setModal(true);
         dialogchart.setVisible(true);
@@ -458,6 +481,40 @@ public class AISMainFrame extends javax.swing.JFrame {
 
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
         // TODO add your handling code here:
+
+        String ncfile = "";
+        String wfsfile = "";
+
+        JDialog dialog = new JDialog(this, "Create Vertical Profile", true);
+        ProfilerPanel profilerpanel = new ProfilerPanel();
+        profilerpanel.setDialog(dialog);
+        Dimension dimension = profilerpanel.getPreferredSize();
+        dimension.setSize(dimension.getWidth() + 10, dimension.getHeight() + 25);
+        dialog.getContentPane().add(profilerpanel);
+        dialog.setSize(dimension);
+        dialog.setModal(true);
+        dialog.setVisible(true);
+
+        if (profilerpanel.isConfirmed()) {
+            //prefilter the wfs layer with route only
+            wfsfile = this.wfslayerfilepath.get(profilerpanel.getWFSLayerIndex());
+            ncfile = this.wcslayerfilepath.get(profilerpanel.getWCSLayerIndex());
+
+        }
+
+        dialog.dispose();
+
+        //show charts from the paenl
+        JDialog dialogchart = new JDialog(this, "Show Weather Along Routes", true);
+        LineChartGenerator lineGenerator = new LineChartGenerator(ncfile, wfsfile);
+        this.add(lineGenerator);
+        Dimension dimensionchart = new Dimension(500, 400);
+        dimensionchart.setSize(dimensionchart.getWidth() + 10, dimensionchart.getHeight() + 25);
+        dialogchart.getContentPane().add(lineGenerator);
+        dialogchart.setSize(dimensionchart);
+        dialogchart.setModal(true);
+        dialogchart.setVisible(true);
+        dialogchart.pack();
     }//GEN-LAST:event_ProfileActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -550,19 +607,47 @@ public class AISMainFrame extends javax.swing.JFrame {
 
     protected void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance) {
 
-        WFSService service = new WFSService(url, featureTypeName, sector, tileDelta);
-        WFSGenericLayer layer = new WFSGenericLayer(service, "WFS: " + featureTypeName + " (from "
-                + url.replaceAll("^.+://", "").replaceAll("/.*$", "") + ")");
-        layer.setMaxActiveAltitude(maxVisibleDistance);
+        try {
+            WFSServiceSimple service = new WFSServiceSimple(url, featureTypeName, queryField, queryValue, "");
+            String filepath = service.downloadFeatures();
+//            int cout = readGMLCount(filepath);
+            KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
+            style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue));
+            style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue).replaceFirst("^ff", "80")); //semi-transparent fill
+            SelectableIconLayer iconlayer = new SelectableIconLayer();
+            iconlayer.setMaxActiveAltitude(maxVisibleDistance);
 
-        KMLStyle style = layer.getDefaultStyle();
-        style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.BLUE));
-        style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.BLUE).replaceFirst("^ff", "80")); //semi-transparent fill
-        layer.setDefaultStyle(style);
-        this.insertBeforePlacenames(this.wwd, layer);
-        layer.setEnabled(true);
+            List<GMLFeature> gmlfeatures = service.readGMLData(filepath);
+            LatLon finalloc = null;
+            for (GMLFeature gmlfeature : gmlfeatures) {
+                GMLGeometry geometry;
+                geometry = gmlfeature.getDefaultGeometry();
+                if (geometry instanceof GMLPoint) {
+                    GMLPoint gmlpoint = (GMLPoint) geometry;
+                    LatLon loc = gmlpoint.getCentroid();
+                    String desc = gmlfeature.buildDescription(null);
+                    String imageURL = findFirstLinkedImage(desc);
+                    SelectableIcon icon = new SelectableIcon(style,
+                            new Position(geometry.getCentroid(), 0),
+                            gmlfeature.getName(), desc, imageURL,
+                            gmlfeature.getRelativeImportance(), true);
 
-        this.wwd.getView().goTo(Position.fromDegrees(sector.getCentroid().latitude.degrees, sector.getCentroid().longitude.degrees), maxVisibleDistance / 2);
+                    iconlayer.addIcon(icon);
+                    finalloc = loc;
+
+                }
+            }
+            //did not capture actions
+            iconlayer.setEnabled(true);
+            iconlayer.setName(featureTypeName);
+            iconlayer.setPickEnabled(true);
+
+            AISMainFrame.insertBeforePlacenames(this.wwd, iconlayer);
+
+            this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance / 2);
+        } catch (IOException ex) {
+            Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

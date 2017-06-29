@@ -8,7 +8,12 @@ package si.xlab.gaea.core.layers.wfs;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.cache.Cacheable;
 import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.geom.Track;
+import gov.nasa.worldwind.render.Path;
+import gov.nasa.worldwind.render.Polyline;
 import gov.nasa.worldwind.util.Logging;
 import gov.nasa.worldwind.util.WWIO;
 import java.io.BufferedReader;
@@ -23,12 +28,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static si.xlab.gaea.core.layers.wfs.AbstractWFSLayer.logger;
 import si.xlab.gaea.core.ogc.gml.GMLFeature;
+import si.xlab.gaea.core.ogc.gml.GMLGeometry;
 import si.xlab.gaea.core.ogc.gml.GMLParser;
+import si.xlab.gaea.core.ogc.gml.GMLPoint;
 
 /**
  *
@@ -94,9 +102,6 @@ public class WFSServiceSimple {
     }
 
     public String downloadFeatures() throws IOException {
-//        String queryfield = "VoyageID";
-//    String queryvalue = "134385";
-//        String argUrl = "http://demo.luciad.com:8080/OgcAisServices/wfs?SERVICE=WFS"; 
         URL url;
 
         url = new URL(this.geturlBase());
@@ -123,16 +128,39 @@ public class WFSServiceSimple {
             queryxmlString = queryxmlString + ">\n";
         }
         //need to check if 0 records returned.
+        //attribute query
         queryxmlString = queryxmlString
-                + "<wfs:Query typeNames=\"AIS_US\">\n"
-                //selection
-                + "<fes:Filter>\n"
-                + "<fes:PropertyIsEqualTo>\n"
-                + "<fes:ValueReference>" + this.getQueryField() + "</fes:ValueReference>\n"
-                + "<fes:Literal>" + this.getQueryValue() + "</fes:Literal>\n"
-                + "</fes:PropertyIsEqualTo>\n"
-                + "</fes:Filter>\n"
-                //  sorting              
+                + "<wfs:Query typeNames=\"AIS_US\">\n";
+        //selection
+
+        if (this.queryvalue.contains(",")) {
+            queryxmlString = queryxmlString
+                    + "<fes:Filter>\n"
+                    + "<fes:And>\n"
+                    + "<fes:PropertyIsGreaterThanOrEqualTo>\n"
+                    + "<fes:ValueReference>" + this.queryfield + "</fes:ValueReference>\n"
+                    + "<fes:Literal>" + this.queryvalue.split(",")[0] + "</fes:Literal>\n"
+                    + "</fes:PropertyIsGreaterThanOrEqualTo>\n"
+                    + "<fes:PropertyIsLessThanOrEqualTo>\n"
+                    + "<fes:ValueReference>" + this.queryfield + "</fes:ValueReference>\n"
+                    + "<fes:Literal>" + this.queryvalue.split(",")[1] + "</fes:Literal>\n"
+                    + "</fes:PropertyIsLessThanOrEqualTo>\n"
+                    + "</fes:And>\n"
+                    + "</fes:Filter>\n";
+
+        } else {
+            //filter      
+            queryxmlString = queryxmlString
+                    + "<fes:Filter>\n"
+                    + "<fes:PropertyIsEqualTo>\n"
+                    + "<fes:ValueReference>" + this.getQueryField() + "</fes:ValueReference>\n"
+                    + "<fes:Literal>" + this.getQueryValue() + "</fes:Literal>\n"
+                    + "</fes:PropertyIsEqualTo>\n"
+                    + "</fes:Filter>\n";
+        }
+
+        //  sorting              
+        queryxmlString = queryxmlString
                 + "<fes:SortBy>\n"
                 + "<fes:SortProperty>\n"
                 + "<fes:ValueReference>timeConv</fes:ValueReference>\n" //does not work for time? --24 hour format!
@@ -151,10 +179,11 @@ public class WFSServiceSimple {
         int num;
         while (-1 != (num = reader.read(cbuf))) {
             buf.append(cbuf, 0, num);
+            System.err.println(num);
         }
 
         String result = buf.toString();
-//        System.err.println("\nResponse from server after POST:\n" + result);
+        System.err.println("\nResponse from server after POST:\n" + result);
         File cacheFileURL = WorldWind.getDataFileStore().newFile(this.fileCachePath + ".xml");
         String fileCachePath = cacheFileURL.toURI().getPath();
         PrintWriter out = new PrintWriter(fileCachePath);
@@ -165,6 +194,39 @@ public class WFSServiceSimple {
 
     public final String getFileCachePath() {
         return this.fileCachePath;
+    }
+
+    //create tracks based on flitered data sorted by vayoge ID
+    public void CreateTracks(List<GMLFeature> gmlfeatures) {
+        ArrayList<Track> paths = new ArrayList<Track>();
+
+        for (GMLFeature gmlfeature : gmlfeatures) {
+            GMLGeometry geometry;
+
+            geometry = gmlfeature.getDefaultGeometry();
+            GMLPoint gmlpoint = (GMLPoint) geometry;
+            boolean pointadd =  false;
+            if (geometry instanceof GMLPoint) {
+
+                int vogageid = 0; //from gml point
+                
+                for (Track path :paths)
+                {
+                    if (path.getID()==vogageid)
+                    {
+                        path.addPosition(new Position(geometry.getCentroid(), 0));
+                        pointadd = true;
+                    }
+                }
+                if (pointadd!=true)
+                {
+                Track path = new Track(vogageid);
+                path.addPosition(new Position(geometry.getCentroid(), 0));
+                paths.add(path);
+                }
+
+            }
+        }
     }
 
     public List<GMLFeature> readGMLData(String path) {
@@ -208,26 +270,21 @@ public class WFSServiceSimple {
         return null;
     }
 
-     public static int readGMLCount(String path) {
-        
+    public static int readGMLCount(String path) {
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
-            String sCurrentLine = br.readLine(); 
-            while (sCurrentLine!=null)
-            {
+            String sCurrentLine = br.readLine();
+            while (sCurrentLine != null) {
                 String[] parts = sCurrentLine.split(" ");
-                for(String part: parts)
-                {
-                    if (part.contains("numberOfFeatures="))
-                    {
-                        
-                         return Integer.valueOf(part.split("\"")[1]);
+                for (String part : parts) {
+                    if (part.contains("numberOfFeatures=")) {
+
+                        return Integer.valueOf(part.split("\"")[1]);
                     }
                 }
-                sCurrentLine = br.readLine(); 
+                sCurrentLine = br.readLine();
             }
-           
-        
 
         } catch (Exception ex) {
             Logger.getLogger(WFSServiceSimple.class.getName()).log(Level.SEVERE, null, ex);

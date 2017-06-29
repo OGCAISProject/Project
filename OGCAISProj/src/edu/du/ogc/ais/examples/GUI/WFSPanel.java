@@ -5,7 +5,6 @@
  */
 package edu.du.ogc.ais.examples.GUI;
 
-import edu.du.ogc.ais.examples.*;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
 import java.util.ArrayList;
@@ -68,10 +67,10 @@ public class WFSPanel extends javax.swing.JPanel {
         jTextFieldMaxDis = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         queryField = new javax.swing.JComboBox<>();
-        queryValue = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
+        jQuerySingleValue = new javax.swing.JTextField();
+        jRadioButtonSingle = new javax.swing.JRadioButton();
+        jRadioButtonRange = new javax.swing.JRadioButton();
+        jQueryRangeValue = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -275,15 +274,26 @@ public class WFSPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Attribute");
 
-        queryField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Voyage ID", "statusText", "MMSI", "timeConv" }));
+        queryField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VoyageID", "statusText", "MMSI", "timeConv" }));
 
-        queryValue.setText("1");
+        jQuerySingleValue.setText("7");
 
-        jRadioButton1.setText("Single value");
+        jRadioButtonSingle.setSelected(true);
+        jRadioButtonSingle.setText("Single value");
+        jRadioButtonSingle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSingleActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Range");
+        jRadioButtonRange.setText("Range");
+        jRadioButtonRange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonRangeActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("jTextField1");
+        jQueryRangeValue.setText("1,2");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -300,15 +310,15 @@ public class WFSPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(queryField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioButtonSingle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(queryValue)))
+                        .addComponent(jQuerySingleValue)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(jRadioButton2)
+                        .addComponent(jRadioButtonRange)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jQueryRangeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tileDelta)
                     .addComponent(jTextFieldMaxDis, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -330,10 +340,10 @@ public class WFSPanel extends javax.swing.JPanel {
                     .addComponent(queryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(queryValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jQuerySingleValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonSingle)
+                    .addComponent(jRadioButtonRange)
+                    .addComponent(jQueryRangeValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -459,6 +469,23 @@ public class WFSPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jRadioButtonSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSingleActionPerformed
+        // TODO add your handling code here:
+        if (this.jRadioButtonSingle.isSelected())
+        {
+            this.jRadioButtonRange.setSelected(false);
+        }
+        
+    }//GEN-LAST:event_jRadioButtonSingleActionPerformed
+
+    private void jRadioButtonRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRangeActionPerformed
+        // TODO add your handling code here:
+         if (this.jRadioButtonRange.isSelected())
+        {
+            this.jRadioButtonSingle.setSelected(false);
+        }
+    }//GEN-LAST:event_jRadioButtonRangeActionPerformed
+
     public void setDialog(JDialog dialog)
     {
         this.dialog = dialog;
@@ -483,7 +510,13 @@ public class WFSPanel extends javax.swing.JPanel {
     
     public String getQueryValue()
     {
-        return queryValue.getText();
+         if (this.jRadioButtonSingle.isSelected()){
+             return jQuerySingleValue.getText();
+         }
+         else
+         {
+             return this.jQueryRangeValue.getText();
+         }
     }
     
     public String getQueryField()
@@ -553,11 +586,12 @@ public class WFSPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JTextField jQueryRangeValue;
+    private javax.swing.JTextField jQuerySingleValue;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButtonCustom;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton jRadioButtonRange;
+    private javax.swing.JRadioButton jRadioButtonSingle;
     private javax.swing.JTextField jTextFieldMaxDis;
     private javax.swing.JTextField jTextMaxLat;
     private javax.swing.JTextField jTextMaxLong;
@@ -565,7 +599,6 @@ public class WFSPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextMinLong;
     private javax.swing.JTextField jTextserviceUrl;
     private javax.swing.JComboBox<String> queryField;
-    private javax.swing.JTextField queryValue;
     private javax.swing.JTextField tileDelta;
     // End of variables declaration//GEN-END:variables
 }

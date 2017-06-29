@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 /**
  *
@@ -24,21 +24,46 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.chart.*;
 import javafx.scene.Group;
 
-public class ChartGenerator extends Application {
+public class LineChartGenerator extends JFXPanel {
 
-    @Override
-    public void start(Stage stage) {
-        VerticalProfiling vp = new VerticalProfiling("test.nc", "3565.xml");
+    String ncfile = "test.nc";
+    String wfsfile = "3565.xml";
+    String charttile = "";
+    VerticalProfiling vp;
 
-        stage.setTitle("Vertical Profile" + vp.GetVariableName());
+    public  LineChartGenerator(String ncfile, String wfsfile) {
+        if (ncfile != "") {
+            this.ncfile = ncfile;
+        }
+        if (wfsfile != "") {
+            this.wfsfile = wfsfile;
+        }
+        this.vp = new VerticalProfiling(this.ncfile, this.wfsfile);
+
+        this.charttile = "Vertical Profile" + vp.GetVariableName();
         //defining the axes
+        // create JavaFX scene
+        Platform.setImplicitExit(false);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                createScene();
+
+            }
+        });
+    }
+
+    public Scene createScene() {
+        Group root = new Group();
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Distance");
@@ -63,22 +88,17 @@ public class ChartGenerator extends Application {
 
         Scene scene = new Scene(lineChart, 800, 600);
 
-        stage.setScene(scene);
-
-        stage.show();
-
+        root.getChildren().add(lineChart);
+        this.setScene(scene);
+        this.validate();
         WritableImage snapShot = scene.snapshot(null);
 
         try {
             ImageIO.write(SwingFXUtils.fromFXImage(snapShot, null), "png", new File("chart.png"));
         } catch (IOException ex) {
-            Logger.getLogger(ChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LineChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return scene;
 
-    }
-    
-    
-    public static void main(String[] args) {
-        launch(args);
     }
 }

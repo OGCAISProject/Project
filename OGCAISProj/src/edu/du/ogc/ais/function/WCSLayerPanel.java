@@ -8,7 +8,7 @@
  *
  * Created on Jun 21, 2013, 2:14:11 PM
  */
-package edu.du.ogc.ais.examples;
+package edu.du.ogc.ais.function;
 
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
@@ -135,7 +135,7 @@ public class WCSLayerPanel extends javax.swing.JPanel
             }
         });
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("edu/du/ogc/ais/examples/Bundle"); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("edu/du/ogc/ais/function/Bundle"); // NOI18N
         jLabel7.setText(bundle.getString("WCSLayerPanel.jLabel7.text")); // NOI18N
 
         jTextField1.setText(bundle.getString("WCSLayerPanel.jTextField1.text")); // NOI18N

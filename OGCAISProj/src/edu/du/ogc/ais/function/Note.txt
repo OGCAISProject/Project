@@ -90,3 +90,9 @@ https://github.com/geotools/geotools/blob/master/modules/unsupported/process-fea
 
 Git:
 https://netbeans.org/kb/docs/ide/git.html
+
+
+Todo list:
+1. Action for selecting icons
+2. Layer control
+3. Temporal selection same as string query
