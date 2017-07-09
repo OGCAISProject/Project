@@ -72,16 +72,19 @@ import si.xlab.gaea.core.render.SelectableIcon;
 public class WFSExampleSimple extends ApplicationTemplate {
 
     static SelectableIconLayer iconlayer = new SelectableIconLayer();
-    static IconLayer iconsimplelayer = new IconLayer();
+    
     static LatLon finalloc;
     static RenderableLayer tracklayer = new RenderableLayer();
+    static IconLayer iconsimplelayer = new IconLayer();
+     static protected GLAnimatorControl animator;
+    static protected Path trackpath;
+static protected int currentPos = 0;
 
     static protected long lastTime;
-    static protected GLAnimatorControl animator;
-    static protected Path trackpath;
+   
     static ArrayList<Position> pathPositions = new ArrayList<Position>();
     static ArrayList<Position> pathPositionsAnimation = new ArrayList<Position>();
-    static protected int currentPos = 0;
+    
     
 
     protected static void makeMenu(final TrackAppFrame appFrame) {
@@ -195,33 +198,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
         }
     }
     
-      public static int readGMLCount(String path) {
-        
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
-            String sCurrentLine = br.readLine(); 
-            while (sCurrentLine!=null)
-            {
-                String[] parts = sCurrentLine.split(" ");
-                for(String part: parts)
-                {
-                    if (part.contains("numberOfFeatures="))
-                    {
-                        
-                         return Integer.valueOf(part.split("\"")[1]);
-                    }
-                }
-                sCurrentLine = br.readLine(); 
-            }
-           
-        
-
-        } catch (Exception ex) {
-            Logger.getLogger(WFSServiceSimple.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        return 0;
-    }
+ 
 
     protected static void addWfsLayer(String url, String featureTypeName, Sector sector,
             Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance, Color color,
@@ -232,8 +209,8 @@ public class WFSExampleSimple extends ApplicationTemplate {
             String filepath = service.downloadFeatures();
 //            int cout = readGMLCount(filepath);
             KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
-            style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(color));
-            style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(color).replaceFirst("^ff", "80")); //semi-transparent fill
+//            style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(color));
+//            style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(color).replaceFirst("^ff", "80")); //semi-transparent fill
             if (!showTracks) {
                 iconlayer.setMaxActiveAltitude(maxVisibleDistance);
                 GetIcons(service.readGMLData(filepath), style);
@@ -243,10 +220,7 @@ public class WFSExampleSimple extends ApplicationTemplate {
                 appFrame.updateLayerPanel();
             } else {
                 // Add a dragger to enable shape dragging
-                
-                
                  iconsimplelayer.setMaxActiveAltitude(maxVisibleDistance);
-//                GetIcons(service.readGMLData(filepath), style);
                 insertBeforePlacenames(appFrame.getWwd(), iconsimplelayer);
                 iconsimplelayer.setEnabled(true);
                 iconsimplelayer.setName(featureTypeName);

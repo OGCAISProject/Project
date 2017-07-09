@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package edu.du.ogc.ais.examples.GUI;
+import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
+import java.util.ArrayList;
 import javax.swing.JDialog;
 
 /**
@@ -21,8 +23,14 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
     int yMouse;
       private JDialog dialog;
     private boolean confirmed = false;
-    public TimeSeriesPanel() {
+    
+    protected final WorldWindow wwd;
+    
+    
+    public TimeSeriesPanel(WorldWindow wwd) {
         initComponents();
+        
+        this.wwd = wwd;
     }
 
     /**
@@ -39,7 +47,7 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxLayer = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         drag5 = new javax.swing.JLabel();
 
@@ -116,10 +124,15 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxLayer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxLayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxLayerActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel4.setText("Select a layer");
+        jLabel4.setText("Select a tracking layer");
 
         drag5.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         drag5.setText("Time Series");
@@ -133,6 +146,7 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(drag5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jComboBoxLayer, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -143,8 +157,7 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel4)))
-                        .addGap(0, 64, Short.MAX_VALUE))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 64, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -156,24 +169,20 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(drag5, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addComponent(drag5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonCancel)
-                            .addComponent(jButtonOK))
-                        .addGap(14, 14, 14))))
+                .addComponent(jComboBoxLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonOK)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(142, Short.MAX_VALUE)))
+                    .addContainerGap(95, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -211,6 +220,10 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
             dialog.setVisible(false);
         }
     }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jComboBoxLayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxLayerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxLayerActionPerformed
     public void setDialog(JDialog dialog)
     {
         this.dialog = dialog;
@@ -221,15 +234,25 @@ public class TimeSeriesPanel extends javax.swing.JPanel {
         return confirmed;
     }
     
+    public void setLayers(ArrayList<String> layernames)
+    {
+        this.jComboBoxLayer.removeAllItems();
+        for (String layername: layernames)
+        {
+            this.jComboBoxLayer.addItem(layername);
+        }
+    }
 
-
+ public int getLayerIndex() {
+        return this.jComboBoxLayer.getSelectedIndex();
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel drag5;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonOK;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxLayer;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

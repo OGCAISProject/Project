@@ -174,6 +174,7 @@ public class ClassificationPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Classify by attribute");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,9 +193,9 @@ public class ClassificationPanel extends javax.swing.JPanel {
 
         jLabel3.setText("End Time: ");
 
-        timestart.setText("2017-06-11T00:00:00:00Z");
+        timestart.setText("2014-12-01 00:00:00");
 
-        timeend.setText("2017-06-11T00:00:00:00Z");
+        timeend.setText("2014-12-02 00:00:00");
 
         jLabel22.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel22.setText("Time:");
@@ -359,7 +360,7 @@ public class ClassificationPanel extends javax.swing.JPanel {
         if (this.jRadioButton2.isSelected())
         {
             this.jRadioButton1.setSelected(false);
-            this.barchart=false;
+            this.barchart=true;
         }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
@@ -395,7 +396,19 @@ public class ClassificationPanel extends javax.swing.JPanel {
     }
     public String getTimeEnd()
     {
-        return this.timestart.getText();
+        return this.timeend.getText();
+    }
+    
+    public boolean isHourly()
+    {
+        if (this.jCheckBoxDaily.isSelected())
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     
     public String getAttribute()

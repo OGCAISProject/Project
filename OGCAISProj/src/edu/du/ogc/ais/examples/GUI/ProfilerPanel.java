@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package edu.du.ogc.ais.examples.GUI;
+
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
 import java.util.ArrayList;
@@ -20,27 +21,24 @@ public class ProfilerPanel extends javax.swing.JPanel {
      */
     int xMouse;
     int yMouse;
-      private JDialog dialog;
+    private JDialog dialog;
     private boolean confirmed = false;
+
     public ProfilerPanel() {
         initComponents();
     }
-    
-    public void setWFSLayer(ArrayList<String> wfslayer)
-    {
-        this.jComboBoxWFSLayer.removeAll();
-        for (int i = 0 ; i < wfslayer.size(); i ++)
-        {
-        this.jComboBoxWCSLayer.addItem(wfslayer.get(i));
+
+    public void setWFSLayer(ArrayList<String> wfslayer) {
+        this.jComboBoxWFSLayer.removeAllItems();
+        for (int i = 0; i < wfslayer.size(); i++) {
+            this.jComboBoxWCSLayer.addItem(wfslayer.get(i));
         }
     }
-    
-    public void setWCSLayer(ArrayList<String> wcslayer)
-    {
-        this.jComboBoxWCSLayer.removeAll();
-            for (int i = 0 ; i < wcslayer.size(); i ++)
-        {
-        this.jComboBoxWCSLayer.addItem(wcslayer.get(i));
+
+    public void setWCSLayer(ArrayList<String> wcslayer) {
+        this.jComboBoxWCSLayer.removeAllItems();
+        for (int i = 0; i < wcslayer.size(); i++) {
+            this.jComboBoxWCSLayer.addItem(wcslayer.get(i));
         }
     }
 
@@ -189,25 +187,21 @@ public class ProfilerPanel extends javax.swing.JPanel {
             dialog.setVisible(false);
         }
     }//GEN-LAST:event_jButtonOKActionPerformed
-    public void setDialog(JDialog dialog)
-    {
+    public void setDialog(JDialog dialog) {
         this.dialog = dialog;
     }
 
-        public boolean isConfirmed()
-    {
+    public boolean isConfirmed() {
         return confirmed;
     }
-    
-        public int getWFSLayerIndex()
-        {
-            return this.jComboBoxWFSLayer.getSelectedIndex();
-        }
-        
-        public int getWCSLayerIndex()
-        {
-            return this.jComboBoxWCSLayer.getSelectedIndex();
-        }
+
+    public int getWFSLayerIndex() {
+        return this.jComboBoxWFSLayer.getSelectedIndex();
+    }
+
+    public int getWCSLayerIndex() {
+        return this.jComboBoxWCSLayer.getSelectedIndex();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancel;
@@ -220,6 +214,5 @@ public class ProfilerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
-
 
 }

@@ -43,26 +43,22 @@ public class GMLPointReader {
                 LatLon loc = gmlpoint.getCentroid();
                 String desc = gmlfeature.buildDescription(null);
                 LatLon pt = geometry.getCentroid();
-                if (pt.longitude.degrees >right)
-                        {
-                            right = pt.longitude.degrees;
-                        }
-                                if (pt.longitude.degrees <left)
-                        {
-                            left = pt.longitude.degrees;
-                        }
-                                
-                                                if (pt.latitude.degrees >up)
-                        {
-                            up = pt.latitude.degrees;
-                        }
-                                                
-                                                                if (pt.latitude.degrees <bottom)
-                        {
-                            bottom = pt.latitude.degrees;
-                        }
-                
-                        pathPositions.add(new Position(pt, 0));
+                if (pt.longitude.degrees > right) {
+                    right = pt.longitude.degrees;
+                }
+                if (pt.longitude.degrees < left) {
+                    left = pt.longitude.degrees;
+                }
+
+                if (pt.latitude.degrees > up) {
+                    up = pt.latitude.degrees;
+                }
+
+                if (pt.latitude.degrees < bottom) {
+                    bottom = pt.latitude.degrees;
+                }
+
+                pathPositions.add(new Position(pt, 0));
 
             }
         }
@@ -71,11 +67,11 @@ public class GMLPointReader {
 
     public double[] GetBounds() {
         double bounds[] = new double[4];
-        bounds[0]= left; 
-        bounds[1]=right; 
-        bounds[2]=bottom;
+        bounds[0] = left;
+        bounds[1] = right;
+        bounds[2] = bottom;
         bounds[3] = up;
-        return bounds; 
+        return bounds;
     }
 
     public List<GMLFeature> readGMLData() {
@@ -117,9 +113,9 @@ public class GMLPointReader {
         return null;
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        GMLPointReader gp = new GMLPointReader("test.xml"); //3565
-        gp.GetPositions(gp.readGMLData());
-    }
+//    public static void main(String[] args) {
+//        // TODO Auto-generated method stub
+//        GMLPointReader gp = new GMLPointReader("test.xml"); //3565
+//        gp.GetPositions(gp.readGMLData());
+//    }
 }

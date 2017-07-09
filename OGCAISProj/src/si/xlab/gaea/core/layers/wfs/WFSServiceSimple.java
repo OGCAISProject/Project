@@ -6,14 +6,11 @@
 package si.xlab.gaea.core.layers.wfs;
 
 import gov.nasa.worldwind.WorldWind;
-import gov.nasa.worldwind.cache.Cacheable;
-import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.geom.Track;
-import gov.nasa.worldwind.render.Path;
-import gov.nasa.worldwind.render.Polyline;
+import gov.nasa.worldwind.layers.SelectableIconLayer;
+import gov.nasa.worldwind.ogc.kml.KMLStyle;
 import gov.nasa.worldwind.util.Logging;
 import gov.nasa.worldwind.util.WWIO;
 import java.io.BufferedReader;
@@ -23,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -33,10 +29,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static si.xlab.gaea.core.layers.wfs.AbstractWFSLayer.logger;
+import static si.xlab.gaea.core.layers.wfs.WFSGenericLayer.findFirstLinkedImage;
 import si.xlab.gaea.core.ogc.gml.GMLFeature;
 import si.xlab.gaea.core.ogc.gml.GMLGeometry;
 import si.xlab.gaea.core.ogc.gml.GMLParser;
 import si.xlab.gaea.core.ogc.gml.GMLPoint;
+import si.xlab.gaea.core.render.DefaultLook;
+import si.xlab.gaea.core.render.SelectableIcon;
 
 /**
  *
@@ -205,24 +204,21 @@ public class WFSServiceSimple {
 
             geometry = gmlfeature.getDefaultGeometry();
             GMLPoint gmlpoint = (GMLPoint) geometry;
-            boolean pointadd =  false;
+            boolean pointadd = false;
             if (geometry instanceof GMLPoint) {
 
                 int vogageid = 0; //from gml point
-                
-                for (Track path :paths)
-                {
-                    if (path.getID()==vogageid)
-                    {
+
+                for (Track path : paths) {
+                    if (path.getID() == vogageid) {
                         path.addPosition(new Position(geometry.getCentroid(), 0));
                         pointadd = true;
                     }
                 }
-                if (pointadd!=true)
-                {
-                Track path = new Track(vogageid);
-                path.addPosition(new Position(geometry.getCentroid(), 0));
-                paths.add(path);
+                if (pointadd != true) {
+                    Track path = new Track(vogageid);
+                    path.addPosition(new Position(geometry.getCentroid(), 0));
+                    paths.add(path);
                 }
 
             }
@@ -268,6 +264,48 @@ public class WFSServiceSimple {
         }
 
         return null;
+    }
+
+    public SelectableIconLayer GetIcons(List<GMLFeature> gmlfeatures) {
+        KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
+        SelectableIconLayer iconlayer = new SelectableIconLayer();
+
+        for (GMLFeature gmlfeature : gmlfeatures) {
+            GMLGeometry geometry;
+            geometry = gmlfeature.getDefaultGeometry();
+            if (geometry instanceof GMLPoint) {
+                GMLPoint gmlpoint = (GMLPoint) geometry;
+                LatLon loc = gmlpoint.getCentroid();
+                String desc = gmlfeature.buildDescription(null);
+                String imageURL = findFirstLinkedImage(desc);
+                SelectableIcon icon = new SelectableIcon(style,
+                        new Position(geometry.getCentroid(), 0),
+                        gmlfeature.getName(), desc, imageURL,
+                        gmlfeature.getRelativeImportance(), true);
+
+                iconlayer.addIcon(icon);
+
+//                finalloc = loc;
+            }
+        }
+        return iconlayer;
+    }
+
+    public ArrayList<Position> GetPositions(List<GMLFeature> gmlfeatures) {
+        ArrayList<Position> pathPositions = new ArrayList<Position>();
+        for (GMLFeature gmlfeature : gmlfeatures) {
+            GMLGeometry geometry;
+            geometry = gmlfeature.getDefaultGeometry();
+            if (geometry instanceof GMLPoint) {
+                GMLPoint gmlpoint = (GMLPoint) geometry;
+                LatLon loc = gmlpoint.getCentroid();
+                String desc = gmlfeature.buildDescription(null);
+                String imageURL = findFirstLinkedImage(desc);
+                pathPositions.add(new Position(geometry.getCentroid(), 100));
+//                finalloc = loc;
+            }
+        }
+        return pathPositions;
     }
 
     public static int readGMLCount(String path) {

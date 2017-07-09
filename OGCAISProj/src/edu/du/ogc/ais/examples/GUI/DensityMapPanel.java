@@ -6,6 +6,7 @@
 package edu.du.ogc.ais.examples.GUI;
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
+import java.util.ArrayList;
 import javax.swing.JDialog;
 
 /**
@@ -38,7 +39,7 @@ public class DensityMapPanel extends javax.swing.JPanel {
         jPanel10 = new javax.swing.JPanel();
         drag5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxLayer = new javax.swing.JComboBox<>();
         jButtonOK = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
 
@@ -72,7 +73,7 @@ public class DensityMapPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Select a WFS layer");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxLayer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonOK.setText("OK");
         jButtonOK.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +105,7 @@ public class DensityMapPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxLayer, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -122,7 +123,7 @@ public class DensityMapPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonOK)
@@ -191,13 +192,28 @@ public class DensityMapPanel extends javax.swing.JPanel {
         this.dialog = dialog;
     }
     
+    public void setLayers(ArrayList<String> layernames)
+    {
+        this.jComboBoxLayer.removeAllItems();
+        for (String layername: layernames)
+        {
+            this.jComboBoxLayer.addItem(layername);
+        }
+    }
+
+    public boolean isConfirmed() {
+        return confirmed;
+    }
     
+ public int getLayerIndex() {
+        return this.jComboBoxLayer.getSelectedIndex();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel drag5;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonOK;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBoxLayer;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

@@ -44,16 +44,21 @@ import org.opengis.util.ProgressListener;
  *
  * @author jing.li145
  */
-public class TrackDensityViewer {
+public class TrackDensityGenerator {
 
     static ArrayList<Position> pathPositions = new ArrayList<Position>();
-    double geobounds[];
+    double geobounds[]; //left, right, bottom, up
 
     //read track points
-    public TrackDensityViewer(String trackfilepath) {
+    public TrackDensityGenerator(String trackfilepath) {
         GMLPointReader gmlptreader = new GMLPointReader(trackfilepath);
         pathPositions = gmlptreader.GetPositions(gmlptreader.readGMLData());
         geobounds = gmlptreader.GetBounds();
+    }
+    
+    public double[] getBounds()
+    {
+        return geobounds; 
     }
 
     public void CreateDensityMap(String imgpath, String legendpath) {
@@ -75,6 +80,7 @@ public class TrackDensityViewer {
                 monitor // monitor)
         );
         Raster raster = coverage.getRenderedImage().getData();
+        
         float min = 10000000;
         float max = -10000000;
         int[][] rgb = new int[outputWidth][outputHeight];
@@ -154,10 +160,10 @@ public class TrackDensityViewer {
         return fc;
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        TrackDensityViewer tdv = new TrackDensityViewer("9_9.xml");
-        tdv.CreateDensityMap("kdvv.png", "kdelegend.png");
-
-    }
+//    public static void main(String[] args) {
+//        // TODO Auto-generated method stub
+//        TrackDensityViewer tdv = new TrackDensityViewer("9_9.xml");
+//        tdv.CreateDensityMap("kdvv.png", "kdelegend.png");
+//
+//    }
 }

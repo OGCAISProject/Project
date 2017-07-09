@@ -72,7 +72,8 @@ public class BarChartGenerator extends JFXPanel {
        
 
         for (int i = 0; i < this.aistypes.size(); i++) {
-            series1.getData().add(new XYChart.Data(this.aistypes.get(i), this.aisvalues.get(i)));
+            series1.getData().add(new XYChart.Data(this.aistypes.get(i).split(",")[0], this.aisvalues.get(i)));
+            
         }
         
         final BarChart<String, Number> bc
