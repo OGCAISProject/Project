@@ -314,6 +314,9 @@
             <Property name="text" type="java.lang.String" value=" "/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelSlowMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelPause">
           <Properties>
@@ -356,6 +359,9 @@
             <Property name="text" type="java.lang.String" value=" "/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelFastMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

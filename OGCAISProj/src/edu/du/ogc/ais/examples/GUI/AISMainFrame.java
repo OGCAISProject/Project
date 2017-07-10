@@ -93,7 +93,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     static RenderableLayer tracklayer = new RenderableLayer();
     static IconLayer iconsimplelayer = new IconLayer();
-    static protected GLAnimatorControl animator;
+    static protected FPSAnimator animator;
     static protected Path trackpath;
     static protected int currentPos = 0;
 
@@ -252,6 +252,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jLabelSlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/fast-rewind2.png"))); // NOI18N
         jLabelSlow.setText(" ");
         jLabelSlow.setEnabled(false);
+        jLabelSlow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelSlowMouseClicked(evt);
+            }
+        });
         jToolBar1.add(jLabelSlow);
 
         jLabelPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/pause2.png"))); // NOI18N
@@ -282,6 +287,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jLabelFast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/fast-forward2.png"))); // NOI18N
         jLabelFast.setText(" ");
         jLabelFast.setEnabled(false);
+        jLabelFast.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelFastMouseClicked(evt);
+            }
+        });
         jToolBar1.add(jLabelFast);
 
         jToggleButton1.setText("jToggleButton1");
@@ -646,7 +656,8 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             this.jLabelStop.setEnabled(true);
             this.jLabelStart.setEnabled(true);
             this.jLabelPause.setEnabled(true);
-            animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 10/*frames per second*/);
+            animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 15/*frames per second*/);
+           
             animator.stop();
         }
 
@@ -804,6 +815,22 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         this.jLabelPause.setEnabled(false);
         //TODO:clean everything and remove layer
     }//GEN-LAST:event_jLabelStopMouseClicked
+
+    private void jLabelFastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFastMouseClicked
+        // TODO add your handling code here:
+//         this.animator.stop();
+//         animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 50/*frames per second*/);
+//         this.animator.start();
+            animator.setFPS(animator.getFPS()+5);
+    }//GEN-LAST:event_jLabelFastMouseClicked
+
+    private void jLabelSlowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSlowMouseClicked
+        // TODO add your handling code here:
+        if (animator.getFPS()-5>0)
+                {
+                 animator.setFPS(animator.getFPS()-5);
+                }
+    }//GEN-LAST:event_jLabelSlowMouseClicked
 
     protected void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance) {
 
