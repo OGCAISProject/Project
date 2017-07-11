@@ -396,16 +396,18 @@ public class AntennaAxes extends AbstractShape
 
     protected void drawCylinder(DrawContext dc, ShapeData shapeData)
     {
+        GL2 gl = dc.getGL().getGL2();
         for (IntBuffer iBuffer : shapeData.indices)
         {
-            dc.getGL().glDrawElements(GL.GL_TRIANGLE_STRIP, iBuffer.limit(), GL.GL_UNSIGNED_INT, iBuffer.rewind());
+            gl.glDrawElements(GL.GL_TRIANGLE_STRIP, iBuffer.limit(), GL.GL_UNSIGNED_INT, iBuffer.rewind());
         }
     }
 
     protected void drawCone(DrawContext dc, ShapeData shapeData)
     {
+        GL2 gl = dc.getGL().getGL2();
         IntBuffer iBuffer = shapeData.coneIndices;
-        dc.getGL().glDrawElements(GL.GL_TRIANGLE_FAN, iBuffer.limit(), GL.GL_UNSIGNED_INT, iBuffer.rewind());
+        gl.glDrawElements(GL.GL_TRIANGLE_FAN, iBuffer.limit(), GL.GL_UNSIGNED_INT, iBuffer.rewind());
     }
 
     protected void drawLabels(DrawContext dc)

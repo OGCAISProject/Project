@@ -293,9 +293,10 @@ public class Atmosphere extends BasicShaderFactory
 				return false;
 			}
 			if(s.getGS() != 0){
-				gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_INPUT_TYPE_EXT, GL.GL_TRIANGLES);
-            	gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_OUTPUT_TYPE_EXT, GL.GL_TRIANGLE_STRIP);
-            	gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_VERTICES_OUT_EXT, 3);	
+//                            
+//				gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_INPUT_TYPE_ARB, GL.GL_TRIANGLES);
+//            	gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_OUTPUT_TYPE_EXT, GL.GL_TRIANGLE_STRIP);
+//            	gl.glProgramParameteri(s.getProgram(), GL2.GL_GEOMETRY_VERTICES_OUT_, 3);	
 			}
 		}
 

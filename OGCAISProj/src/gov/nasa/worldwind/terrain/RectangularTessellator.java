@@ -997,7 +997,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 		//Vito
 		//added support for GL_TRIANGLES_ADJACECY
 		if(renderAdjacent){
-        	gl.glDrawElements(GL2.GL_TRIANGLES_ADJACENCY_EXT, tile.ri.indicesAdjacency.limit(), 
+        	gl.glDrawElements(GL2.GL_TRIANGLES_ADJACENCY_ARB, tile.ri.indicesAdjacency.limit(), 
 					GL.GL_UNSIGNED_INT, tile.ri.indicesAdjacency.rewind());
 		}
 		else{
@@ -1025,7 +1025,8 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 			//X-START
 			//Vito
 			if(renderAdjacent){
-            	dc.getGL().glDrawElements(GL2.GL_TRIANGLES_ADJACENCY_EXT, tile.ri.indicesAdjacency.limit(), GL.GL_UNSIGNED_INT, 0);
+                           
+            	dc.getGL().glDrawElements(GL2.GL_TRIANGLES_ADJACENCY_ARB, tile.ri.indicesAdjacency.limit(), GL.GL_UNSIGNED_INT, 0);
 			}
 			else{
             	dc.getGL().glDrawElements(GL.GL_TRIANGLE_STRIP, tile.ri.indices.limit(), GL.GL_UNSIGNED_INT, 0);

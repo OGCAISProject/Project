@@ -468,9 +468,9 @@ public class OGLRenderToTextureSupport
                 return Logging.getMessage("OGL.FramebufferIncompleteDrawBuffer");
             case GL.GL_FRAMEBUFFER_INCOMPLETE_FORMATS:
                 return Logging.getMessage("OGL.FramebufferIncompleteFormats");
-            case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT:
+            case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB:
                 return Logging.getMessage("OGL.FramebufferIncompleteLayerCount");
-            case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_EXT:
+            case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS_ARB:
                 return Logging.getMessage("OGL.FramebufferIncompleteLayerTargets");
             case GL.GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT:
                 return Logging.getMessage("OGL.FramebufferIncompleteMissingAttachment");

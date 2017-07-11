@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Jing
  */
-public class Track {
+public class AISTrack {
      private ArrayList<Position> positions = new ArrayList<Position>();
      private int id;
     
      
-     public Track(int voyageid)
+     public AISTrack(int voyageid)
      {
          this.id =  voyageid; 
      }

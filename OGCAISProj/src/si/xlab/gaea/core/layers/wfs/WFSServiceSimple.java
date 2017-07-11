@@ -8,7 +8,7 @@ package si.xlab.gaea.core.layers.wfs;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.geom.Position;
-import gov.nasa.worldwind.geom.Track;
+import gov.nasa.worldwind.geom.AISTrack;
 import gov.nasa.worldwind.layers.SelectableIconLayer;
 import gov.nasa.worldwind.ogc.kml.KMLStyle;
 import gov.nasa.worldwind.util.Logging;
@@ -197,7 +197,7 @@ public class WFSServiceSimple {
 
     //create tracks based on flitered data sorted by vayoge ID
     public void CreateTracks(List<GMLFeature> gmlfeatures) {
-        ArrayList<Track> paths = new ArrayList<Track>();
+        ArrayList<AISTrack> paths = new ArrayList<AISTrack>();
 
         for (GMLFeature gmlfeature : gmlfeatures) {
             GMLGeometry geometry;
@@ -209,14 +209,14 @@ public class WFSServiceSimple {
 
                 int vogageid = 0; //from gml point
 
-                for (Track path : paths) {
+                for (AISTrack path : paths) {
                     if (path.getID() == vogageid) {
                         path.addPosition(new Position(geometry.getCentroid(), 0));
                         pointadd = true;
                     }
                 }
                 if (pointadd != true) {
-                    Track path = new Track(vogageid);
+                    AISTrack path = new AISTrack(vogageid);
                     path.addPosition(new Position(geometry.getCentroid(), 0));
                     paths.add(path);
                 }

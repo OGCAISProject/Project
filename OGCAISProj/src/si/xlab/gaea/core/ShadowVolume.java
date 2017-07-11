@@ -278,7 +278,7 @@ public class ShadowVolume implements Disposable{
 		gl2.glEnableClientState(GL2.GL_VERTEX_ARRAY);
 		gl2.glVertexPointer(3, GL.GL_FLOAT, 0, bufferVer.rewind());
 
-		gl3.glDrawElements(GL3.GL_TRIANGLES_ADJACENCY, buffer.limit(), GL.GL_UNSIGNED_INT, buffer.rewind());
+		gl2.glDrawElements(GL3.GL_TRIANGLES_ADJACENCY, buffer.limit(), GL.GL_UNSIGNED_INT, buffer.rewind());
 
 		gl2.glDisableClientState(GL2.GL_VERTEX_ARRAY);
 

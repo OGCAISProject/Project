@@ -274,7 +274,7 @@ public class FrameBuffer implements GLDisposable{
 						logger.severe("isComplete(): If the read buffer is set, then it must specify "
 								+ "an attachment point that has an image attached!");
 						throw new IllegalStateException("GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER_EXT ERROR!");
-					case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT:
+					case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB:
 						logger.severe("isComplete(): incomplete layer count!");
 						throw new IllegalStateException("GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT ERROR!");
 					default:
@@ -306,7 +306,7 @@ public class FrameBuffer implements GLDisposable{
 						logger.severe("isComplete(): If the read buffer is set, then it must specify "
 								+ "an attachment point that has an image attached!");
 						break;
-					case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_EXT:
+					case GL2.GL_FRAMEBUFFER_INCOMPLETE_LAYER_COUNT_ARB:
 						logger.severe("isComplete(): incomplete layer count!");
 						break;
 					default:
