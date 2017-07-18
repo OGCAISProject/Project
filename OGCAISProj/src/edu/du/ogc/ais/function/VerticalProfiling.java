@@ -75,7 +75,12 @@ static ArrayList<Position> pathPositions = new ArrayList<Position>();
         if (dy <= dx) {
             for (;;) {
                 //get a new pair of x1, y1
-                zvalue.add(nctest.GetAttribute(x1, y1));
+                               float zvaluenow =  nctest.GetAttribute(x1, y1);
+                if (zvaluenow==-100000000)
+                    break;
+                zvalue.add(zvaluenow);
+                
+                
                 if (x1 >= x2) {
                     break;
                 }
@@ -89,7 +94,10 @@ static ArrayList<Position> pathPositions = new ArrayList<Position>();
         } else {
             for (;;) {
                 //get a new pair of x1, y1
-                zvalue.add(nctest.GetAttribute(x1, y1));
+                float zvaluenow =  nctest.GetAttribute(x1, y1);
+                if (zvaluenow==-100000000)
+                    break;
+                zvalue.add(zvaluenow);
                 if (y1 >= y2) {
                     break;
                 }
@@ -105,10 +113,10 @@ static ArrayList<Position> pathPositions = new ArrayList<Position>();
         return zvalue;
     }
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        VerticalProfiling vp = new VerticalProfiling("test.nc", "3565.xml");
-        
-    }
+//    public static void main(String[] args) {
+//        // TODO Auto-generated method stub
+//        VerticalProfiling vp = new VerticalProfiling("test.nc", "3565.xml");
+//        
+//    }
 
 }

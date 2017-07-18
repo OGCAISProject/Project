@@ -30,6 +30,7 @@ import gov.nasa.worldwind.ogc.kml.KMLStyle;
 import gov.nasa.worldwind.render.BasicShapeAttributes;
 import gov.nasa.worldwind.render.Material;
 import gov.nasa.worldwind.render.Path;
+import gov.nasa.worldwind.render.ScreenImage;
 import gov.nasa.worldwind.render.ShapeAttributes;
 import gov.nasa.worldwind.render.SurfaceImage;
 import gov.nasa.worldwind.render.UserFacingIcon;
@@ -41,16 +42,20 @@ import gov.nasa.worldwindx.examples.ClickAndGoSelectListener;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.File;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Point;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import javax.imageio.ImageIO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.media.opengl.GLAnimatorControl;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -587,10 +592,10 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             int layeridx = densitymappanel.getLayerIndex();
             String wfspath = this.wfslayerfilepath.get(layeridx);
             TrackDensityGenerator tdviewer = new TrackDensityGenerator(wfspath);
-            tdviewer.CreateDensityMap(wfspath.split(".")[0] + ".png", wfspath.split(".")[0] + "legend.png");
+            tdviewer.CreateDensityMap(wfspath.split(".xml")[0] + ".png", wfspath.split(".xml")[0] + "legend.png");
             //surfaceimage
             double[] bounds = tdviewer.getBounds(); //left, right, bottom, up
-            SurfaceImage si1 = new SurfaceImage(wfspath.split(".")[0] + ".png", new ArrayList<LatLon>(Arrays.asList(
+            SurfaceImage si1 = new SurfaceImage(wfspath.split(".xml")[0] + ".png", new ArrayList<LatLon>(Arrays.asList(
                     LatLon.fromDegrees(bounds[2], bounds[1]),
                     LatLon.fromDegrees(bounds[2], bounds[0]),
                     LatLon.fromDegrees(bounds[3], bounds[0]),
@@ -600,6 +605,10 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             layer.setName(this.wfslayername.get(layeridx) + " Animation");
             layer.setPickEnabled(false);
             layer.addRenderable(si1);
+            layer.setOpacity(0.5f);
+            this.insertBeforePlacenames(this.wwd, layer);
+            this.wwd.getView().goTo(Position.fromDegrees(bounds[2], bounds[1]), 100000000);
+
         }
 
     }//GEN-LAST:event_DensityMapActionPerformed
@@ -691,15 +700,18 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         dialog.dispose();
 
         //show charts from the paenl
+        Dimension dimensionchart = new Dimension(520, 420);
         JDialog dialogchart = new JDialog(this, "Show Weather Along Routes", true);
-        LineChartGenerator lineGenerator = new LineChartGenerator(ncfile, wfsfile);
+        LineChartGenerator lineGenerator = new LineChartGenerator(ncfile, wfsfile,dimensionchart);
+        lineGenerator.setPreferredSize(dimensionchart);
+        
         this.add(lineGenerator);
-        Dimension dimensionchart = new Dimension(500, 400);
         dimensionchart.setSize(dimensionchart.getWidth() + 10, dimensionchart.getHeight() + 25);
         dialogchart.getContentPane().add(lineGenerator);
         dialogchart.setSize(dimensionchart);
         dialogchart.setModal(true);
         dialogchart.setVisible(true);
+        lineGenerator.revalidate();
         dialogchart.pack();
     }//GEN-LAST:event_ProfileActionPerformed
 
@@ -771,7 +783,10 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
             String queryfield = wfsPanel.getQueryField();
             String queryvalue = wfsPanel.getQueryValue();
-
+            if (wfsPanel.isShowAll())
+            {
+                queryvalue = "#";
+            }
             try {
                 addWfsLayer(url, name, sector, tile, queryfield, queryvalue, dist * 1000);
             } catch (Exception e) {
@@ -899,13 +914,24 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
                 LatLon.fromDegrees(nctest.GetUp(), nctest.GetLeft()),
                 LatLon.fromDegrees(nctest.GetUp(), nctest.GetRight())
         )));
+        
+        
+       ScreenImage screenImage = new ScreenImage();
+       
+        try {
+            screenImage.setImageSource(ImageIO.read(new File(path.split(".nc")[0] + "legend.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         RenderableLayer layer = new RenderableLayer();
         layer.setName(nctest.GetVariableName() + " " + time);
         this.wcslayerfilepath.add(path);
         this.wcslayername.add(nctest.GetVariableName() + " " + time);
         layer.setPickEnabled(false);
         layer.addRenderable(si1);
-
+        layer.addRenderable(screenImage);
+        screenImage.setScreenLocation(new Point (220,this.getHeight()-150));
+        this.wwd.getView().goTo(Position.fromDegrees(nctest.GetBottom(), nctest.GetRight()),1000000);
         this.insertBeforePlacenames(this.wwd, layer);
 
     }

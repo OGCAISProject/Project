@@ -9,42 +9,30 @@ package edu.du.ogc.ais.function;
  *
  * @author Jing
  */
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.Scene;
+import java.awt.Dimension;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.image.WritableImage;
-import javafx.stage.Stage;
-import javax.imageio.ImageIO;
-
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.chart.*;
 import javafx.scene.Group;
 
 public class LineChartGenerator extends JFXPanel {
-
+        //TODO:need to disable actions
     String ncfile = "test.nc";
     String wfsfile = "3565.xml";
     String charttile = "";
     VerticalProfiling vp;
 
-    public  LineChartGenerator(String ncfile, String wfsfile) {
-        if (ncfile != "") {
+    public  LineChartGenerator(String ncfile, String wfsfile, Dimension preferredSize ) {
+        super();
+        this.setPreferredSize(preferredSize);
+        this.revalidate();;
+        if (!"".equals(ncfile)) {
             this.ncfile = ncfile;
         }
-        if (wfsfile != "") {
+        if (!"".equals(wfsfile)) {
             this.wfsfile = wfsfile;
         }
         this.vp = new VerticalProfiling(this.ncfile, this.wfsfile);
@@ -82,22 +70,31 @@ public class LineChartGenerator extends JFXPanel {
                 series.getData().add(new XYChart.Data(i, datavalue));
             }
         }
+       
 
         lineChart.getData().add(series);
-        lineChart.setAnimated(false);
-
-        Scene scene = new Scene(lineChart, 800, 600);
+        
+    
+        Scene scene = new Scene(root);
+        
+        
+//        File sytle =  new File("chart.css");
+//        try {
+//            scene.getStylesheets().add(sytle.toURI().toURL().toExternalForm());
+//        } catch (MalformedURLException ex) {
+//            Logger.getLogger(LineChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
         root.getChildren().add(lineChart);
         this.setScene(scene);
-        this.validate();
-        WritableImage snapShot = scene.snapshot(null);
-
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(snapShot, null), "png", new File("chart.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(LineChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
-        }
+ 
+//        WritableImage snapShot = scene.snapshot(null);
+//
+//        try {
+//            ImageIO.write(SwingFXUtils.fromFXImage(snapShot, null), "png", new File("chart.png"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(LineChartGenerator.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return scene;
 
     }

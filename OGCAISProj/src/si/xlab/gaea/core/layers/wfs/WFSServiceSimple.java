@@ -131,7 +131,12 @@ public class WFSServiceSimple {
         queryxmlString = queryxmlString
                 + "<wfs:Query typeNames=\"AIS_US\">\n";
         //selection
-
+        if (this.queryvalue.contains("#"))
+        {
+            queryxmlString = queryxmlString;
+        }
+        else
+        {
         if (this.queryvalue.contains(",")) {
             queryxmlString = queryxmlString
                     + "<fes:Filter>\n"
@@ -157,7 +162,7 @@ public class WFSServiceSimple {
                     + "</fes:PropertyIsEqualTo>\n"
                     + "</fes:Filter>\n";
         }
-
+        }
         //  sorting              
         queryxmlString = queryxmlString
                 + "<fes:SortBy>\n"
@@ -178,11 +183,11 @@ public class WFSServiceSimple {
         int num;
         while (-1 != (num = reader.read(cbuf))) {
             buf.append(cbuf, 0, num);
-            System.err.println(num);
+//            System.err.println(num);
         }
 
         String result = buf.toString();
-        System.err.println("\nResponse from server after POST:\n" + result);
+//        System.err.println("\nResponse from server after POST:\n" + result);
         File cacheFileURL = WorldWind.getDataFileStore().newFile(this.fileCachePath + ".xml");
         String fileCachePath = cacheFileURL.toURI().getPath();
         PrintWriter out = new PrintWriter(fileCachePath);

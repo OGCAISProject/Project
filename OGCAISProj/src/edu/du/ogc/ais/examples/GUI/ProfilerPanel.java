@@ -31,7 +31,7 @@ public class ProfilerPanel extends javax.swing.JPanel {
     public void setWFSLayer(ArrayList<String> wfslayer) {
         this.jComboBoxWFSLayer.removeAllItems();
         for (int i = 0; i < wfslayer.size(); i++) {
-            this.jComboBoxWCSLayer.addItem(wfslayer.get(i));
+            this.jComboBoxWFSLayer.addItem(wfslayer.get(i));
         }
     }
 

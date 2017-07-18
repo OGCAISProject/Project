@@ -363,16 +363,19 @@
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jRadioButtonRange" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jQueryRangeValue" min="-2" pref="86" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jRadioButtonRange" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jQueryRangeValue" min="-2" pref="86" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="tileDelta" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextFieldMaxDis" alignment="0" pref="169" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="tileDelta" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextFieldMaxDis" alignment="0" pref="169" max="32767" attributes="0"/>
+                      <Component id="jCheckBoxShowAll" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -389,10 +392,11 @@
                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tileDelta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="queryField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBoxShowAll" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -484,6 +488,11 @@
         <Component class="javax.swing.JTextField" name="jQueryRangeValue">
           <Properties>
             <Property name="text" type="java.lang.String" value="1,2"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBoxShowAll">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Show All"/>
           </Properties>
         </Component>
       </SubComponents>

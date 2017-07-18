@@ -235,9 +235,11 @@ public class NetCDFReader2D {
     //get  z value from the netcdf file, lat lon values
     public float GetAttribute(int x, int y) {
 
+        if (x>= this.d2||y>=this.d1)
+            return -100000000;
         float datavalue= data.getFloat((index.set(0, y, x)));
           if (!Float.isNaN(datavalue)) {
-        System.out.println(datavalue);
+        
           }
           return datavalue;
     }
