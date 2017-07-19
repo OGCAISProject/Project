@@ -39,6 +39,7 @@ import gov.nasa.worldwind.util.StatusBar;
 import gov.nasa.worldwind.util.WWUtil;
 import gov.nasa.worldwind.util.layertree.LayerTree;
 import gov.nasa.worldwindx.examples.ClickAndGoSelectListener;
+import gov.nasa.worldwindx.examples.layermanager.LayerAndElevationManagerPanel;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -59,6 +60,7 @@ import javax.imageio.ImageIO;
 import javax.media.opengl.GLAnimatorControl;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import si.xlab.gaea.core.event.FeatureSelectListener;
 import si.xlab.gaea.core.layers.wfs.WFSGenericLayer;
 import static si.xlab.gaea.core.layers.wfs.WFSGenericLayer.findFirstLinkedImage;
@@ -107,7 +109,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     public AISMainFrame() {
         initComponents();
-        ((Component) this.wwd).setPreferredSize(new java.awt.Dimension(700, 700));
+        ((Component) this.wwd).setPreferredSize(new java.awt.Dimension(700, 600));
 //            wwd.setPreferredSize();
         this.jPanel1.setLayout(new BorderLayout());
         this.wwd.addSelectListener(new ClickAndGoSelectListener(this.wwd, WorldMapLayer.class));
@@ -126,8 +128,10 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         // Set up a layer to display the on-screen layer tree in the WorldWindow.
         this.hiddenLayer = new RenderableLayer();
         this.hiddenLayer.addRenderable(this.layerTree);
+        this.hiddenLayer.setName("Layer Control");
         this.wwd.getModel().getLayers().add(this.hiddenLayer);
 
+        //remove some of the layers that are not useful 
         // Mark the layer as hidden to prevent it being included in the layer tree's model. Including the layer in
         // the tree would enable the user to hide the layer tree display with no way of bringing it back.
         this.hiddenLayer.setValue(AVKey.HIDDEN, true);
@@ -143,6 +147,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 //            Dimension size = new Dimension(1000, 600);
 //            this.setPreferredSize(size);
         WWUtil.alignComponent(null, this, AVKey.CENTER);
+       
         this.pack();
 
     }
@@ -159,10 +164,6 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         OGCServiceMenuItem = new javax.swing.ButtonGroup();
         jSeparator4 = new javax.swing.JSeparator();
         jToolBar1 = new javax.swing.JToolBar();
-        jSeparator3 = new javax.swing.JToolBar.Separator();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         WFS = new javax.swing.JLabel();
         WMS = new javax.swing.JLabel();
@@ -173,6 +174,8 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         Density = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JToolBar.Separator();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         jLabelSlow = new javax.swing.JLabel();
         jLabelPause = new javax.swing.JLabel();
         jLabelStart = new javax.swing.JLabel();
@@ -197,9 +200,8 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         TimeSeries = new javax.swing.JMenuItem();
         Profile = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItemOrder = new javax.swing.JMenuItem();
+        jMenuItemDelete = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -209,50 +211,49 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
         jToolBar1.setBorderPainted(false);
-        jToolBar1.add(jSeparator3);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/folder2.png"))); // NOI18N
-        jLabel3.setText(" ");
-        jToolBar1.add(jLabel3);
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/window2.png"))); // NOI18N
-        jLabel9.setText(" ");
-        jToolBar1.add(jLabel9);
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/save.png"))); // NOI18N
-        jLabel15.setText(" ");
-        jToolBar1.add(jLabel15);
         jToolBar1.add(jSeparator1);
 
         WFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/feature.png"))); // NOI18N
         WFS.setText(" ");
+        WFS.setToolTipText("WFS");
         jToolBar1.add(WFS);
 
         WMS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/map2.png"))); // NOI18N
         WMS.setText(" ");
+        WMS.setToolTipText("WMS");
         jToolBar1.add(WMS);
 
         WCS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/coverage.png"))); // NOI18N
         WCS.setText(" ");
+        WCS.setToolTipText("WCS");
         jToolBar1.add(WCS);
         jToolBar1.add(jSeparator5);
 
         Profiler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/pie.png"))); // NOI18N
         Profiler.setText(" ");
+        Profiler.setToolTipText("Profiler");
         jToolBar1.add(Profiler);
 
         Classify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/classify2.png"))); // NOI18N
         Classify.setText(" ");
+        Classify.setToolTipText("Classification");
         jToolBar1.add(Classify);
 
         Density.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/density.png"))); // NOI18N
         Density.setText(" ");
+        Density.setToolTipText("Density");
         jToolBar1.add(Density);
 
         Time.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/time.png"))); // NOI18N
         Time.setText(" ");
+        Time.setToolTipText("Time Series");
         jToolBar1.add(Time);
         jToolBar1.add(jSeparator6);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/security.png"))); // NOI18N
+        jLabel1.setToolTipText("Security");
+        jToolBar1.add(jLabel1);
+        jToolBar1.add(jSeparator2);
 
         jLabelSlow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/fast-rewind2.png"))); // NOI18N
         jLabelSlow.setText(" ");
@@ -317,7 +318,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1211, Short.MAX_VALUE)
+            .addGap(0, 1146, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,6 +369,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Analysis");
+        jMenu5.setToolTipText("");
 
         Classification.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/classify2.png"))); // NOI18N
         Classification.setText("Classification");
@@ -414,31 +416,37 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             }
         });
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/order_1.png"))); // NOI18N
-        jMenuItem1.setText("Order");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/order_1.png"))); // NOI18N
+        jMenuItemOrder.setText("Order");
+        jMenuItemOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemOrderActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu4.add(jMenuItemOrder);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/adjust_1.png"))); // NOI18N
-        jMenuItem2.setText("Adjust");
-        jMenu4.add(jMenuItem2);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/Remove_Delete_1.png"))); // NOI18N
-        jMenuItem3.setText("Delete");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/Remove_Delete_1.png"))); // NOI18N
+        jMenuItemDelete.setText("Delete");
+        jMenuItemDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemDeleteActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(jMenuItemDelete);
 
         jMenuBar1.add(jMenu4);
 
         jMenu8.setText("Security");
+        jMenu8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu8MouseClicked(evt);
+            }
+        });
+        jMenu8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu8ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu8);
 
         jMenu7.setText("Help");
@@ -450,7 +458,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -459,8 +467,8 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -666,7 +674,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             this.jLabelStart.setEnabled(true);
             this.jLabelPause.setEnabled(true);
             animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 15/*frames per second*/);
-           
+
             animator.stop();
         }
 
@@ -702,9 +710,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         //show charts from the paenl
         Dimension dimensionchart = new Dimension(520, 420);
         JDialog dialogchart = new JDialog(this, "Show Weather Along Routes", true);
-        LineChartGenerator lineGenerator = new LineChartGenerator(ncfile, wfsfile,dimensionchart);
+        LineChartGenerator lineGenerator = new LineChartGenerator(ncfile, wfsfile, dimensionchart);
         lineGenerator.setPreferredSize(dimensionchart);
-        
+
         this.add(lineGenerator);
         dimensionchart.setSize(dimensionchart.getWidth() + 10, dimensionchart.getHeight() + 25);
         dialogchart.getContentPane().add(lineGenerator);
@@ -722,7 +730,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     private void jMenuItemWMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemWMSActionPerformed
         // TODO add your handling code here:
         JDialog dialog = new JDialog(this, "Import WCS layer", true);
-        WMSPanel wmsPanel = new WMSPanel(this.wwd);
+        WMSPanel wmsPanel = new WMSPanel(this.wwd, this.layerTree);
         wmsPanel.setDialog(dialog);
         Dimension dimension = wmsPanel.getPreferredSize();
         dimension.setSize(dimension.getWidth() + 10, dimension.getHeight() + 25);
@@ -783,8 +791,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
             String queryfield = wfsPanel.getQueryField();
             String queryvalue = wfsPanel.getQueryValue();
-            if (wfsPanel.isShowAll())
-            {
+            if (wfsPanel.isShowAll()) {
                 queryvalue = "#";
             }
             try {
@@ -806,13 +813,50 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     }//GEN-LAST:event_jMenu4ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOrderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JDialog dialog = new JDialog(this, "Layer Manger", true);
+        LayerAndElevationManagerPanel layerManagerPanel = new LayerAndElevationManagerPanel(this.wwd);
+        layerManagerPanel.setDialog(dialog);
+        Dimension dimension = layerManagerPanel.getPreferredSize();
+        dimension.setSize(dimension.getWidth() + 10, dimension.getHeight() + 25);
+        dialog.getContentPane().add(layerManagerPanel);
+        dialog.setSize(dimension);
+        dialog.setModal(true);
+        dialog.setVisible(true);
+        this.pack();
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+
+    }//GEN-LAST:event_jMenuItemOrderActionPerformed
+
+    private void jMenuItemDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        JDialog dialog = new JDialog(this, "Layer Delete", true);
+        LayerDeletePanel layerDeletePanel = new LayerDeletePanel(this.wwd, this.layerTree);
+
+        layerDeletePanel.setDialog(dialog);
+        Dimension dimension = layerDeletePanel.getPreferredSize();
+        dimension.setSize(dimension.getWidth() + 10, dimension.getHeight() + 25);
+        dialog.getContentPane().add(layerDeletePanel);
+        dialog.setSize(dimension);
+        dialog.setModal(true);
+        dialog.setVisible(true);
+        if (layerDeletePanel.isConfirmed()) {
+            ArrayList<String> layernames = layerDeletePanel.GetDeleteLayers();
+            //remove layer
+            LayerList layerlist = this.wwd.getModel().getLayers();
+            for (Layer layer : layerlist) {
+                if (layernames.contains(layer.getName())) {
+                    this.wwd.getModel().getLayers().remove(layer);
+                }
+            }
+
+        }
+        dialog.dispose();
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+
+    }//GEN-LAST:event_jMenuItemDeleteActionPerformed
 
     private void jLabelStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelStartMouseClicked
         // TODO add your handling code here:
@@ -836,16 +880,36 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 //         this.animator.stop();
 //         animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 50/*frames per second*/);
 //         this.animator.start();
-            animator.setFPS(animator.getFPS()+5);
+        animator.setFPS(animator.getFPS() + 5);
     }//GEN-LAST:event_jLabelFastMouseClicked
 
     private void jLabelSlowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelSlowMouseClicked
         // TODO add your handling code here:
-        if (animator.getFPS()-5>0)
-                {
-                 animator.setFPS(animator.getFPS()-5);
-                }
+        if (animator.getFPS() - 5 > 0) {
+            animator.setFPS(animator.getFPS() - 5);
+        }
     }//GEN-LAST:event_jLabelSlowMouseClicked
+
+    private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
+        // TODO add your handling code here:
+
+       
+    }//GEN-LAST:event_jMenu8ActionPerformed
+
+    private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
+        // TODO add your handling code here:
+                JDialog dialog = new JDialog(this, "Security", true);
+        SecurityPanel securityPanel = new SecurityPanel();
+
+        securityPanel.setDialog(dialog);
+        Dimension dimension = securityPanel.getPreferredSize();
+        dimension.setSize(dimension.getWidth() + 10, dimension.getHeight() + 25);
+        dialog.getContentPane().add(securityPanel);
+        dialog.setSize(dimension);
+        dialog.setModal(true);
+        dialog.setVisible(true);
+        dialog.dispose();
+    }//GEN-LAST:event_jMenu8MouseClicked
 
     protected void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance) {
 
@@ -888,7 +952,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             this.wfslayername.add(featureTypeName + " " + queryField + ": " + queryValue);
 
             AISMainFrame.insertBeforePlacenames(this.wwd, iconlayer);
-
+            this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
             this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance / 2);
         } catch (IOException ex) {
             Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -914,10 +978,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
                 LatLon.fromDegrees(nctest.GetUp(), nctest.GetLeft()),
                 LatLon.fromDegrees(nctest.GetUp(), nctest.GetRight())
         )));
-        
-        
-       ScreenImage screenImage = new ScreenImage();
-       
+
+        ScreenImage screenImage = new ScreenImage();
+
         try {
             screenImage.setImageSource(ImageIO.read(new File(path.split(".nc")[0] + "legend.png")));
         } catch (IOException ex) {
@@ -930,10 +993,10 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         layer.setPickEnabled(false);
         layer.addRenderable(si1);
         layer.addRenderable(screenImage);
-        screenImage.setScreenLocation(new Point (220,this.getHeight()-150));
-        this.wwd.getView().goTo(Position.fromDegrees(nctest.GetBottom(), nctest.GetRight()),1000000);
+        screenImage.setScreenLocation(new Point(220, this.getHeight() - 150));
+        this.wwd.getView().goTo(Position.fromDegrees(nctest.GetBottom(), nctest.GetRight()), 1000000);
         this.insertBeforePlacenames(this.wwd, layer);
-
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
     }
 
     public static void insertBeforePlacenames(WorldWindow wwd, Layer layer) {
@@ -1002,9 +1065,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFast;
     private javax.swing.JLabel jLabelPause;
     private javax.swing.JLabel jLabelSlow;
@@ -1016,15 +1077,14 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItemDelete;
+    private javax.swing.JMenuItem jMenuItemOrder;
     private javax.swing.JMenuItem jMenuItemWCS;
     private javax.swing.JMenuItem jMenuItemWFS;
     private javax.swing.JMenuItem jMenuItemWMS;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar.Separator jSeparator1;
-    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;

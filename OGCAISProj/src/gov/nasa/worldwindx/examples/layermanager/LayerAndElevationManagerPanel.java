@@ -21,6 +21,8 @@ public class LayerAndElevationManagerPanel extends JPanel
 {
     protected LayerManagerPanel layerManagerPanel;
     protected ElevationModelManagerPanel elevationModelManagerPanel;
+          private JDialog dialog;
+    private boolean confirmed = false;
 
     public LayerAndElevationManagerPanel(WorldWindow wwd)
     {
@@ -39,5 +41,10 @@ public class LayerAndElevationManagerPanel extends JPanel
     public void updateElevations(WorldWindow wwd)
     {
         this.elevationModelManagerPanel.update(wwd);
+    }
+    
+     public void setDialog(JDialog dialog)
+    {
+        this.dialog = dialog;
     }
 }

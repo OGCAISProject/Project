@@ -217,6 +217,7 @@ public class LayerTreeModel extends BasicTreeModel
         {
             if (this.mustIncludeLayer(layer))
             {
+                if (this.CheckOptionalLayer(layer))
                 this.addLayer(layer);
             }
         }
@@ -233,5 +234,18 @@ public class LayerTreeModel extends BasicTreeModel
     protected boolean mustIncludeLayer(Layer layer)
     {
         return this.isIncludeHiddenLayers() || layer.getValue(AVKey.HIDDEN) != Boolean.TRUE;
+    }
+    
+    protected boolean CheckOptionalLayer(Layer layer)
+    {
+        String[] optionallayer={"Stars", "Atmosphere", 
+        "USDA", "Virutal", "USGS", "Open Street Map",
+        "Place Names", "World Map", "Scale bar", "Compass"};
+        for (int i =0; i <optionallayer.length; i ++)
+        {
+            if (layer.getName().contains(optionallayer[i]))
+                    return false; 
+        }
+        return true;
     }
 }

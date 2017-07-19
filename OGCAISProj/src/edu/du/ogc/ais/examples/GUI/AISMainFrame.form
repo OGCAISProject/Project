@@ -60,6 +60,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Analysis"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Classification">
@@ -116,7 +117,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu4ActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOrder">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/order_1.png"/>
@@ -124,18 +125,10 @@
                 <Property name="text" type="java.lang.String" value="Order"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemOrderActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/adjust_1.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Adjust"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemDelete">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/Remove_Delete_1.png"/>
@@ -143,7 +136,7 @@
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemDeleteActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -152,6 +145,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Security"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu8MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu8ActionPerformed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu7">
           <Properties>
@@ -184,7 +181,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jToolBar1" alignment="0" pref="1231" max="32767" attributes="0"/>
+          <Component id="jToolBar1" alignment="0" pref="1158" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
@@ -195,8 +192,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jToolBar1" pref="26" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -218,32 +215,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JToolBar$Separator" name="jSeparator3">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/folder2.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/window2.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/save.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" "/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator1">
         </Component>
         <Component class="javax.swing.JLabel" name="WFS">
@@ -252,6 +223,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/feature.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="WFS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="WMS">
@@ -260,6 +232,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/map2.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="WMS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="WCS">
@@ -268,6 +241,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/coverage.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="WCS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator5">
@@ -278,6 +252,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/pie.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="Profiler"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Classify">
@@ -286,6 +261,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/classify2.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="Classification"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Density">
@@ -294,6 +270,7 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/density.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="Density"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="Time">
@@ -302,9 +279,20 @@
               <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/time.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" "/>
+            <Property name="toolTipText" type="java.lang.String" value="Time Series"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JToolBar$Separator" name="jSeparator6">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/edu/du/ogc/ais/examples/GUI/icons/security.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Security"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelSlow">
           <Properties>
@@ -405,7 +393,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1211" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1146" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

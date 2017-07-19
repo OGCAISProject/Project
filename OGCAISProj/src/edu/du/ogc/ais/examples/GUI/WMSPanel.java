@@ -11,7 +11,6 @@ import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.avlist.AVListImpl;
-import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.globes.ElevationModel;
 import gov.nasa.worldwind.layers.BasicTiledImageLayer;
 import gov.nasa.worldwind.layers.Layer;
@@ -22,13 +21,10 @@ import gov.nasa.worldwind.ogc.wms.WMSLayerDimension;
 import gov.nasa.worldwind.ogc.wms.WMSLayerStyle;
 import gov.nasa.worldwind.terrain.CompoundElevationModel;
 import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwind.util.layertree.LayerTree;
 import gov.nasa.worldwind.wms.TimeParser;
 import gov.nasa.worldwind.wms.WMSTiledImageLayer;
 import gov.nasa.worldwindx.examples.ApplicationTemplate;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.net.URI;
@@ -43,18 +39,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.Timer;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -67,6 +55,7 @@ public class WMSPanel extends javax.swing.JPanel {
     private JDialog dialog;
     private boolean confirmed = false;
     int speed=500; 
+    LayerTree layerTree;
 
     protected static class LayerInfo {
 
@@ -107,10 +96,11 @@ public class WMSPanel extends javax.swing.JPanel {
     /**
      * Creates new form WMSPanel
      */
-    public WMSPanel(WorldWindow wwd) {
+    public WMSPanel(WorldWindow wwd, LayerTree layerTree) {
 
         initComponents();
         this.wwd = wwd;
+        this.layerTree = layerTree;
     }
 
     /**
@@ -543,7 +533,7 @@ public class WMSPanel extends javax.swing.JPanel {
         JCheckBox jcb = new JCheckBox(action);
         jcb.setSelected(false);
         layersPanel.add(jcb);
-        System.out.println(jcb.getText());
+//        System.out.println(jcb.getText());
     }
 
     
@@ -737,10 +727,12 @@ public class WMSPanel extends javax.swing.JPanel {
                 if (!layers.contains(layer)) {
                     ApplicationTemplate.insertBeforePlacenames(this.wwd, layer);
                     this.firePropertyChange("LayersPanelUpdated", null, layer);
+                    this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
                 }
             } else {
                 layers.remove(layer);
                 this.firePropertyChange("LayersPanelUpdated", layer, null);
+                this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
             }
         } else if (component instanceof ElevationModel) {
             ElevationModel model = (ElevationModel) component;

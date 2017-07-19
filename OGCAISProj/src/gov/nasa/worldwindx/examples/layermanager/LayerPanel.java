@@ -25,12 +25,17 @@ public class LayerPanel extends JPanel
         new ImageIcon(LayerPanel.class.getResource("/images/up_arrow_16x16.png"));
     public static final ImageIcon DOWN_ARROW =
         new ImageIcon(LayerPanel.class.getResource("/images/down_arrow_16x16.png"));
+    
+    //added by jing li 
+     public static final ImageIcon DELETE_ARROW =
+        new ImageIcon(LayerPanel.class.getResource("/images/down_arrow_16x16.png"));
 
     protected Layer layer; // the layer represented by this instance
 
     protected JCheckBox checkBox; // the checkbox of this instance
     protected JButton upButton;
     protected JButton downButton;
+    protected JButton deleteButton; 
 
     public LayerPanel(final WorldWindow wwd, final Layer layer)
     {

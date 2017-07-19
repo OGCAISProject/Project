@@ -7,6 +7,7 @@
 package gov.nasa.worldwindx.examples;
 
 import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.layers.LayerList;
 import gov.nasa.worldwindx.examples.util.HotSpotController;
 import gov.nasa.worldwind.util.layertree.LayerTree;
 import gov.nasa.worldwind.layers.RenderableLayer;
@@ -45,7 +46,12 @@ public class LayerTreeUsage extends ApplicationTemplate
             this.hiddenLayer.setValue(AVKey.HIDDEN, true);
 
             // Refresh the tree model with the WorldWindow's current layer list.
+            
+            LayerList layerlist = this.getWwd().getModel().getLayers();
+            this.getWwd().getModel().getLayers();
             this.layerTree.getModel().refresh(this.getWwd().getModel().getLayers());
+            
+            
 
             // Add a controller to handle input events on the layer tree.
             this.controller = new HotSpotController(this.getWwd());
