@@ -53,18 +53,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import javax.imageio.ImageIO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.media.opengl.GLAnimatorControl;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import si.xlab.gaea.core.event.FeatureSelectListener;
-import si.xlab.gaea.core.layers.wfs.WFSGenericLayer;
 import static si.xlab.gaea.core.layers.wfs.WFSGenericLayer.findFirstLinkedImage;
-import si.xlab.gaea.core.layers.wfs.WFSService;
 import si.xlab.gaea.core.layers.wfs.WFSServiceSimple;
 import si.xlab.gaea.core.ogc.gml.GMLFeature;
 import si.xlab.gaea.core.ogc.gml.GMLGeometry;
@@ -206,11 +201,13 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OGC Testbed 13 Security Enabled Client");
 
         jToolBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
         jToolBar1.setBorderPainted(false);
+        jToolBar1.setMaximumSize(new java.awt.Dimension(374, 22));
         jToolBar1.add(jSeparator1);
 
         WFS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edu/du/ogc/ais/examples/GUI/icons/feature.png"))); // NOI18N
@@ -318,11 +315,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
+            .addGap(0, 947, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
         );
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(455, 32));
@@ -458,7 +455,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -467,9 +464,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -610,13 +607,16 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
                     LatLon.fromDegrees(bounds[3], bounds[1])
             )));
             RenderableLayer layer = new RenderableLayer();
-            layer.setName(this.wfslayername.get(layeridx) + " Animation");
+            layer.setName("Density Mpa:"+this.wfslayername.get(layeridx) );
             layer.setPickEnabled(false);
             layer.addRenderable(si1);
+            
             layer.setOpacity(0.5f);
             this.insertBeforePlacenames(this.wwd, layer);
-            this.wwd.getView().goTo(Position.fromDegrees(bounds[2], bounds[1]), 100000000);
+            this.wwd.getView().goTo(Position.fromDegrees((bounds[2]+bounds[3])/2, (bounds[1]+bounds[0])/2), 1000000);
 
+        // Refresh the tree model with the WorldWindow's current layer list.
+            this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
         }
 
     }//GEN-LAST:event_DensityMapActionPerformed
@@ -625,7 +625,8 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
         insertBeforePlacenames(this.wwd, iconsimplelayer);
         iconsimplelayer.setEnabled(true);
-        iconsimplelayer.setName(featureTypeName);
+        iconsimplelayer.setName(featureTypeName + " Position");
+        
 
         this.wwd.addSelectListener(new BasicDragger(this.wwd));
 
@@ -642,10 +643,13 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         trackpath.setPathType(AVKey.GREAT_CIRCLE);
 
         tracklayer.addRenderable(trackpath);
+        tracklayer.setName("Tracking Layer");
 
         // Add the layer to the model.
         this.insertBeforePlacenames(this.wwd, tracklayer);
         this.wwd.addRenderingListener(this);
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        
 
     }
 
@@ -729,7 +733,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     private void jMenuItemWMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemWMSActionPerformed
         // TODO add your handling code here:
-        JDialog dialog = new JDialog(this, "Import WCS layer", true);
+        JDialog dialog = new JDialog(this, "Import WMS layer", true);
         WMSPanel wmsPanel = new WMSPanel(this.wwd, this.layerTree);
         wmsPanel.setDialog(dialog);
         Dimension dimension = wmsPanel.getPreferredSize();
@@ -738,7 +742,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         dialog.setSize(dimension);
         dialog.setModal(true);
         dialog.setVisible(true);
-
+        if (wmsPanel.isConfirmed()) {
+            
+        }
         dialog.dispose();
     }//GEN-LAST:event_jMenuItemWMSActionPerformed
 
@@ -873,6 +879,12 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         this.jLabelStart.setEnabled(false);
         this.jLabelPause.setEnabled(false);
         //TODO:clean everything and remove layer
+        this.tracklayer.removeAllRenderables();
+        this.iconsimplelayer.removeAllIcons();
+        this.wwd.getModel().getLayers().remove(tracklayer);
+        this.wwd.getModel().getLayers().remove(iconsimplelayer);
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        
     }//GEN-LAST:event_jLabelStopMouseClicked
 
     private void jLabelFastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFastMouseClicked
@@ -922,7 +934,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue));
             style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue).replaceFirst("^ff", "80")); //semi-transparent fill
             SelectableIconLayer iconlayer = new SelectableIconLayer();
-            iconlayer.setMaxActiveAltitude(maxVisibleDistance);
+            iconlayer.setMaxActiveAltitude(maxVisibleDistance*2);
 
             List<GMLFeature> gmlfeatures = service.readGMLData(filepath);
             LatLon finalloc = null;
@@ -953,7 +965,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
             AISMainFrame.insertBeforePlacenames(this.wwd, iconlayer);
             this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
-            this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance / 2);
+            this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance);
         } catch (IOException ex) {
             Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

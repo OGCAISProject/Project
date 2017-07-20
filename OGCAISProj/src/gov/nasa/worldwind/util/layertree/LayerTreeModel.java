@@ -240,7 +240,7 @@ public class LayerTreeModel extends BasicTreeModel
     {
         String[] optionallayer={"Stars", "Atmosphere", 
         "USDA", "Virutal", "USGS", "Open Street Map",
-        "Place Names", "World Map", "Scale bar", "Compass"};
+        "Place Names", "World Map", "Scale bar", "Compass", "Layers"};
         for (int i =0; i <optionallayer.length; i ++)
         {
             if (layer.getName().contains(optionallayer[i]))

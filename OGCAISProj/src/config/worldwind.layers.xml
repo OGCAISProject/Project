@@ -19,8 +19,9 @@
     <Layer className="gov.nasa.worldwind.layers.Earth.BMNGOneImage">
         <Property name="MinActiveAltitude" value="3e6"/>
     </Layer>
-<!--    <Layer href="config/Earth/BMNGWMSLayer2.xml" actuate="onLoad"/>
-    <Layer href="config/Earth/LandsatI3WMSLayer2.xml" actuate="onLoad"/>-->
+    <Layer href="config/Earth/BMNGWMSLayer2.xml" actuate="onLoad"/>
+    <Layer href="config/Earth/BingImagery.xml" actuate="onLoad"/>
+    <!--<Layer href="config/Earth/LandsatI3WMSLayer2.xml" actuate="onLoad"/>-->
 <!--    <Layer href="config/Earth/USDANAIPWMSImageLayer.xml" actuate="onRequest"/>
     <Layer href="config/Earth/USDANAIPUSGSWMSImageLayer.xml" actuate="onRequest"/>
     <Layer href="config/Earth/MSVirtualEarthAerialLayer.xml" actuate="onRequest"/>
