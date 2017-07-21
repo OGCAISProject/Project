@@ -50,6 +50,7 @@ public final class BasicRetrievalService extends WWObjectImpl
             super(retriever);
             this.retriever = retriever;
             this.priority = priority;
+           
         }
 
         public double getPriority()

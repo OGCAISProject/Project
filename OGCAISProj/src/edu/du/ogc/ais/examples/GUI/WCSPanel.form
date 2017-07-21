@@ -91,7 +91,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="serviceUrl" alignment="0" pref="376" max="32767" attributes="0"/>
+                      <Component id="serviceUrl" alignment="0" pref="326" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -165,7 +165,7 @@
                       </Group>
                       <Component id="sectorCustom" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

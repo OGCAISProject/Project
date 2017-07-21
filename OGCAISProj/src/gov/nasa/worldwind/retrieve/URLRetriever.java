@@ -62,6 +62,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
      */
     public static URLRetriever createRetriever(URL url, RetrievalPostProcessor postProcessor)
     {
+//        System.out.println(url.toString());
         if (url == null)
         {
             String message = Logging.getMessage("nullValue.URLIsNull");
@@ -225,6 +226,9 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
 
     public final Retriever call() throws Exception
     {
+        if (this.url.toString().contains("BlueMarble"))
+            System.err.println(this.url.toString());
+        
         if (this.interrupted())
             return this;
 

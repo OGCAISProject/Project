@@ -88,7 +88,7 @@ public class LayerDeletePanel extends javax.swing.JPanel {
     protected boolean CheckOptionalLayer(Layer layer) {
         String[] optionallayer = {"Stars", "Atmosphere",
             "USDA", "Virutal", "USGS", "Open Street Map",
-            "Place Names", "World Map", "Scale bar", "Compass", "Layer Control", "Layers"};
+            "Place Names", "World Map", "Scale bar", "Compass", "Layer Control", "Layers", "Icon"};
         for (int i = 0; i < optionallayer.length; i++) {
             if (layer.getName().contains(optionallayer[i])) {
                 return false;

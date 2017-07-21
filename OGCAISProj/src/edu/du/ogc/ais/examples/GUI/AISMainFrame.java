@@ -95,9 +95,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     static RenderableLayer tracklayer = new RenderableLayer();
     static IconLayer iconsimplelayer = new IconLayer();
-    static protected FPSAnimator animator;
-    static protected Path trackpath;
-    static protected int currentPos = 0;
+    static  FPSAnimator animator;
+    static  Path trackpath;
+    static  int currentPos = -1;
 
     static ArrayList<Position> pathPositions = new ArrayList<Position>();
     static ArrayList<Position> pathPositionsAnimation = new ArrayList<Position>();
@@ -200,8 +200,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jMenu8 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OGC Testbed 13 Security Enabled Client");
+        setResizable(false);
 
         jToolBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jToolBar1.setFloatable(false);
@@ -315,11 +316,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 947, Short.MAX_VALUE)
+            .addGap(0, 1259, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 848, Short.MAX_VALUE)
         );
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(455, 32));
@@ -455,7 +456,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1289, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -625,11 +626,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
         insertBeforePlacenames(this.wwd, iconsimplelayer);
         iconsimplelayer.setEnabled(true);
-        iconsimplelayer.setName(featureTypeName + " Position");
-        
-
+        iconsimplelayer.setName(featureTypeName + " Icon");
         this.wwd.addSelectListener(new BasicDragger(this.wwd));
-
+                UserFacingIcon icon = new UserFacingIcon("src/images/pushpins/simple32.png", pathPositions.get(currentPos));
+                icon.setSize(new Dimension(32, 32));
+                iconsimplelayer.addIcon(icon);
         // Create and set an attribute bundle.
         ShapeAttributes attrs = new BasicShapeAttributes();
         attrs.setOutlineMaterial(new Material(Color.RED));
@@ -643,14 +644,14 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         trackpath.setPathType(AVKey.GREAT_CIRCLE);
 
         tracklayer.addRenderable(trackpath);
-        tracklayer.setName("Tracking Layer");
+        tracklayer.setName(featureTypeName);
 
         // Add the layer to the model.
         this.insertBeforePlacenames(this.wwd, tracklayer);
         this.wwd.addRenderingListener(this);
         this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        this.wwd.redraw();
         
-
     }
 
     private void TimeSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeSeriesActionPerformed
@@ -671,15 +672,27 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             int layeridx = timeseriespanel.getLayerIndex();
             GMLPointReader gp = new GMLPointReader(this.wfslayerfilepath.get(layeridx));
             this.pathPositions = gp.GetPositions(gp.readGMLData());
-            this.CreateAnimationLayer(this.wfslayername.get(layeridx) + " Tracking");
+            LayerList layerlist = this.wwd.getModel().getLayers();
+            for (Layer layer : layerlist) {
+                if (this.wfslayername.get(layeridx).contains(layer.getName())) {
+                    layer.setEnabled(false);
+                   
+                }
+            }
+                    
+            
+            this.currentPos =0;
+            this.CreateAnimationLayer("Tracking"+this.wfslayername.get(layeridx) );
+            
             this.jLabelFast.setEnabled(true);
             this.jLabelSlow.setEnabled(true);
             this.jLabelStop.setEnabled(true);
             this.jLabelStart.setEnabled(true);
             this.jLabelPause.setEnabled(true);
             animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 15/*frames per second*/);
-
             animator.stop();
+           
+
         }
 
     }//GEN-LAST:event_TimeSeriesActionPerformed
@@ -855,6 +868,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             for (Layer layer : layerlist) {
                 if (layernames.contains(layer.getName())) {
                     this.wwd.getModel().getLayers().remove(layer);
+                   
                 }
             }
 
@@ -883,7 +897,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         this.iconsimplelayer.removeAllIcons();
         this.wwd.getModel().getLayers().remove(tracklayer);
         this.wwd.getModel().getLayers().remove(iconsimplelayer);
+        
         this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        this.currentPos = -1;
+        this.pathPositions.removeAll(this.pathPositions);
+        this.pathPositionsAnimation.removeAll(pathPositions);
         
     }//GEN-LAST:event_jLabelStopMouseClicked
 
@@ -1114,7 +1132,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     public void stageChanged(RenderingEvent event) {
 
         if (event.getStage().equals(RenderingEvent.BEFORE_RENDERING)) {
-            if (this.animator.isAnimating()) {
+            if (this.animator.isAnimating()&&this.currentPos!=-1) {
                 // The globe may not be instantiated the first time the listener is called.
                 if (this.wwd.getView().getGlobe() == null) {
                     return;
