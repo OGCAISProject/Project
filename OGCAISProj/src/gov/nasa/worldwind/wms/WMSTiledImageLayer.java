@@ -284,7 +284,7 @@ public class WMSTiledImageLayer extends BasicTiledImageLayer
                 sb.append(",");
                 sb.append(s.getMaxLongitude().getDegrees());
             }
-//            System.out.println(sb.toString());
+          System.out.println(sb.toString());
             return new java.net.URL(sb.toString().replace(" ", "%20"));
         }
     }

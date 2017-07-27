@@ -11,6 +11,8 @@ import gov.nasa.worldwind.WorldWindow;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.avlist.AVListImpl;
+import gov.nasa.worldwind.geom.LatLon;
+import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.globes.ElevationModel;
 import gov.nasa.worldwind.layers.BasicTiledImageLayer;
 import gov.nasa.worldwind.layers.Layer;
@@ -299,7 +301,7 @@ public class WMSPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jPanelLayer);
 
         jComboBoxServiceURL.setEditable(true);
-        jComboBoxServiceURL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "https://neowms.sci.gsfc.nasa.gov/wms/wms", "https://sedac.ciesin.columbia.edu/geoserver/wcs" }));
+        jComboBoxServiceURL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "http://cloudsdi.geo-solutions.it/geoserver/daraa/ows", "https://neowms.sci.gsfc.nasa.gov/wms/wms", "https://sedac.ciesin.columbia.edu/geoserver/wcs" }));
         jComboBoxServiceURL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServiceURLActionPerformed(evt);
@@ -490,8 +492,11 @@ public class WMSPanel extends javax.swing.JPanel {
         if (!WWUtil.isEmpty(abs)) {
             linfo.params.setValue(AVKey.LAYER_ABSTRACT, abs);
         }
-
+        
         linfo.params.setValue(AVKey.DISPLAY_NAME, makeTitle(caps, linfo));
+        LatLon center = layerCaps.getGeographicBoundingBox().getCentroid();
+        String centerdeg = String.valueOf(center.latitude.degrees) + ","+ String.valueOf(center.longitude.degrees);
+        linfo.params.setValue(AVKey.WMS_LAYER_BOUNDS, centerdeg);
         //if time is not avaliable?
         linfo.params.setValue(AVKey.WMS_TIME_DIMENSION, makeTime(caps, linfo));
 
@@ -690,8 +695,18 @@ public class WMSPanel extends javax.swing.JPanel {
                     jcEnd.removeAllItems();
                     int index = 0;
                     for (String timelabel : timelabels) {
-                        jcBeginning.insertItemAt(timelabel, index);
+                        System.out.println(timelabel);
+                        if ("null".equals(String.valueOf(timelabel)))
+                        {
+                         jcBeginning.insertItemAt("No temporal info", index);
+                        jcEnd.insertItemAt("No temporal info", index);
+                        }
+                        else
+                        {
+                            jcBeginning.insertItemAt(timelabel, index);
                         jcEnd.insertItemAt(timelabel, index);
+                        
+                        }
                         index++;
                     }
                     jcBeginning.setSelectedIndex(0);
@@ -721,6 +736,17 @@ public class WMSPanel extends javax.swing.JPanel {
             }
 
             // Tell the world window to update.
+            //zoom to the center 
+            String latlon = layerInfo.params.getStringValue(AVKey.WMS_LAYER_BOUNDS);
+            if ("null".equals(latlon))
+            {
+                
+            }
+            else
+//            double lon = 
+            {
+                this.wwd.getView().goTo(Position.fromDegrees(Double.valueOf(latlon.split(",")[0]), Double.valueOf(latlon.split(",")[1])), 1000000);
+            }
             wwd.redraw();
 
         }

@@ -96,16 +96,6 @@ public class DefaultLook
                             + 	"<text></text>"
                             + 	"<displayMode>default</displayMode>"
                             + "</BalloonStyle>"
-//                            + "<ContentFormatStyle>"
-//                            + 	"<ContentFormat>"
-//                            +		"<Language>en</Language>"
-//                            +		"<Format>Name:{topp:naziv}&lt;BR /&gt;Address:{topp:naslov}</Format>"
-//                            + 	"</ContentFormat>"
-//                            + 	"<ContentFormat>"
-//                            +		"<Language>sl</Language>"
-//                            +		"<Format>Naziv:{topp:naziv}&lt;BR /&gt;Naslov:{topp:naslov}</Format>"
-//                            + 	"</ContentFormat>"
-//                            + "</ContentFormatStyle>"
                      + "</Style>");
         }
         catch (KMLParserException e)

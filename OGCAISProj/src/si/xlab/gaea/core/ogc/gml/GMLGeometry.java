@@ -36,6 +36,7 @@ public abstract class GMLGeometry {
 		GML_TAG_LINEAR_RING		= "gml:LinearRing",
 		GML_TAG_COORDINATES		= "gml:coordinates",
 		GML_TAG_POS		= "gml:pos", //added by jing li
+                GML_TAG_LINE_POS ="gml:posList",
 		GML_ATTR_SRSNAME		= "srsName";
 	
 	private final static HashMap<String, Class<?>> supportedTypes = new HashMap<String, Class<?>>();
@@ -131,7 +132,7 @@ public abstract class GMLGeometry {
 		return this.getClass().getName() + " at " + getCentroid().toString();
 	}
 	
-	
+	//point, line, polygons all here
 	protected static LatLon parseCoords(String s) throws GMLException
     {
         String[] coords ;
@@ -173,10 +174,10 @@ public abstract class GMLGeometry {
 		ArrayList<LatLon> rv = new ArrayList<LatLon>();
 		
 		String[] coordList = s.trim().split("\\s+");
-		
-		for (String coords : coordList)
-			rv.add(parseCoords(coords));
-		
+		for (int i =0 ; i< coordList.length; i= i +2)
+                {
+                    rv.add(parseCoords(coordList[i]+","+coordList[i+1]));
+                }
 		return rv;
 	}
 }

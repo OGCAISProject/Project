@@ -20,7 +20,7 @@ public class GMLLineString extends GMLGeometry {
 			throw new GMLException("Not a line string GML node");
 		
 		Node coordsNode = n.getFirstChild();
-		if (coordsNode == null || !coordsNode.getNodeName().equals(GML_TAG_COORDINATES))
+		if (coordsNode == null || !(coordsNode.getNodeName().equals(GML_TAG_COORDINATES)||coordsNode.getNodeName().equals(GML_TAG_LINE_POS)))
 			throw new GMLException("Line string should contain coordinates and nothing else.");
 		
 		this.points = parseMultiCoords(coordsNode.getNodeValue());

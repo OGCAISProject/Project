@@ -523,6 +523,7 @@ public interface AVKey // TODO: Eliminate unused constants, if any
     
     //added by jing li
    final String WMS_TIME_DIMENSION = "gov.nasa.worldwind.avkey.wms.time.dimension";
+   final String WMS_LAYER_BOUNDS= "gov.nasa.worldwind.avkey.wms.layer.bounds";
    //store file path associated with layers
    final String LOCAL_FILE_PATH="gov.nasa.worldwind.avkey.local.file.path";
    	

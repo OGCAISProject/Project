@@ -26,10 +26,12 @@ import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.layers.SelectableIconLayer;
 import gov.nasa.worldwind.layers.WorldMapLayer;
 import gov.nasa.worldwind.layers.placename.PlaceNameLayer;
+import gov.nasa.worldwind.ogc.kml.KMLIcon;
 import gov.nasa.worldwind.ogc.kml.KMLStyle;
 import gov.nasa.worldwind.render.BasicShapeAttributes;
 import gov.nasa.worldwind.render.Material;
 import gov.nasa.worldwind.render.Path;
+import gov.nasa.worldwind.render.Polyline;
 import gov.nasa.worldwind.render.ScreenImage;
 import gov.nasa.worldwind.render.ShapeAttributes;
 import gov.nasa.worldwind.render.SurfaceImage;
@@ -63,10 +65,14 @@ import static si.xlab.gaea.core.layers.wfs.WFSGenericLayer.findFirstLinkedImage;
 import si.xlab.gaea.core.layers.wfs.WFSServiceSimple;
 import si.xlab.gaea.core.ogc.gml.GMLFeature;
 import si.xlab.gaea.core.ogc.gml.GMLGeometry;
+import si.xlab.gaea.core.ogc.gml.GMLLineString;
+import si.xlab.gaea.core.ogc.gml.GMLMultiLineString;
 import si.xlab.gaea.core.ogc.gml.GMLPoint;
+import si.xlab.gaea.core.ogc.kml.KMLParserException;
 import si.xlab.gaea.core.ogc.kml.KMLStyleFactory;
 import si.xlab.gaea.core.render.DefaultLook;
 import si.xlab.gaea.core.render.SelectableIcon;
+import si.xlab.gaea.core.render.surfaceobjects.SurfaceLineSegment;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -95,9 +101,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 
     static RenderableLayer tracklayer = new RenderableLayer();
     static IconLayer iconsimplelayer = new IconLayer();
-    static  FPSAnimator animator;
-    static  Path trackpath;
-    static  int currentPos = -1;
+    static FPSAnimator animator;
+    static Path trackpath;
+    static int currentPos = -1;
 
     static ArrayList<Position> pathPositions = new ArrayList<Position>();
     static ArrayList<Position> pathPositionsAnimation = new ArrayList<Position>();
@@ -142,7 +148,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
 //            Dimension size = new Dimension(1000, 600);
 //            this.setPreferredSize(size);
         WWUtil.alignComponent(null, this, AVKey.CENTER);
-       
+
         this.pack();
 
     }
@@ -608,15 +614,15 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
                     LatLon.fromDegrees(bounds[3], bounds[1])
             )));
             RenderableLayer layer = new RenderableLayer();
-            layer.setName("Density Mpa:"+this.wfslayername.get(layeridx) );
+            layer.setName("Density Map: " + this.wfslayername.get(layeridx));
             layer.setPickEnabled(false);
             layer.addRenderable(si1);
-            
+
             layer.setOpacity(0.5f);
             this.insertBeforePlacenames(this.wwd, layer);
-            this.wwd.getView().goTo(Position.fromDegrees((bounds[2]+bounds[3])/2, (bounds[1]+bounds[0])/2), 1000000);
+            this.wwd.getView().goTo(Position.fromDegrees((bounds[2] + bounds[3]) / 2, (bounds[1] + bounds[0]) / 2), 1000000);
 
-        // Refresh the tree model with the WorldWindow's current layer list.
+            // Refresh the tree model with the WorldWindow's current layer list.
             this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
         }
 
@@ -628,9 +634,9 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         iconsimplelayer.setEnabled(true);
         iconsimplelayer.setName(featureTypeName + " Icon");
         this.wwd.addSelectListener(new BasicDragger(this.wwd));
-                UserFacingIcon icon = new UserFacingIcon("src/images/pushpins/simple32.png", pathPositions.get(currentPos));
-                icon.setSize(new Dimension(32, 32));
-                iconsimplelayer.addIcon(icon);
+        UserFacingIcon icon = new UserFacingIcon("src/images/pushpins/simple32.png", pathPositions.get(currentPos));
+        icon.setSize(new Dimension(32, 32));
+        iconsimplelayer.addIcon(icon);
         // Create and set an attribute bundle.
         ShapeAttributes attrs = new BasicShapeAttributes();
         attrs.setOutlineMaterial(new Material(Color.RED));
@@ -650,8 +656,11 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         this.insertBeforePlacenames(this.wwd, tracklayer);
         this.wwd.addRenderingListener(this);
         this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+
+        this.wwd.getView().goTo(pathPositions.get(currentPos), 10000000);
+
         this.wwd.redraw();
-        
+
     }
 
     private void TimeSeriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeSeriesActionPerformed
@@ -676,14 +685,13 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             for (Layer layer : layerlist) {
                 if (this.wfslayername.get(layeridx).contains(layer.getName())) {
                     layer.setEnabled(false);
-                   
+
                 }
             }
-                    
-            
-            this.currentPos =0;
-            this.CreateAnimationLayer("Tracking"+this.wfslayername.get(layeridx) );
-            
+
+            this.currentPos = 0;
+            this.CreateAnimationLayer("Tracking" + this.wfslayername.get(layeridx));
+
             this.jLabelFast.setEnabled(true);
             this.jLabelSlow.setEnabled(true);
             this.jLabelStop.setEnabled(true);
@@ -691,7 +699,6 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             this.jLabelPause.setEnabled(true);
             animator = new FPSAnimator((WorldWindowGLCanvas) this.wwd, 15/*frames per second*/);
             animator.stop();
-           
 
         }
 
@@ -756,7 +763,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         dialog.setModal(true);
         dialog.setVisible(true);
         if (wmsPanel.isConfirmed()) {
-            
+
         }
         dialog.dispose();
     }//GEN-LAST:event_jMenuItemWMSActionPerformed
@@ -805,8 +812,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             String url = wfsPanel.getUrl();
             String name = wfsPanel.getFeatureName();
             Sector sector = wfsPanel.getSector();
-            double dist = wfsPanel.getVisibleDistance();
-            Angle tile = wfsPanel.getTileDelta();
+            double dist = 100000;
 
             String queryfield = wfsPanel.getQueryField();
             String queryvalue = wfsPanel.getQueryValue();
@@ -814,7 +820,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
                 queryvalue = "#";
             }
             try {
-                addWfsLayer(url, name, sector, tile, queryfield, queryvalue, dist * 1000);
+                addWfsLayer(url, name, sector, queryfield, queryvalue, dist * 1000);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             }
@@ -868,7 +874,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
             for (Layer layer : layerlist) {
                 if (layernames.contains(layer.getName())) {
                     this.wwd.getModel().getLayers().remove(layer);
-                   
+
                 }
             }
 
@@ -897,12 +903,12 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         this.iconsimplelayer.removeAllIcons();
         this.wwd.getModel().getLayers().remove(tracklayer);
         this.wwd.getModel().getLayers().remove(iconsimplelayer);
-        
+
         this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
         this.currentPos = -1;
         this.pathPositions.removeAll(this.pathPositions);
         this.pathPositionsAnimation.removeAll(pathPositions);
-        
+
     }//GEN-LAST:event_jLabelStopMouseClicked
 
     private void jLabelFastMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelFastMouseClicked
@@ -923,12 +929,12 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
         // TODO add your handling code here:
 
-       
+
     }//GEN-LAST:event_jMenu8ActionPerformed
 
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
         // TODO add your handling code here:
-                JDialog dialog = new JDialog(this, "Security", true);
+        JDialog dialog = new JDialog(this, "Security", true);
         SecurityPanel securityPanel = new SecurityPanel();
 
         securityPanel.setDialog(dialog);
@@ -941,53 +947,104 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
         dialog.dispose();
     }//GEN-LAST:event_jMenu8MouseClicked
 
-    protected void addWfsLayer(String url, String featureTypeName, Sector sector, Angle tileDelta, String queryField, String queryValue, double maxVisibleDistance) {
+    private void addWFSPoint(List<GMLFeature> gmlfeatures, String featureTypeName, String queryField, String queryValue, double maxVisibleDistance, KMLStyle style) {
+        LatLon finalloc = null;
+        SelectableIconLayer iconlayer = new SelectableIconLayer();
+        iconlayer.setMaxActiveAltitude(maxVisibleDistance * 2);
 
-        try {
-            WFSServiceSimple service = new WFSServiceSimple(url, featureTypeName, queryField, queryValue, "");
-            String filepath = service.downloadFeatures();
+        for (GMLFeature gmlfeature : gmlfeatures) {
+            GMLGeometry geometry;
+            geometry = gmlfeature.getDefaultGeometry();
 
-//            int cout = readGMLCount(filepath);
-            KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
-            style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue));
-            style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue).replaceFirst("^ff", "80")); //semi-transparent fill
-            SelectableIconLayer iconlayer = new SelectableIconLayer();
-            iconlayer.setMaxActiveAltitude(maxVisibleDistance*2);
+            if (geometry instanceof GMLPoint) {
+                GMLPoint gmlpoint = (GMLPoint) geometry;
+                LatLon loc = gmlpoint.getCentroid();
+                String desc = gmlfeature.buildDescription(null);
+                String imageURL = findFirstLinkedImage(desc);
+                SelectableIcon icon = new SelectableIcon(style,
+                        new Position(geometry.getCentroid(), 0),
+                        gmlfeature.getName(), desc, imageURL,
+                        gmlfeature.getRelativeImportance(), true);
 
-            List<GMLFeature> gmlfeatures = service.readGMLData(filepath);
-            LatLon finalloc = null;
-            for (GMLFeature gmlfeature : gmlfeatures) {
-                GMLGeometry geometry;
-                geometry = gmlfeature.getDefaultGeometry();
-                if (geometry instanceof GMLPoint) {
-                    GMLPoint gmlpoint = (GMLPoint) geometry;
-                    LatLon loc = gmlpoint.getCentroid();
-                    String desc = gmlfeature.buildDescription(null);
-                    String imageURL = findFirstLinkedImage(desc);
-                    SelectableIcon icon = new SelectableIcon(style,
-                            new Position(geometry.getCentroid(), 0),
-                            gmlfeature.getName(), desc, imageURL,
-                            gmlfeature.getRelativeImportance(), true);
+                iconlayer.addIcon(icon);
+                finalloc = loc;
 
-                    iconlayer.addIcon(icon);
-                    finalloc = loc;
+            }
 
+        }
+        iconlayer.setEnabled(true);
+        iconlayer.setName(featureTypeName + " " + queryField + ": " + queryValue);
+        iconlayer.setPickEnabled(true);
+        this.insertBeforePlacenames(this.wwd, iconlayer);
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance / 100);
+
+    }
+
+    private void addWFSLine(List<GMLFeature> gmlfeatures, String featureTypeName, String queryField, String queryValue, double maxVisibleDistance, KMLStyle style) {
+        RenderableLayer layer = new RenderableLayer();
+        LatLon finalloc = null;
+        for (GMLFeature gmlfeature : gmlfeatures) {
+            GMLGeometry geometry;
+            geometry = gmlfeature.getDefaultGeometry();
+            Polyline line = new Polyline();
+            ArrayList<Position> positions = new ArrayList<Position>();
+            if (geometry instanceof GMLLineString) {
+                GMLLineString gmllinestring = (GMLLineString) geometry;
+                for (LatLon latlon : gmllinestring.getPoints()) {
+                    positions.add(Position.fromDegrees(latlon.latitude.degrees, latlon.longitude.degrees));
+                    finalloc = Position.fromDegrees(latlon.latitude.degrees, latlon.longitude.degrees);
                 }
             }
-            //did not capture actions
-            iconlayer.setEnabled(true);
-            iconlayer.setName(featureTypeName + " " + queryField + ": " + queryValue);
-            iconlayer.setPickEnabled(true);
-            this.wfslayerfilepath.add(filepath);
-            this.wfslayername.add(featureTypeName + " " + queryField + ": " + queryValue);
+            line.setPositions(positions);
+            layer.addRenderable(line);
+        }
+        layer.setEnabled(true);
+        layer.setName(featureTypeName + " " + queryField + ": " + queryValue);
+        layer.setPickEnabled(true);
+        this.insertBeforePlacenames(this.wwd, layer);
+        this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
+        this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance / 100);
 
-            AISMainFrame.insertBeforePlacenames(this.wwd, iconlayer);
-            this.layerTree.getModel().refresh(this.wwd.getModel().getLayers());
-            this.wwd.getView().goTo(Position.fromDegrees(finalloc.latitude.degrees, finalloc.longitude.degrees), maxVisibleDistance);
-        } catch (IOException ex) {
-            Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    protected void addWfsLayer(String url, String featureTypeName, Sector sector, String queryField, String queryValue, double maxVisibleDistance) {
+
+        WFSServiceSimple service = new WFSServiceSimple(url, featureTypeName, queryField, queryValue, "");
+        try
+        {
+        String filepath = service.downloadFeatures();
+
+//            int cout = readGMLCount(filepath);
+        KMLStyle style = new KMLStyle(DefaultLook.DEFAULT_FEATURE_STYLE);
+
+        style.getIconStyle().setField("href", new KMLIcon("images/pushpins/ship.png"));
+//             
+        style.getLineStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue));
+        style.getPolyStyle().setField("color", KMLStyleFactory.encodeColorToHex(Color.blue).replaceFirst("^ff", "80")); //semi-transparent fill
+
+        List<GMLFeature> gmlfeatures = service.readGMLData(filepath);
+
+        //check data type
+        GMLFeature gmlfeaturetest = gmlfeatures.get(0);
+        GMLGeometry geometrytest;
+        geometrytest = gmlfeaturetest.getDefaultGeometry();
+        if (geometrytest instanceof GMLPoint) {
+            this.addWFSPoint(gmlfeatures, featureTypeName, queryField, queryValue, maxVisibleDistance, style);
+        } else if (geometrytest instanceof GMLLineString) {
+            this.addWFSLine(gmlfeatures, featureTypeName, queryField, queryValue, maxVisibleDistance, style);
+            //handles line and polygons
+        } else {
+
         }
 
+        //did not capture actions
+        this.wfslayerfilepath.add(filepath);
+        this.wfslayername.add(featureTypeName + " " + queryField + ": " + queryValue);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(AISMainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     protected void addWcsLayer(String url, String sector, String time, String varname) {
@@ -1132,7 +1189,7 @@ public class AISMainFrame extends javax.swing.JFrame implements RenderingListene
     public void stageChanged(RenderingEvent event) {
 
         if (event.getStage().equals(RenderingEvent.BEFORE_RENDERING)) {
-            if (this.animator.isAnimating()&&this.currentPos!=-1) {
+            if (this.animator.isAnimating() && this.currentPos != -1) {
                 // The globe may not be instantiated the first time the listener is called.
                 if (this.wwd.getView().getGlobe() == null) {
                     return;

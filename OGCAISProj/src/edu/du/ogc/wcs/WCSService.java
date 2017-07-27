@@ -328,14 +328,14 @@ public class WCSService extends WWObjectImpl {
 
     }
 //
-//    public static void main(String[] args) {
-//        WCSService wcsservice = new WCSService("http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km");
-//       
-//        wcsservice.parseCapablities();
-//       String varname =  wcsservice.GetCoverageVariable().get(0);
-//         wcsservice.BuildCoverageURL("u", "2017-05-08T00:00:00Z", "-60,21,-57,47");
-//        String path = wcsservice.downloadNetCDF();
-//        System.out.println(path);
-//    }
+    public static void main(String[] args) {
+        WCSService wcsservice = new WCSService("http://sdf.ndbc.noaa.gov/thredds/wcs/hfradar_usegc_1km");
+       
+        wcsservice.parseCapablities();
+       String varname =  wcsservice.GetCoverageVariable().get(0);
+         wcsservice.BuildCoverageURL("u", "2017-05-08T00:00:00Z", "-60,21,-57,47");
+        String path = wcsservice.downloadNetCDF();
+        System.out.println(path);
+    }
 
 }

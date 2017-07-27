@@ -7,8 +7,17 @@ package edu.du.ogc.ais.examples.GUI;
 
 import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.Sector;
+import gov.nasa.worldwind.ogc.wfs.WFSCapabilities;
+import gov.nasa.worldwind.ogc.wfs.WFSFeatureType;
+import gov.nasa.worldwind.wms.CapabilitiesRequest;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.xml.stream.XMLStreamException;
 
 /**
  *
@@ -42,13 +51,14 @@ public class WFSPanel extends javax.swing.JPanel {
         drag5 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextserviceUrl = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        featureTypeName = new javax.swing.JTextField();
-        jPanel12 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jComboBoxLayer = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButtonCustom = new javax.swing.JRadioButton();
+        jTextserviceUrl = new javax.swing.JComboBox<>();
+        jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -61,20 +71,17 @@ public class WFSPanel extends javax.swing.JPanel {
         jTextMinLong = new javax.swing.JTextField();
         jTextMaxLong = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        tileDelta = new javax.swing.JTextField();
-        jTextFieldMaxDis = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         queryField = new javax.swing.JComboBox<>();
         jQuerySingleValue = new javax.swing.JTextField();
         jRadioButtonSingle = new javax.swing.JRadioButton();
         jRadioButtonRange = new javax.swing.JRadioButton();
         jQueryRangeValue = new javax.swing.JTextField();
-        jCheckBoxShowAll = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jCheckBoxShowAll = new javax.swing.JCheckBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         jPanel10.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -106,36 +113,51 @@ public class WFSPanel extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel14.setText("Service URL:");
 
-        jTextserviceUrl.setText("http://demo.luciad.com:8080/OgcAisServices/wfs?");
-        jTextserviceUrl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextserviceUrlActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Feature Type Name:");
 
-        featureTypeName.setText("AIS_US");
-        featureTypeName.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Get Layer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                featureTypeNameActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel15.setText("Sector:");
+
+        jRadioButton4.setSelected(true);
+        jRadioButton4.setText("Global");
+
+        jRadioButtonCustom.setText("Custom");
+
+        jTextserviceUrl.setEditable(true);
+        jTextserviceUrl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "http://cloudsdi.geo-solutions.it/geoserver/daraa/ows?", "http://demo.luciad.com:8080/OgcAisServices/wfs?" }));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+            .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextserviceUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-                    .addComponent(featureTypeName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxLayer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
-                            .addComponent(jLabel1))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jTextserviceUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButtonCustom)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -145,46 +167,19 @@ public class WFSPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextserviceUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jTextserviceUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(featureTypeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel15.setText("Sector:");
-
-        jRadioButton4.setText("Global");
-
-        jRadioButtonCustom.setSelected(true);
-        jRadioButtonCustom.setText("Custom");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jRadioButton4)
-                        .addGap(67, 67, 67)
-                        .addComponent(jRadioButtonCustom)))
-                .addContainerGap(171, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton4)
                     .addComponent(jRadioButtonCustom))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel16.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -254,23 +249,19 @@ public class WFSPanel extends javax.swing.JPanel {
                     .addComponent(jLabel21)
                     .addComponent(jTextMinLong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextMaxLong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel22.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel22.setText("Max Visible Distance (Km):");
-
-        jLabel23.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel23.setText("Tile Delta (Degrees):");
-
-        tileDelta.setText("0.3");
-        tileDelta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tileDeltaActionPerformed(evt);
-            }
-        });
-
-        jTextFieldMaxDis.setText("1000");
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Attribute");
@@ -296,8 +287,6 @@ public class WFSPanel extends javax.swing.JPanel {
 
         jQueryRangeValue.setText("1,2");
 
-        jCheckBoxShowAll.setText("Show All");
-
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -305,52 +294,40 @@ public class WFSPanel extends javax.swing.JPanel {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel22)
-                        .addComponent(jLabel23))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(queryField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(jRadioButtonSingle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jQuerySingleValue)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel14Layout.createSequentialGroup()
-                            .addComponent(jRadioButtonRange)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jQueryRangeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(tileDelta)
-                        .addComponent(jTextFieldMaxDis, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                    .addComponent(jCheckBoxShowAll))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(queryField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(153, 153, 153))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonSingle)
+                            .addComponent(jRadioButtonRange))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(jQueryRangeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(jQuerySingleValue)
+                                .addGap(208, 208, 208))))))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(jTextFieldMaxDis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(tileDelta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(queryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxShowAll))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(queryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jQuerySingleValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButtonSingle)
+                    .addComponent(jQuerySingleValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonRange)
                     .addComponent(jQueryRangeValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jButton1.setText("OK");
@@ -390,20 +367,32 @@ public class WFSPanel extends javax.swing.JPanel {
                 .addComponent(jButton2))
         );
 
+        jCheckBoxShowAll.setSelected(true);
+        jCheckBoxShowAll.setText("Show All");
+
+        jCheckBox1.setText("Show Selected");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jCheckBoxShowAll)
+                        .addGap(27, 27, 27)
+                        .addComponent(jCheckBox1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,9 +403,11 @@ public class WFSPanel extends javax.swing.JPanel {
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBoxShowAll)
+                    .addComponent(jCheckBox1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,14 +427,6 @@ public class WFSPanel extends javax.swing.JPanel {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel10MousePressed
-
-    private void jTextserviceUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextserviceUrlActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextserviceUrlActionPerformed
-
-    private void featureTypeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_featureTypeNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_featureTypeNameActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
@@ -467,6 +450,39 @@ public class WFSPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+        this.jComboBoxLayer.removeAllItems();
+            String service = this.jTextserviceUrl.getSelectedItem().toString();
+            URI uri=  new URI(service);
+            CapabilitiesRequest request = new CapabilitiesRequest(uri, "WFS");
+            request.setVersion("2.0.0");
+            WFSCapabilities wfs = new WFSCapabilities(request.toString());
+            try {
+                wfs.parse();
+                  List<WFSFeatureType> wfstypes = wfs.getFeatureTypes();
+                  int idx = 0 ;
+            for (WFSFeatureType wfstype:wfstypes )
+            {
+                String featuretype = wfstype.getName();
+                this.jComboBoxLayer.insertItemAt(featuretype, idx);
+                idx = idx+1;
+            }
+            this.jComboBoxLayer.setSelectedIndex(0);
+            } catch (XMLStreamException ex) {
+                Logger.getLogger(WFSPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+//        } catch (URISyntaxException ex) {
+//            Logger.getLogger(WFSCapabilities.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//     }
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(WFSPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void jRadioButtonRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRangeActionPerformed
         // TODO add your handling code here:
         if (this.jRadioButtonRange.isSelected())
@@ -481,12 +497,7 @@ public class WFSPanel extends javax.swing.JPanel {
         {
             this.jRadioButtonRange.setSelected(false);
         }
-
     }//GEN-LAST:event_jRadioButtonSingleActionPerformed
-
-    private void tileDeltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tileDeltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tileDeltaActionPerformed
 
     public boolean isShowAll()
     {
@@ -505,14 +516,14 @@ public class WFSPanel extends javax.swing.JPanel {
     
      public String getUrl()
     {
-        return jTextserviceUrl.getText();
+        return jTextserviceUrl.getSelectedItem().toString();
     }
     
 
     
     public String getFeatureName()
     {
-        return featureTypeName.getText();
+        return this.jComboBoxLayer.getSelectedItem().toString();
     }
     
     public String getQueryValue()
@@ -532,24 +543,7 @@ public class WFSPanel extends javax.swing.JPanel {
         return x;
     }
     
-    public double getVisibleDistance()
-    {
-        double distance = Double.parseDouble(jTextFieldMaxDis.getText());
-        if (distance < 0.1) {
-            distance = 10.0;
-        }
-        return distance;
-    }
-    
-    public Angle getTileDelta()
-    {
-        double td = Double.parseDouble(tileDelta.getText());
-        if (td <= 0) {
-            td = 0.3;
-        }
-        return Angle.fromDegrees(td);
-    }
-    
+
     public Sector getSector()
     {
         Sector rv = null;
@@ -572,10 +566,12 @@ public class WFSPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel drag5;
-    private javax.swing.JTextField featureTypeName;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBoxShowAll;
+    private javax.swing.JComboBox<String> jComboBoxLayer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -586,8 +582,6 @@ public class WFSPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -600,13 +594,11 @@ public class WFSPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButtonCustom;
     private javax.swing.JRadioButton jRadioButtonRange;
     private javax.swing.JRadioButton jRadioButtonSingle;
-    private javax.swing.JTextField jTextFieldMaxDis;
     private javax.swing.JTextField jTextMaxLat;
     private javax.swing.JTextField jTextMaxLong;
     private javax.swing.JTextField jTextMinLat;
     private javax.swing.JTextField jTextMinLong;
-    private javax.swing.JTextField jTextserviceUrl;
+    private javax.swing.JComboBox<String> jTextserviceUrl;
     private javax.swing.JComboBox<String> queryField;
-    private javax.swing.JTextField tileDelta;
     // End of variables declaration//GEN-END:variables
 }

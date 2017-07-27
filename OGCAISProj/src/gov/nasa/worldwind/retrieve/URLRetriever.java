@@ -226,8 +226,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
 
     public final Retriever call() throws Exception
     {
-        if (this.url.toString().contains("BlueMarble"))
-            System.err.println(this.url.toString());
+
         
         if (this.interrupted())
             return this;

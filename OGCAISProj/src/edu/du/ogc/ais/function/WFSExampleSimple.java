@@ -293,7 +293,7 @@ static protected int currentPos = 0;
                 }
                 
                 iconsimplelayer.removeAllIcons();
-                
+               
                 UserFacingIcon icon = new UserFacingIcon("src/images/pushpins/simple32.png",pathPositions.get(currentPos));
             icon.setSize(new Dimension(32, 32));
             iconsimplelayer.addIcon(icon);

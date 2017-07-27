@@ -16,6 +16,7 @@ public class GMLPoint extends GMLGeometry {
 			throw new GMLException("Not a point GML node");
 		
 		Node coordsNode = n.getFirstChild();
+                //added by jing li 
 		if (coordsNode == null || !(coordsNode.getNodeName().equals(GML_TAG_COORDINATES)||coordsNode.getNodeName().equals(GML_TAG_POS)))
 			throw new GMLException("Point should contain coordinates and nothing else.");
 		

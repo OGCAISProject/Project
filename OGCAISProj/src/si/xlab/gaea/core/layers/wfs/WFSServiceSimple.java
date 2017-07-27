@@ -129,7 +129,7 @@ public class WFSServiceSimple {
         //need to check if 0 records returned.
         //attribute query
         queryxmlString = queryxmlString
-                + "<wfs:Query typeNames=\"AIS_US\">\n";
+                + "<wfs:Query typeNames=\""+this.dataset+"\">\n";
         //selection
         if (this.queryvalue.contains("#"))
         {
@@ -163,15 +163,20 @@ public class WFSServiceSimple {
                     + "</fes:Filter>\n";
         }
         }
-        //  sorting              
+        //  sorting   
+        if (this.dataset.equals("AIS_US"))
+        {
         queryxmlString = queryxmlString
                 + "<fes:SortBy>\n"
                 + "<fes:SortProperty>\n"
                 + "<fes:ValueReference>timeConv</fes:ValueReference>\n" //does not work for time? --24 hour format!
                 + "<fes:SortOrder>DESC</fes:SortOrder>\n"
                 + "</fes:SortProperty>\n"
-                + "</fes:SortBy>\n"
-                + "</wfs:Query>\n"
+                + "</fes:SortBy>\n";
+                
+        }
+         queryxmlString = queryxmlString
+                 + "</wfs:Query>\n"
                 + "</wfs:GetFeature>";
         writer.write(queryxmlString);
         writer.flush();
@@ -187,7 +192,7 @@ public class WFSServiceSimple {
         }
 
         String result = buf.toString();
-//        System.err.println("\nResponse from server after POST:\n" + result);
+        System.err.println("\nResponse from server after POST:\n" + result);
         File cacheFileURL = WorldWind.getDataFileStore().newFile(this.fileCachePath + ".xml");
         String fileCachePath = cacheFileURL.toURI().getPath();
         PrintWriter out = new PrintWriter(fileCachePath);
